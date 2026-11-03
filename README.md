@@ -1,3 +1,5 @@
+![Ehyeh — Meditate on Scripture](ehyeh-og.jpg)
+
 # Ehyeh — Meditate on Scripture
 
 Ehyeh is a Bible study app that helps anyone build a sermon or study outline
