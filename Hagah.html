@@ -3,36 +3,45 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Ehyeh — meditate on Scripture. Read the Geneva Bible and King James Version with word studies, margin notes, cross-references, topics, reading plans, and prayer. Free, no account.">
+<meta name="description" content="Ehyeh: meditate on Scripture. Read the Geneva Bible and King James Version with word studies, margin notes, cross-references, topics, reading plans, and prayer. Free, no account.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Ehyeh — Meditate on Scripture">
 <meta property="og:description" content="Build a study outline from any passage or topic — with context, background from Easton's Bible Dictionary, and a one-page pulpit sheet. $7, or free for anyone who does not have the money.">
-<meta property="og:url" content="https://swava.ai/hagah/Hagah.html">
-<meta property="og:image" content="https://swava.ai/hagah/ehyeh-og.jpg">
+<meta property="og:url" content="https://swava.ai/ehyeh/">
+<meta property="og:image" content="https://swava.ai/ehyeh/ehyeh-og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Ehyeh — Meditate on Scripture">
 <meta name="twitter:description" content="Build a study outline from any passage or topic — with context, background, and a one-page pulpit sheet.">
-<meta name="twitter:image" content="https://swava.ai/hagah/ehyeh-og.jpg">
+<meta name="twitter:image" content="https://swava.ai/ehyeh/ehyeh-og.jpg">
 <link rel="icon" type="image/png" sizes="192x192" href="ehyeh-icon-192.png">
 <link rel="apple-touch-icon" href="ehyeh-icon-512.png">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; media-src 'self' data: blob:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; worker-src 'self'; form-action 'none'; base-uri 'none'; connect-src https: http://localhost:11434 http://127.0.0.1:11434">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; media-src 'self' data: blob:; img-src 'self' data: blob:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; worker-src 'self'; form-action 'none'; base-uri 'none'; connect-src https: http://localhost:11434 http://127.0.0.1:11434">
 <meta name="color-scheme" content="light">
 <title>Ehyeh &mdash; Meditate on Scripture</title>
+<script>
+/* Text size (ease-of-use rule 1, 2026-10-29): apply the size saved on this
+   device before first paint, so the page never flashes at the wrong size.
+   The control itself sits in the header (Text size A- / A+). */
+try {
+  var __hgTs = parseInt(localStorage.getItem('hagah.textsize') || '16', 10);
+  if (__hgTs > 16 && __hgTs <= 32) { document.documentElement.style.fontSize = __hgTs + 'px'; }
+} catch (e) { /* no storage: default size */ }
+</script>
 <style>
   :root {
-    --ivory: #f7f3ea;
-    --paper: #fffdf7;
+    --ivory: #eef1f4;
+    --paper: #fcfdfe;
     --ink: #1f2a3c;
     --muted: #5d6675;
     --line: #d8d0c0;
-    --line-soft: #e8e2d4;
+    --line-soft: #dfe5ea;
     --accent: #2e5c47;
     --accent-soft: #e4ece6;
     --gold: #9c7f3a;
     --danger: #8a3b2e;
-    --danger-soft: #f3e4e0;
+    --danger-soft: #f0e3ea;
     --serif: Georgia, "Times New Roman", Times, serif;
     --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     --radius: 3px;
@@ -97,10 +106,10 @@
   }
   .choice:hover { border-color: var(--accent); }
   .choice .t { font-family: var(--serif); font-size: 1.2rem; display: block; margin-bottom: 0.35rem; }
-  .choice .e { color: var(--muted); font-size: 0.95rem; }
+  .choice .e { color: var(--muted); font-size: 1rem; }
   label, .legend { display: block; font-weight: 600; margin: 0 0 0.35rem; font-size: 0.95rem; }
   .optional { font-weight: 400; color: var(--muted); }
-  .help { color: var(--muted); font-size: 0.92rem; margin: -0.15rem 0 0.5rem; }
+  .help { color: var(--muted); font-size: 1rem; margin: -0.15rem 0 0.5rem; }
   .field { margin: 0 0 1.35rem; }
   input[type="text"], input[type="date"], input[type="search"], textarea, select {
     width: 100%; font: inherit; color: var(--ink); background: #fff;
@@ -119,8 +128,8 @@
   .radio-row label { font-weight: 400; display: inline-flex; align-items: center; gap: 0.45rem; margin: 0; }
   input[type="radio"], input[type="checkbox"] { width: 1.15rem; height: 1.15rem; accent-color: var(--accent); }
   .btn {
-    font: inherit; font-size: 0.95rem; padding: 0.55rem 1.05rem; border-radius: var(--radius); cursor: pointer;
-    border: 1px solid var(--accent); background: var(--accent); color: #fff;
+    font: inherit; font-size: 1rem; padding: 0.55rem 1.05rem; border-radius: var(--radius); cursor: pointer;
+    border: 1px solid var(--accent); background: var(--accent); color: #fff; min-height: 2.75rem;
   }
   .btn.secondary { background: var(--paper); color: var(--accent); }
   .btn.quiet { background: none; border-color: transparent; color: var(--accent); padding-left: 0.4rem; padding-right: 0.4rem; }
@@ -160,7 +169,7 @@
   .lib-item select { width: auto; padding: 0.3rem 0.5rem; font-size: 0.9rem; }
   .empty { color: var(--muted); font-style: italic; }
   .file-btn { position: relative; overflow: hidden; display: inline-block; }
-  .file-btn input { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; }
+  .file-btn input { position: absolute; width: 1px; height: 1px; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
   dialog {
     border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper); color: var(--ink);
     padding: 1.5rem; max-width: 32rem; width: calc(100% - 2rem); font: inherit;
@@ -168,7 +177,7 @@
   dialog::backdrop { background: rgba(31, 42, 60, 0.35); }
   dialog h2 { font-size: 1.4rem; }
   dialog .msg { white-space: pre-wrap; }
-  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .sr-only { position: absolute; width: 1px; height: 1px; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
   .print-controls { display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; align-items: end; margin-bottom: 1rem; }
   .print-controls .field { margin: 0; }
   .print-controls select { width: auto; }
@@ -177,7 +186,7 @@
   .sheet-wrap { overflow-x: auto; padding: 1rem 0 1.5rem; }
   .sheet {
     background: #fff; color: #000; border: 1px solid var(--line); margin: 0 auto;
-    padding: 72px; overflow: hidden; font-family: var(--serif);
+    padding: 54px; overflow: hidden; font-family: var(--serif);
     font-size: var(--print-base); line-height: 1.5;
   }
   .sheet.letter { width: 816px; height: 1056px; }
@@ -185,8 +194,8 @@
   .sheet-content { }
   .sheet h1 { font-size: 1.7em; margin: 0 0 0.25em; color: #000; }
   .sheet .s-passage { font-size: 1.15em; margin: 0 0 0.2em; }
-  .sheet .s-meta { font-family: var(--sans); font-size: 0.7em; color: #333; margin: 0 0 1em; }
-  .sheet .s-label { font-family: var(--sans); font-size: 0.68em; letter-spacing: 0.08em; text-transform: uppercase; color: #333; margin: 1em 0 0.15em; }
+  .sheet .s-meta { font-family: var(--sans); font-size: 0.8em; color: #333; margin: 0 0 1em; }
+  .sheet .s-label { font-family: var(--sans); font-size: 0.78em; letter-spacing: 0.08em; text-transform: uppercase; color: #333; margin: 1em 0 0.15em; }
   .sheet .s-central { font-size: 1.1em; margin: 0 0 0.5em; }
   .sheet ol { margin: 0; padding-left: 1.4em; }
   .sheet ol li { margin: 0 0 0.6em; }
@@ -196,7 +205,7 @@
   .sheet ul.s-conn { margin: 0; padding-left: 1.2em; }
   .sheet .s-conn li { margin: 0 0 0.4em; }
   .sheet .s-strip { border: 1px solid #000; height: 5.5em; margin-top: 1em; }
-  .sheet .s-foot { font-family: var(--sans); font-size: 0.62em; color: #555; text-align: center; margin-top: 1.2em; border-top: 1px solid #ccc; padding-top: 0.4em; }
+  .sheet .s-foot { font-family: var(--sans); font-size: 0.75em; color: #555; text-align: center; margin-top: 1.2em; border-top: 1px solid #ccc; padding-top: 0.4em; }
   .sheet .s-foot[hidden] { display: none; }
   .sheet p { margin: 0 0 0.35em; white-space: pre-wrap; }
   @media (max-width: 600px) {
@@ -214,15 +223,15 @@
     --brand-gold: #D4AF37;
     --brand-gold-radiant: #E5C158;
     --brand-parchment: #F3E5AB;
-    --brand-vellum: #FDFBF7;
+    --brand-vellum: #F8FAFC;
     --brand-border: #253556;
   }
   [hidden] { display: none !important; }
   /* "?" help button shown in every view heading */
   .help-btn {
     display: inline-flex; align-items: center; justify-content: center;
-    width: 1.9rem; height: 1.9rem; border-radius: 50%;
-    border: 2px solid var(--brand-gold); background: transparent;
+    width: 2.75rem; height: 2.75rem; border-radius: 50%;
+    border: none; box-shadow: inset 0 0 0 2px var(--brand-gold); background: transparent;
     color: var(--brand-gold); font-size: 1.05rem; font-weight: 700;
     line-height: 1; cursor: pointer; vertical-align: middle; margin-left: 0.6rem;
     font-family: var(--sans);
@@ -294,7 +303,7 @@
   .study-bar select { width: auto; min-width: 10rem; }
   .chapter-text { font-family: var(--serif); font-size: 1.15rem; line-height: 1.9; }
   .verse { margin: 0 0 0.9rem; }
-  .verse-num { font-family: var(--sans); font-size: 0.75rem; color: var(--gold); vertical-align: super; margin-right: 0.35rem; font-weight: 700; }
+  .verse-num { font-family: var(--sans); font-size: 0.84375rem; color: var(--gold); vertical-align: super; margin-right: 0.35rem; font-weight: 700; }
   .w { cursor: pointer; border-radius: 3px; padding: 0 1px; }
   .w:hover, .w:focus-visible { background: var(--accent-soft); outline: 2px solid var(--accent); outline-offset: 1px; }
   .w.active { background: var(--accent-soft); outline: 2px solid var(--accent); }
@@ -305,12 +314,12 @@
   .orig-word { font-size: 1.5rem; }
   .kv-table { width: 100%; border-collapse: collapse; font-size: 0.95rem; margin: 0.75rem 0; }
   .kv-table th, .kv-table td { text-align: left; padding: 0.35rem 0.5rem; border-bottom: 1px solid var(--line-soft); vertical-align: top; }
-  .kv-table th { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+  .kv-table th { font-size: 0.9375rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
   .caveat { border-left: 3px solid var(--gold); background: var(--paper); padding: 0.6rem 0.9rem; font-size: 0.9rem; color: var(--muted); margin: 0.9rem 0; }
   .margin-note { border: 1px solid var(--line-soft); border-radius: var(--radius); padding: 0.8rem 1rem; margin: 0 0 0.8rem; background: var(--paper); }
   .margin-note .src { font-size: 0.8rem; color: var(--muted); font-style: italic; margin-bottom: 0.3rem; }
   .xref-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.5rem 0 0; }
-  .xref-chip { font-size: 0.85rem; border: 1px solid var(--line); background: var(--paper); border-radius: 20px; padding: 0.25rem 0.75rem; cursor: pointer; color: var(--accent); font-family: inherit; }
+  .xref-chip { font-size: 0.85rem; border: 1px solid var(--line); background: var(--paper); border-radius: 20px; padding: 0.8rem 0.9rem; cursor: pointer; color: var(--accent); font-family: inherit; }
   .xref-chip:hover { border-color: var(--accent); }
   .lesson-card { border: 1px solid var(--line); background: var(--paper); border-radius: var(--radius); padding: 1rem 1.25rem; margin: 0 0 0.8rem; }
   .lesson-card h4 { margin-bottom: 0.3rem; color: var(--danger); }
@@ -375,7 +384,7 @@
    Hagah rebuild layer — deep theme (midnight & gold), flow UI, home.
    Design truth: DESIGN.md "Contemplative Scripture & Study" + Stitch screen:
    midnight #0B1325 canvas, slate cards #111E38, borders #253556, vellum
-   #FDFBF7 text, parchment #F3E5AB accents, brushed gold #D4AF37 illuminated
+   warm-white text, parchment #F3E5AB accents, brushed gold #D4AF37 illuminated
    accents, radiance #E5C158 hover. This block loads AFTER the app's own
    styles, so equal-specificity rules here win. The print sheet stays a
    light page (vellum) on the midnight desk — and prints white.
@@ -383,7 +392,7 @@
 :root {
   --ivory: #0B1325;
   --paper: #111E38;
-  --ink: #FDFBF7;
+  --ink: #F8FAFC;
   --muted: #BAC4D8;
   --line: #253556;
   --line-soft: rgba(37, 53, 86, 0.55);
@@ -399,7 +408,7 @@
   --hg-slate: #111E38;
   --hg-slate2: #182849;
   --hg-parchment: #F3E5AB;
-  --hg-vellum: #FDFBF7;
+  --hg-vellum: #F8FAFC;
   --hg-faint: #7988A7;
 }
 html { background: var(--hg-deep); }
@@ -458,7 +467,7 @@ dialog::backdrop { background: rgba(3, 6, 14, 0.62); }
 .clm-tabs, .hg-tabs, .sh-tabs { display: flex; gap: 0.4rem; flex-wrap: wrap; margin: 0 0 1.25rem; }
 .clm-tab, .hg-tab, .sh-tab {
   border: 1px solid var(--line); background: var(--hg-slate); color: var(--muted);
-  border-radius: 4px; padding: 0.45rem 1rem; font: inherit; font-size: 0.95rem; cursor: pointer;
+  border-radius: 4px; padding: 0.45rem 1rem; font: inherit; font-size: 0.95rem; cursor: pointer; min-height: 2.75rem;
 }
 .clm-tab.active, .hg-tab.active, .hg-tab[aria-selected="true"], .sh-tab.sh-active, .sh-tab.active {
   background: var(--accent); border-color: var(--accent); color: #0B1325; font-weight: 600;
@@ -533,7 +542,7 @@ dialog::backdrop { background: rgba(3, 6, 14, 0.62); }
 .hg-job:hover, .hg-job:focus-visible { border-color: var(--accent); box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.35), 0 12px 32px -12px rgba(0, 0, 0, 0.8); outline: none; }
 .hg-job .hg-emoji { font-size: 1.7rem; line-height: 1; flex: none; }
 .hg-job .hg-t { font-family: var(--serif); font-size: 1.35rem; display: block; color: var(--hg-vellum); }
-.hg-job .hg-e { color: var(--muted); font-size: 0.94rem; display: block; margin-top: 0.15rem; }
+.hg-job .hg-e { color: var(--muted); font-size: 1rem; display: block; margin-top: 0.15rem; }
 .hg-job .hg-arrow { margin-left: auto; color: var(--gold); font-size: 1.3rem; flex: none; }
 .hg-sec-title {
   font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase;
@@ -551,7 +560,7 @@ dialog::backdrop { background: rgba(3, 6, 14, 0.62); }
 .hg-secondary { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.4rem; }
 .hg-secondary button {
   border: 1px solid var(--line); background: transparent; color: var(--muted);
-  border-radius: 4px; padding: 0.5rem 0.95rem; font: inherit; font-size: 0.92rem; cursor: pointer;
+  border-radius: 4px; padding: 0.65rem 0.95rem; font: inherit; font-size: 1rem; cursor: pointer; min-height: 2.75rem;
 }
 .hg-secondary button:hover { border-color: var(--accent); color: var(--hg-parchment); }
 .hg-home-foot { text-align: center; color: var(--hg-faint); font-size: 0.88rem; margin-top: 2rem; }
@@ -579,12 +588,12 @@ body.hg-flow-on #hg-homebtn { bottom: 7.5rem; }
 .hg-flow-name { color: var(--hg-parchment); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; }
 .hg-flow-step { color: var(--hg-vellum); font-family: var(--serif); font-size: 1.12rem; }
 .hg-flow-count { color: var(--hg-faint); font-size: 0.85rem; margin-left: auto; }
-.hg-flow-why { color: var(--muted); font-size: 0.94rem; margin: 0.3rem 0 0.65rem; }
+.hg-flow-why { color: var(--muted); font-size: 1rem; margin: 0.3rem 0 0.65rem; }
 .hg-flow-why strong { color: var(--hg-parchment); font-weight: 600; }
 .hg-flow-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; }
 .hg-fbtn {
   border: 1px solid var(--line); background: var(--hg-slate); color: var(--ink);
-  border-radius: 4px; padding: 0.5rem 0.95rem; font: inherit; font-size: 0.93rem; cursor: pointer;
+  border-radius: 4px; padding: 0.5rem 0.95rem; font: inherit; font-size: 0.93rem; cursor: pointer; min-height: 2.75rem;
 }
 .hg-fbtn:hover { border-color: var(--accent); }
 .hg-fbtn.primary { background: var(--accent); border-color: var(--accent); color: #0B1325; font-weight: 700; }
@@ -612,6 +621,14 @@ body.hg-flow-on main { padding-bottom: 11rem; }
 .sheet .s-vrow { margin: 0.15rem 0; color: #2b2b2b; font-size: 0.94em; line-height: 1.45; }
 .sheet .s-vt { font-weight: 700; color: #8a6d2f; }
 .sheet .s-mnote { font-style: italic; color: #333; }
+/* Round 8: the compact chapter form (data-compact="1", set by the
+   print fit in s03 only when a chapter sheet cannot fit at a
+   readable size) also tightens the verse-block spacing, which is
+   rem-based and otherwise never shrinks with the fitted type
+   size, and trims the sheet's fixed padding. Full-form and
+   verse-build sheets are untouched. */
+.sheet[data-compact="1"] .s-verses { margin: 0.15rem 0 0.3rem; }
+.sheet[data-compact="1"] { padding-top: 40px; padding-bottom: 40px; }
 
 </style>
 </head>
@@ -628,12 +645,19 @@ body.hg-flow-on main { padding-bottom: 11rem; }
 </svg>
       <div class="hagah-id">
         <div class="hagah-name">Ehyeh <span class="hagah-say">eh-YEH &middot; אֶהְיֶה &middot; &ldquo;I AM&rdquo; (Exodus 3:14)</span></div>
-        <div class="hagah-tag">Meditate deeply on the Word &mdash; day and night <span class="hagah-refs">Joshua 1:8 &middot; Psalm 1:2</span></div>
+        <div class="hagah-tag">Meditate deeply on the Word, day and night <span class="hagah-refs">Joshua 1:8 &middot; Psalm 1:2</span></div>
       </div>
     </div>
     <div class="hagah-mode" role="group" aria-label="Mode">
       <button type="button" data-hg-mode="study" aria-pressed="true">Personal Study</button>
       <button type="button" data-hg-mode="sermon" aria-pressed="false">Sermon Prep</button>
+    </div>
+    <button type="button" class="help-btn hg-header-help" data-help-view="start" aria-label="Help: getting started with Ehyeh">Help</button>
+    <div class="hg-textsize" role="group" aria-label="Text size">
+      <span class="hg-textsize-label">Text size</span>
+      <button type="button" id="hg-ts-down" aria-label="Smaller text">A&minus;</button>
+      <span class="hg-textsize-val" id="hg-ts-val" aria-live="polite">100%</span>
+      <button type="button" id="hg-ts-up" aria-label="Bigger text">A+</button>
     </div>
   </div>
   <nav class="hagah-nav" aria-label="Tools"><div class="inner"><ul id="hagah-tabs"></ul></div></nav>
@@ -671,7 +695,7 @@ body.hg-flow-on main { padding-bottom: 11rem; }
     </div>
     <div class="card" id="st-notes-card" hidden>
       <h3>Geneva margin notes</h3>
-      <p class="help">From the 1599 Geneva Bible's own margins — 16th-century Reformer voices, not modern commentary. Read them with eyes open.</p>
+      <p class="help">From the 1599 Geneva Bible's own margins: 16th-century Reformer voices, not modern commentary. Read them with eyes open.</p>
       <div id="st-notes"></div>
     </div>
     <div class="card" id="st-xrefs-card" hidden>
@@ -680,11 +704,11 @@ body.hg-flow-on main { padding-bottom: 11rem; }
       <div class="xref-chips" id="st-xrefs"></div>
     </div>
     <details class="lesson" id="st-lesson">
-      <summary>Use it rightly — how not to misuse a concordance</summary>
+      <summary>Use it rightly: how not to misuse a concordance</summary>
       <div id="st-lesson-body"></div>
     </details>
     <details class="watchhow no-print" data-watch-view="study">
-      <summary>Watch how — Study Scripture</summary>
+      <summary>Watch how: Study Scripture</summary>
       <div class="watchhow-body">
         <video controls playsinline preload="none" aria-label="How-to video: Study Scripture"></video>
         <p class="watchhow-fallback">A short how-to video for this page is coming soon.</p>
@@ -693,7 +717,7 @@ body.hg-flow-on main { padding-bottom: 11rem; }
   </section>
 <section id="view-dictionary" aria-labelledby="h-dict" hidden>
     <h2 id="h-dict" tabindex="-1">Bible Dictionary <button type="button" class="help-btn" data-help-view="dictionary" aria-label="Help: what is the Bible Dictionary?"><span aria-hidden="true">?</span></button></h2>
-    <p class="lead">Easton's Bible Dictionary (1897) — public domain, bundled offline.</p>
+    <p class="lead">Easton's Bible Dictionary (1897): public domain, bundled offline.</p>
     <div class="card">
       <div class="field">
         <label for="dict-q">Look up a person, place, or term</label>
@@ -706,7 +730,7 @@ body.hg-flow-on main { padding-bottom: 11rem; }
       <div id="dict-results" aria-live="polite" style="margin-top:1rem;"></div>
     </div>
     <details class="watchhow no-print" data-watch-view="dictionary">
-      <summary>Watch how — Bible Dictionary</summary>
+      <summary>Watch how: Bible Dictionary</summary>
       <div class="watchhow-body">
         <video controls playsinline preload="none" aria-label="How-to video: Bible Dictionary"></video>
         <p class="watchhow-fallback">A short how-to video for this page is coming soon.</p>
@@ -715,14 +739,14 @@ body.hg-flow-on main { padding-bottom: 11rem; }
   </section>
 <section id="view-assistant" aria-labelledby="h-asst" hidden>
     <h2 id="h-asst" tabindex="-1">Study Assistant <button type="button" class="help-btn" data-help-view="assistant" aria-label="Help: what is the Study Assistant?"><span aria-hidden="true">?</span></button></h2>
-    <p class="lead">An opt-in study helper. It answers short study questions — it never writes your sermon.</p>
+    <p class="lead">An opt-in study helper. It answers short study questions. It never writes your sermon.</p>
     <div class="asst-box" id="asst-setup">
       <h3>Enable the assistant</h3>
       <p>The assistant needs a language-model key you provide. Nothing here calls any service until you enable it and type a question.</p>
       <div class="field">
         <label for="asst-key">Your API key</label>
         <input type="text" id="asst-key" autocomplete="off" aria-describedby="h-asst-key">
-        <p class="help key-warn" id="h-asst-key">Kept only in this tab's session memory — never saved to disk, never sent anywhere except the endpoint below, only when you ask a question.</p>
+        <p class="help key-warn" id="h-asst-key">Kept only in this tab's session memory, never saved to disk, never sent anywhere except the endpoint below, only when you ask a question.</p>
       </div>
       <div class="field">
         <label for="asst-endpoint">Endpoint <span class="optional">(OpenAI-compatible)</span></label>
@@ -755,7 +779,7 @@ body.hg-flow-on main { padding-bottom: 11rem; }
       <div id="asst-out" aria-live="polite"></div>
     </div>
     <details class="watchhow no-print" data-watch-view="assistant">
-      <summary>Watch how — Study Assistant</summary>
+      <summary>Watch how: Study Assistant</summary>
       <div class="watchhow-body">
         <video controls playsinline preload="none" aria-label="How-to video: Study Assistant"></video>
         <p class="watchhow-fallback">A short how-to video for this page is coming soon.</p>
@@ -765,27 +789,24 @@ body.hg-flow-on main { padding-bottom: 11rem; }
   </div>
   <div id="legacy-sermon" data-hg-legacy hidden>
 <section id="view-start" aria-labelledby="h-start">
-    <h1 id="h-start" tabindex="-1">The Sermon Skeleton Builder <button type="button" class="help-btn" data-help-view="start" aria-label="Help: what is this page?"><span aria-hidden="true">?</span></button></h1>
-    <p class="lead" style="font-family: var(--serif); font-size: 1.35rem; color: var(--ink);">Build the bones. Keep the voice.</p>
+    <h1 id="h-start" tabindex="-1">Sermon Builder: build the outline, keep your own words <button type="button" class="help-btn" data-help-view="start" aria-label="Help: what is this page?"><span aria-hidden="true">?</span></button></h1>
     <p class="lead">This tool helps you organize Scripture and structure. It does not write your sermon.</p>
-    <h2 style="margin-top: 2rem;">What are you preaching from today?</h2>
+    <h2 style="margin-top: 2rem;">What are you starting with?</h2>
     <div class="choices">
-      <button type="button" class="choice" data-start="passage">
-        <span class="t">Start with a Bible passage</span>
-        <span class="e">Example: John 15:1–8</span>
-      </button>
       <button type="button" class="choice" data-start="theme">
-        <span class="t">Start with a theme or topic</span>
+        <img class="hg-door-pic" src="assets/pics/compare-topic.webp" alt="" aria-hidden="true">
+        <span class="t">A topic</span>
         <span class="e">Example: Hope in suffering</span>
       </button>
-      <button type="button" class="choice" data-start="blank">
-        <span class="t">Start blank</span>
-        <span class="e">Build your own structure from scratch</span>
+      <button type="button" class="choice" data-start="passage">
+        <img class="hg-door-pic" src="assets/pics/read-scripture.webp" alt="" aria-hidden="true">
+        <span class="t">My verses</span>
+        <span class="e">Start with a Bible passage</span>
       </button>
     </div>
-    <p><button type="button" class="btn secondary" data-nav="library">Open saved sermons</button> <button type="button" class="btn quiet" id="onboard-replay">Take the welcome tour again</button></p>
+    <p class="quiet-line"><button type="button" class="btn quiet" data-nav="library">Open saved sermons</button> · <button type="button" class="btn quiet" data-start="blank">Start blank</button> · <button type="button" class="btn quiet" id="onboard-replay">Take the welcome tour again</button></p>
     <details class="watchhow no-print" data-watch-view="start">
-      <summary>Watch how — Getting started</summary>
+      <summary>Watch how: Getting started</summary>
       <div class="watchhow-body">
         <video controls playsinline preload="none" aria-label="How-to video: Getting started"></video>
         <p class="watchhow-fallback">A short how-to video for this page is coming soon.</p>
@@ -795,37 +816,39 @@ body.hg-flow-on main { padding-bottom: 11rem; }
 <section id="view-setup" aria-labelledby="h-setup" hidden>
     <h2 id="h-setup" tabindex="-1">Sermon setup <button type="button" class="help-btn" data-help-view="setup" aria-label="Help: what is Sermon setup?"><span aria-hidden="true">?</span></button></h2>
     <form id="setup-form" novalidate>
-      <div class="card">
+      <div class="card" id="setup-main-card">
+        <div class="field" style="margin-bottom: 0;">
+          <label for="f-passage" id="l-passage">Main passage or theme</label>
+          <textarea id="f-passage" data-field="passageOrTheme" rows="3" autocomplete="off" aria-describedby="h-passage"></textarea>
+          <p class="help" id="h-passage"></p>
+        </div>
+      </div>
+      <details class="card setup-more" id="setup-more">
+        <summary>More choices</summary>
+        <div class="setup-more-body">
         <div class="field">
           <label for="f-title">Sermon title <span class="optional">(optional)</span></label>
           <input type="text" id="f-title" data-field="title" autocomplete="off">
-        </div>
-        <div class="field">
-          <label for="f-passage" id="l-passage">Main passage or theme</label>
-          <input type="text" id="f-passage" data-field="passageOrTheme" autocomplete="off" aria-describedby="h-passage">
-          <p class="help" id="h-passage"></p>
         </div>
         <fieldset>
           <legend>Preaching approach</legend>
           <div class="radio-row">
             <label><input type="radio" name="approach" value="passage" data-field="approach"> Walk through the passage</label>
-            <label><input type="radio" name="approach" value="thematic" data-field="approach"> Build a thematic arc</label>
+            <label><input type="radio" name="approach" value="thematic" data-field="approach"> Build around one theme</label>
           </div>
         </fieldset>
         <fieldset>
           <legend>Structure</legend>
           <div class="radio-row">
-            <label><input type="radio" name="movementCount" value="3" data-field="movementCount"> Three movements</label>
-            <label><input type="radio" name="movementCount" value="5" data-field="movementCount"> Five movements</label>
+            <label><input type="radio" name="movementCount" value="3" data-field="movementCount"> Three main points</label>
+            <label><input type="radio" name="movementCount" value="5" data-field="movementCount"> Five main points</label>
           </div>
         </fieldset>
         <div class="field">
           <label for="f-purpose">Pastor’s purpose for this message <span class="optional">(optional)</span></label>
-          <p class="help" id="h-purpose">What do you hope your people will see, understand, remember, or respond to? (Optional — write it in your own words.)</p>
+          <p class="help" id="h-purpose">What do you hope your people will see, understand, remember, or respond to? (Optional: write it in your own words.)</p>
           <textarea id="f-purpose" data-field="purpose" aria-describedby="h-purpose"></textarea>
         </div>
-      </div>
-      <div class="card">
         <div class="field">
           <label for="f-series">Series name <span class="optional">(optional)</span></label>
           <input type="text" id="f-series" data-field="series" autocomplete="off">
@@ -847,15 +870,16 @@ body.hg-flow-on main { padding-bottom: 11rem; }
           <p class="help" id="h-scripture">Use Scripture text only where you have permission to do so. This tool stores only what you enter locally.</p>
           <textarea id="f-scripture" class="tall" data-field="scriptureText" aria-describedby="h-scripture"></textarea>
         </div>
-      </div>
+        </div>
+      </details>
       <p class="warn-msg" id="setup-error" role="alert" style="color: var(--danger);"></p>
       <div class="btn-row">
-        <button type="submit" class="btn">Continue to structure</button>
+        <button type="submit" class="btn" id="setup-go">Continue to structure</button>
         <button type="button" class="btn secondary" data-action="save">Save</button>
       </div>
     </form>
     <details class="watchhow no-print" data-watch-view="setup">
-      <summary>Watch how — Sermon setup</summary>
+      <summary>Watch how: Sermon setup</summary>
       <div class="watchhow-body">
         <video controls playsinline preload="none" aria-label="How-to video: Sermon setup"></video>
         <p class="watchhow-fallback">A short how-to video for this page is coming soon.</p>
@@ -865,44 +889,22 @@ body.hg-flow-on main { padding-bottom: 11rem; }
 <section id="view-structure" aria-labelledby="h-structure" hidden>
     <h2 id="h-structure" tabindex="-1">Structure <button type="button" class="help-btn" data-help-view="structure" aria-label="Help: what is Structure?"><span aria-hidden="true">?</span></button></h2>
     <p class="passage-line"><span class="k" id="s-passage-label">Main passage or theme</span><span id="s-passage"></span></p>
-    <div class="card">
-      <div class="field">
-        <label for="f-central">Central idea / main thought</label>
-        <textarea id="f-central" data-field="centralIdea"></textarea>
-      </div>
-    </div>
     <div id="movements"></div>
     <div class="card">
-      <h3>The turn</h3>
-      <p class="help" id="h-turn">How does this message turn from explaining the text toward response?</p>
+      <h3>Your own words for the whole sermon. These print with the sermon</h3>
       <div class="field">
-        <label for="f-turn" class="sr-only">The turn</label>
-        <textarea id="f-turn" class="tall" data-field="turn" aria-describedby="h-turn"></textarea>
+        <label for="f-turn" class="sr-only">Your own words for the whole sermon. These print with the sermon</label>
+        <textarea id="f-turn" class="tall" data-field="turn"></textarea>
       </div>
-    </div>
-    <div class="card">
-      <h3>The landing</h3>
-      <p class="help" id="h-landing">Where should the message return and come to rest?</p>
-      <div class="field">
-        <label for="f-landing" class="sr-only">The landing</label>
-        <textarea id="f-landing" class="tall" data-field="landing" aria-describedby="h-landing"></textarea>
-      </div>
-    </div>
-    <div class="card" id="sc-panel" aria-labelledby="h-sc">
-      <h3 id="h-sc">Study Connections</h3>
-      <p class="help" id="h-sc-help">Optional research notes. These are not included in the pulpit sheet by default.</p>
-      <div id="sc-list" aria-describedby="h-sc-help"></div>
-      <p class="sc-empty" id="sc-empty">No study connections yet.</p>
-      <p style="margin: 0 0 0.9rem;"><button type="button" class="btn secondary" data-sc="add">Add study connection</button></p>
     </div>
     <div class="btn-row">
       <button type="button" class="btn" data-action="save">Save</button>
-      <button type="button" class="btn secondary" data-nav="check">Faithfulness check</button>
+      <button type="button" class="btn secondary" data-nav="check">Check it against the Bible</button>
       <button type="button" class="btn secondary" data-nav="print">Print preview</button>
       <button type="button" class="btn quiet" data-nav="setup">Back to setup</button>
     </div>
     <details class="watchhow no-print" data-watch-view="structure">
-      <summary>Watch how — Structure</summary>
+      <summary>Watch how: Structure</summary>
       <div class="watchhow-body">
         <video controls playsinline preload="none" aria-label="How-to video: Structure"></video>
         <p class="watchhow-fallback">A short how-to video for this page is coming soon.</p>
@@ -910,7 +912,7 @@ body.hg-flow-on main { padding-bottom: 11rem; }
     </details>
   </section>
 <section id="view-check" aria-labelledby="h-check" hidden>
-    <h2 id="h-check" tabindex="-1">Faithfulness check <button type="button" class="help-btn" data-help-view="check" aria-label="Help: what is the Faithfulness check?"><span aria-hidden="true">?</span></button></h2>
+    <h2 id="h-check" tabindex="-1">Check it against the Bible <button type="button" class="help-btn" data-help-view="check" aria-label="Help: what is Check it against the Bible?"><span aria-hidden="true">?</span></button></h2>
     <p class="lead">A voluntary checklist. Nothing here is completed for you.</p>
     <div class="card">
       <ul class="check-list" id="check-list"></ul>
@@ -921,9 +923,9 @@ body.hg-flow-on main { padding-bottom: 11rem; }
       <button type="button" class="btn secondary" data-nav="print">Print preview</button>
     </div>
     <details class="watchhow no-print" data-watch-view="check">
-      <summary>Watch how — Faithfulness check</summary>
+      <summary>Watch how: Check it against the Bible</summary>
       <div class="watchhow-body">
-        <video controls playsinline preload="none" aria-label="How-to video: Faithfulness check"></video>
+        <video controls playsinline preload="none" aria-label="How-to video: Check it against the Bible"></video>
         <p class="watchhow-fallback">A short how-to video for this page is coming soon.</p>
       </div>
     </details>
@@ -937,13 +939,13 @@ body.hg-flow-on main { padding-bottom: 11rem; }
         <input type="search" id="lib-search" autocomplete="off">
       </div>
       <button type="button" class="btn secondary" data-action="export-all">Export all sermons</button>
-      <span class="file-btn btn secondary">Import JSON<input type="file" id="import-file" accept="application/json,.json" aria-label="Import sermons from a JSON file"></span>
+      <label class="file-btn btn secondary">Import JSON<input type="file" id="import-file" accept="application/json,.json" aria-label="Import sermons from a JSON file"></label>
       <button type="button" class="btn quiet" data-nav="start">New sermon</button>
     </div>
     <ul class="lib-list" id="lib-list"></ul>
     <p class="empty" id="lib-empty" hidden>No saved sermons yet.</p>
     <details class="watchhow no-print" data-watch-view="library">
-      <summary>Watch how — Saved sermons</summary>
+      <summary>Watch how: Saved sermons</summary>
       <div class="watchhow-body">
         <video controls playsinline preload="none" aria-label="How-to video: Saved sermons"></video>
         <p class="watchhow-fallback">A short how-to video for this page is coming soon.</p>
@@ -961,17 +963,17 @@ body.hg-flow-on main { padding-bottom: 11rem; }
         </div>
         <div class="field">
           <label for="p-type">Type size</label>
-          <select id="p-type"><option value="20">Large</option><option value="22">Larger</option></select>
+          <select id="p-type"><option value="17">Smaller</option><option value="20" selected>Large</option><option value="22">Larger</option></select>
         </div>
         <div class="field">
           <label style="font-weight:400; display:inline-flex; gap:0.45rem; align-items:center;"><input type="checkbox" id="p-footer" checked> Show footer</label>
         </div>
-        <button type="button" class="btn" data-action="print">Print</button>
+        <button type="button" class="btn" data-action="print">Print the outline</button>
         <button type="button" class="btn quiet" data-nav="structure">Back to structure</button>
       </div>
       <p class="overflow-warn" id="overflow-warn" role="status">This sheet runs past one page. Shorten a field or choose the smaller type size.</p>
       <details class="watchhow" data-watch-view="print">
-        <summary>Watch how — Print preview</summary>
+        <summary>Watch how: Print preview</summary>
         <div class="watchhow-body">
           <video controls playsinline preload="none" aria-label="How-to video: Print preview"></video>
           <p class="watchhow-fallback">A short how-to video for this page is coming soon.</p>
@@ -1019,7 +1021,7 @@ body.hg-flow-on main { padding-bottom: 11rem; }
   </div>
   <div id="prayer-done-view" hidden>
     <h2>Thank you</h2>
-    <p class="msg">Received — thank you. Donnie will be praying for you.</p>
+    <p class="msg">Received. Thank you. Donnie will be praying for you.</p>
     <div class="btn-row">
       <button type="button" class="btn" id="prayer-close-2">Close</button>
     </div>
@@ -1127,19 +1129,19 @@ body.hg-flow-on main { padding-bottom: 11rem; }
     <p class="hg-home-kicker">What are you here to do?</p>
     <div class="hg-jobs">
       <button type="button" class="hg-job" data-flow="study">
-        <span class="hg-emoji" aria-hidden="true">📖</span>
+        <img class="hg-pic" src="assets/pics/study-passage.webp" alt="" aria-hidden="true">
         <span><span class="hg-t">Study a Passage</span>
-        <span class="hg-e">Read it slowly — the words, the witnesses, your own notes.</span></span>
+        <span class="hg-e">Read it slowly: the words, the witnesses, your own notes.</span></span>
         <span class="hg-arrow" aria-hidden="true">›</span>
       </button>
       <button type="button" class="hg-job" data-flow="compare">
-        <span class="hg-emoji" aria-hidden="true">🔍</span>
+        <img class="hg-pic" src="assets/pics/compare-topic.webp" alt="" aria-hidden="true">
         <span><span class="hg-t">Compare a Topic</span>
         <span class="hg-e">Start from a topic; see its passages side by side, translation by translation.</span></span>
         <span class="hg-arrow" aria-hidden="true">›</span>
       </button>
       <button type="button" class="hg-job" data-flow="sermon">
-        <span class="hg-emoji" aria-hidden="true">📝</span>
+        <img class="hg-pic" src="assets/pics/build-sermon.webp" alt="" aria-hidden="true">
         <span><span class="hg-t">Build a Sermon</span>
         <span class="hg-e">Setup → study → structure → check → a clean printed outline. Your words, every one.</span></span>
         <span class="hg-arrow" aria-hidden="true">›</span>
@@ -1149,11 +1151,11 @@ body.hg-flow-on main { padding-bottom: 11rem; }
     <div id="hg-saved"></div>
     <h2 class="hg-sec-title">More tools</h2>
     <div class="hg-secondary">
-      <button type="button" id="hg-lib">📚 Sermon library</button>
-      <button type="button" id="hg-dict">📖 Dictionary</button>
-      <button type="button" id="hg-asst">💬 Study assistant</button>
-      <button type="button" id="hg-tour">👋 Welcome tour</button>
-      <button type="button" id="hg-alltools">All tools →</button>
+      <button type="button" id="hg-lib"><img class="hg-pic-sm" src="assets/pics/sermon-library.webp" alt="" aria-hidden="true"> Sermon library</button>
+      <button type="button" id="hg-dict"><img class="hg-pic-sm" src="assets/pics/dictionary.webp" alt="" aria-hidden="true"> Dictionary</button>
+      <button type="button" id="hg-asst"><img class="hg-pic-sm" src="assets/pics/helper-lantern.webp" alt="" aria-hidden="true"> Study assistant</button>
+      <button type="button" id="hg-tour"><img class="hg-pic-sm" src="assets/pics/welcome-door.webp" alt="" aria-hidden="true"> Welcome tour</button>
+      <button type="button" id="hg-alltools"><img class="hg-pic-sm" src="assets/pics/study-helps.webp" alt="" aria-hidden="true"> All tools →</button>
     </div>
     <p class="hg-home-foot">Ehyeh — &ldquo;I AM&rdquo; (Exodus 3:14). Everything stays on this device. Nothing here is ever written for you.</p>
   </div>
@@ -1302,7 +1304,7 @@ h1, h2, h3, h4 { color: var(--hg6-ink); }
   display: none !important;
   border-color: var(--hg6-cyan); color: var(--hg6-cyan); background: #141428;
   bottom: calc(var(--hg6-tabh) + 0.7rem); right: 0.6rem; z-index: 9050;
-  width: 2.25rem; height: 2.25rem; font-size: 1rem; opacity: 0.5;
+  width: 2.75rem; height: 2.75rem; font-size: 1rem; opacity: 0.5;
 }
 #hg-homebtn:hover, #hg-homebtn:focus-visible, #hg-homebtn:active { background: var(--hg6-cyan); color: #04121A; opacity: 1; }
 body.hg-flow-on #hg-homebtn { display: none; } /* the flow bar has its own Exit, and the tab bar's Home door still works during a flow */
@@ -1424,7 +1426,7 @@ body.hg-flow-on #hg6-flows, body.hg6-onboard-on #hg6-flows { display: none; }
 }
 .hg6-door {
   flex: 1 1 0; position: relative; background: none; border: 0; cursor: pointer;
-  color: #8B929E; font-family: var(--sans); font-size: 0.74rem; font-weight: 600;
+  color: #8B929E; font-family: var(--sans); font-size: 0.875rem; font-weight: 600;
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.18rem;
   min-height: 52px; padding: 0.35rem 0 0.3rem;
 }
@@ -1456,6 +1458,162 @@ main, #hagah-panel { max-width: 100vw; }
 .clm-compare td, .clm-compare th { overflow-wrap: anywhere; word-break: break-word; }
 .sheet-wrap { overflow-x: auto; max-width: 100vw; }
 </style>
+<style id="hg-simplicity">
+/* ===== Ehyeh simplicity layer (Fix A, 2026-10-29) =====
+   Picture classes for the picture-above-every-button pass, flex support for
+   the More-tools buttons, and the plain-language word-panel classes used by
+   js/s04.js. The font/target/contrast fixes live in the real rules above;
+   this block only carries what has no single home rule. */
+.hg-pic { width: 56px; height: 56px; border-radius: 12px; object-fit: cover; flex: none; }
+.hg-pic-sm { width: 34px; height: 34px; border-radius: 8px; object-fit: cover; flex: none; }
+.hg-mod-pic { width: 26px; height: 26px; border-radius: 7px; object-fit: cover; vertical-align: middle; margin-right: 6px; }
+.hg-secondary button { display: inline-flex; align-items: center; gap: 0.5rem; }
+.hg6-door .hg6-pic { width: 26px; height: 26px; border-radius: 7px; object-fit: cover; }
+.hg6-card-pic { width: 48px; height: 48px; border-radius: 10px; object-fit: cover; flex: none; }
+.hg6-guided-pic { width: 62px; height: 62px; border-radius: 10px; object-fit: cover; flex: none; }
+.hg6-flow-pic { width: 44px; height: 44px; border-radius: 10px; object-fit: cover; display: block; margin-bottom: 0.5rem; }
+.wp-note { font-size: 0.92rem; color: var(--muted); margin-top: 0.2rem; }
+.wp-meaning-head { font-size: 1.05rem; }
+.wp-full-label { font-size: 0.92rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin: 0.8rem 0 0.25rem; }
+.wp-full { font-size: 0.94rem; color: var(--muted); }
+.wp-say-slot:empty { display: none; }
+/* ===== Guided front door (2026-10-29, Donnie's hands-on walk) =====
+   Start screen: one question, two big doors with pictures. Setup: one big
+   box + one big build button; every other choice lives in the "More choices"
+   fold, closed by default on the guided (topic / verses) paths. */
+.choice .hg-door-pic { width: 62px; height: 62px; border-radius: 10px; object-fit: cover; display: block; margin-bottom: 0.6rem; }
+.choice .t { font-size: 1.35rem; }
+.quiet-line { color: var(--muted); }
+.setup-more { padding: 0; }
+.setup-more > summary {
+  cursor: pointer; font-weight: 600; font-size: 1.05rem; color: var(--ink);
+  padding: 1rem 1.5rem; min-height: 2.75rem; list-style-position: inside;
+}
+.setup-more-body { padding: 0 1.5rem 0.5rem; }
+.setup-guided #l-passage { font-size: 1.15rem; }
+.setup-guided #f-passage { font-size: 1.2rem; padding: 0.9rem; }
+.setup-guided #setup-go { font-size: 1.2rem; min-height: 3.5rem; padding: 0.8rem 1.6rem; }
+</style>
+<style id="hg7-ease">
+/* ==========================================================================
+   Ease-of-use layer (2026-10-29) — the fixes from the research audit
+   against the 22-rule checklist (EASE-OF-USE-ADDENDUM.md):
+   rule 1 reading sizes + floors · rule 3 pulpit-sheet contrast ·
+   rule 4 target size and separation · rule 17 a Help button in the
+   header, the same place on every screen · rule 19 the reader bar
+   stays reachable while scrolling. Appended last: equal-specificity
+   rules here win over hg-theme and hg6-theme.
+   ========================================================================== */
+/* rule 1 — reading text: 18px-equivalent default for Scripture */
+.chapter-text, .st-text { font-size: 1.125rem; }
+.verse-num { font-size: 0.9em; }
+.clm-compare th { font-size: 1rem; }
+.clm-compare td { font-size: 1.05rem; }
+.clm-vnum { font-size: 0.95rem; }
+/* rule 1 — no UI text under the 16px floor */
+.hagah-say { font-size: 1rem; }
+.hagah-tag { font-size: 1rem; }
+.status-line { font-size: 1rem; }
+label, .legend { font-size: 1rem; }
+.clm-mode, .dss-mode, .hg-mode { font-size: 0.95rem; }
+.clm-note, .dss-caveat, .dss-offline-note, .hg-notice { font-size: 1rem; }
+/* rule 3 — the sheet's verse labels reach AAA (7:1) on vellum */
+.sheet .s-vt { color: #5d4a1b; }
+/* rule 4 — controls at least 48px tall, neighbours at least 8px away */
+.btn { min-height: 3rem; }
+.hagah-mode button { min-height: 3rem; font-size: 1rem; }
+.hagah-nav button { min-height: 3rem; font-size: 1rem; }
+.hagah-nav ul { gap: 0.5rem 1rem; }
+.hagah-subnav { gap: 0.5rem; }
+.hagah-subnav button { min-height: 3rem; font-size: 1rem; }
+.clm-tabs, .hg-tabs, .sh-tabs { gap: 0.5rem; }
+.clm-tab, .hg-tab, .sh-tab { min-height: 3rem; }
+.sh-btn, .hg2c-btn { min-height: 3rem; }
+.hg2c-sel { min-height: 3rem; }
+input[type="text"], input[type="date"], input[type="search"], select { min-height: 3rem; }
+.setup-more > summary { min-height: 3rem; }
+.help-btn { width: 3rem; height: 3rem; }
+input[type="radio"], input[type="checkbox"] { width: 1.5rem; height: 1.5rem; }
+label:has(> input[type="radio"]), label:has(> input[type="checkbox"]) { min-height: 3rem; }
+/* rule 17 — the header Help button: a labelled pill, not the round "?" */
+.hg-header-help { width: auto; height: 3rem; border-radius: 999px; padding: 0 1.1rem; font-size: 1rem; margin-left: 0; }
+/* rule 1 — the header Text size control */
+.hg-textsize { display: inline-flex; align-items: center; gap: 0.5rem; }
+.hg-textsize-label { font-size: 1rem; color: var(--ink); }
+.hg-textsize button { min-width: 3rem; min-height: 3rem; border: 1px solid var(--line); background: var(--paper); color: var(--ink); border-radius: 4px; font: inherit; font-size: 1.05rem; font-weight: 700; cursor: pointer; }
+.hg-textsize-val { font-size: 1rem; color: var(--muted); min-width: 3.2rem; text-align: center; }
+/* rule 19 — Read / Prev / Next / Listen stay reachable while scrolling */
+.study-bar { position: sticky; top: 0; z-index: 6; background: var(--hg-slate); padding: 0.6rem 0.4rem; border-radius: 4px; }
+</style>
+<style id="hg8-checkfix">
+/* ==========================================================================
+   Check fix pass (2026-10-29) — closes the six failing gates of Check run
+   20261029-2238 (record: CHECKFIX-20261029.md). Appended after hg7-ease:
+   equal-specificity rules here win.
+   MECH-CLEAN: the dead analytics tag came out of the markup (its file is
+   in neither the staging nor the live tree; the counter is a production
+   route, and a test copy must not count its own opens as usage).
+   DETECTOR: fixed at source in the base/hg-theme layers (palette hexes,
+   sr-only clip, help-button ring, file-input clip, em-dash copy).
+   ========================================================================== */
+/* HG-CONTRAST45 — the home overlay's light surface gets the solid colour
+   its gradient paints, so light-ground text measures against the truth */
+#hg6-home { background-color: #F7F7F3; }
+/* HG-CONTRAST45 — the current-page nav tint and the word highlight were
+   translucent versions of these solids; same rendered colour, declared */
+.hagah-nav button[aria-current="page"] { background: #072432; }
+.w:hover, .w:focus-visible, .w.active { background: #0E2C3C; }
+/* HG-TEXT16 — no text under the 16px floor, home + shell */
+.hg6-date { font-size: 1rem; color: #5B6572; }
+.hg6-hero-label { font-size: 1rem; }
+.hg6-ref { font-size: 1rem; }
+.hg6-guided-label { font-size: 1rem; }
+.hg6-guided-sub, .hg6-guided-cta { font-size: 1rem; }
+.hg6-read { font-size: 1rem; }
+.hg6-door { font-size: 1rem; }
+.hg6-flow-label, .hg6-flow-sub, .hg6-flow-cta { font-size: 1rem; }
+.onb-kicker { font-size: 1rem; }
+.watchhow-fallback { font-size: 1rem; }
+/* HG-TEXT16 — views, panels, notes */
+.clm-mode, .dss-mode, .hg-mode { font-size: 1rem; }
+button.clm-tab, button.hg-tab, button.sh-tab { font-size: 1rem; }
+button.hg2c-btn { font-size: 1rem; }
+p.hg2c-note { font-size: 1rem; }
+.dss-badge { font-size: 1rem; }
+.hg-count, .hg-meta { font-size: 1rem; }
+.note { font-size: 1rem; }
+.lib-item .meta { font-size: 1rem; }
+.passage-line .k { font-size: 1rem; }
+.wp-note, .wp-full, .wp-full-label { font-size: 1rem; }
+.margin-note .src { font-size: 1rem; }
+.xref-chip { font-size: 1rem; }
+.verse-jump { font-size: 1rem; }
+.verse-num { font-size: 1rem; }
+.clm-vnum { font-size: 1rem; }
+button.clm-btn { font-size: 1rem; min-height: 3rem; }
+/* HG-TARGET44 — real controls reach a 48px-class hit area */
+.skip { padding: 0.75rem 0.9rem; }
+.hg6-read { min-height: 3rem; }
+#hagah-panel .hg-toolbar button { min-height: 3rem; font-size: 1rem; padding: 0.5rem 1rem; }
+button[data-testid^="open-"], button[data-testid^="wb-jump-"], button[data-testid="note-jump"] { min-height: 3rem; font-size: 1rem; padding: 0.5rem 1rem; }
+/* HG-TARGET44 — every tappable word carries a 44px-tall hit area
+   (transparent padding on the inline span: the glyphs and the line
+   layout do not move; the touch target grows to the full line row) */
+.w { padding-top: 12px; padding-bottom: 12px; }
+/* HG-ONEACTION — home keeps ONE primary (the guided plan card);
+   the prayer door is demoted to a quiet full-width row */
+.hg6-guided-quiet { margin-top: 0.6rem; padding: 0.7rem 1rem; border-radius: 14px; box-shadow: none; align-items: center; }
+.hg6-guided-quiet .hg6-guided-main { display: flex; align-items: baseline; gap: 0.6rem; }
+.hg6-guided-quiet .hg6-guided-label { margin: 0; color: #1C2530; letter-spacing: 0; }
+.hg6-guided-quiet .hg6-guided-sub { margin: 0; }
+.hg6-guided-quiet .hg6-guided-name, .hg6-guided-quiet .hg6-guided-cta, .hg6-guided-quiet .hg6-guided-pic { display: none; }
+/* the file-import label shows focus when its clipped input has it */
+.file-btn:focus-within { outline: 3px solid var(--accent); outline-offset: 2px; }
+/* tab-door labels: darker grey / deeper teal so the words themselves
+   meet 4.5:1 on the white bar (hardening past the walked states) */
+.hg6-door { color: #5B6572; }
+.hg6-door.hg6-on { color: #0E7C8C; }
+</style>
 
 
 
@@ -1463,7 +1621,6 @@ main, #hagah-panel { max-width: 100vw; }
 
 
 
-<script async src="js/analytics-v1.js"></script>
 <script>
 /* ==========================================================================
    Hagah split loader — the ONLY new runtime code in the delivery rebuild.
@@ -1831,7 +1988,7 @@ main, #hagah-panel { max-width: 100vw; }
   }
 
   function loadCode() {
-    var order = ['s02', 's03', 's04', 's05', 's06', 's07', 's08', 's09', 's10', 's11', 's12', 's13', 's16', 's17-helper'];
+    var order = ['s02', 's03', 's18-topic-suggest', 's19-topic-engine', 's04', 's05', 's06', 's07', 's08', 's09', 's10', 's11', 's12', 's13', 's16', 's17-helper', 's20-builder-helper'];
     order.forEach(function (name, i) {
       var s = document.createElement('script');
       s.src = 'js/' + name + '.js';
@@ -1843,7 +2000,21 @@ main, #hagah-panel { max-width: 100vw; }
 
   function afterBoot() {
     if ('serviceWorker' in navigator) {
-      try { navigator.serviceWorker.register('sw.js'); } catch (e) { /* non-fatal */ }
+      try {
+        /* Round 6: when an updated worker takes control of a page that
+           was already controlled, the code it loaded is a generation
+           behind — reload once so the whole page runs the new code.
+           Never on first install (no controller yet), never twice in
+           a session. */
+        var hadController = !!navigator.serviceWorker.controller;
+        if (hadController && !sessionStorage.getItem('ehyeh.swReloaded')) {
+          navigator.serviceWorker.addEventListener('controllerchange', function () {
+            try { sessionStorage.setItem('ehyeh.swReloaded', '1'); } catch (e) {}
+            window.location.reload();
+          });
+        }
+        navigator.serviceWorker.register('sw.js');
+      } catch (e) { /* non-fatal */ }
     }
     // Geneva flood: fetch every remaining book so the set settles. Two jobs:
     // warm the reader for offline and for jumps, and settle the set so the
@@ -1933,6 +2104,40 @@ main, #hagah-panel { max-width: 100vw; }
   ]).then(loadCode, bootFail);
 })();
 
+</script>
+<script>
+/* Text size control (ease-of-use rule 1, 2026-10-29): the header A- / A+
+   buttons step the whole app's rem-based text from 100% to 200%
+   (WCAG 1.4.4). The choice is saved on this device only and applied
+   before first paint by the small script in <head>. */
+(function () {
+  var STEPS = [16, 18, 20, 22, 24, 28, 32];
+  var KEY = 'hagah.textsize';
+  function cur() {
+    try {
+      var v = parseInt(localStorage.getItem(KEY) || '16', 10);
+      return STEPS.indexOf(v) >= 0 ? v : 16;
+    } catch (e) { return 16; }
+  }
+  function apply(v) {
+    document.documentElement.style.fontSize = v === 16 ? '' : v + 'px';
+    var lab = document.getElementById('hg-ts-val');
+    if (lab) { lab.textContent = Math.round(v / 16 * 100) + '%'; }
+    try { localStorage.setItem(KEY, String(v)); } catch (e) { /* private mode: session only */ }
+  }
+  var down = document.getElementById('hg-ts-down');
+  var up = document.getElementById('hg-ts-up');
+  if (!down || !up) { return; }
+  apply(cur());
+  down.addEventListener('click', function () {
+    var i = STEPS.indexOf(cur());
+    if (i > 0) { apply(STEPS[i - 1]); }
+  });
+  up.addEventListener('click', function () {
+    var i = STEPS.indexOf(cur());
+    if (i < STEPS.length - 1) { apply(STEPS[i + 1]); }
+  });
+})();
 </script>
 </body>
 </html>

@@ -62,13 +62,13 @@
       '@media (min-width: 900px) { #eh-sheet { left: auto; top: 0; bottom: 0; width: 430px; max-height: none; border-top: none; border-left: 2px solid var(--gold, #9c7f3a); box-shadow: -12px 0 40px rgba(0,0,0,0.45); } }',
       '#eh-sheet h3 { margin: 0 0 0.4rem; font-size: 1.25rem; }',
       '#eh-sheet h4 { margin: 1.1rem 0 0.4rem; font-size: 1.02rem; }',
-      '.eh-cover { color: var(--muted); font-size: 0.92rem; line-height: 1.5; border-left: 3px solid var(--gold, #9c7f3a); padding: 0.45rem 0.7rem; background: var(--accent-soft, #e4ece6); margin: 0.6rem 0; }',
+      '.eh-cover { color: var(--muted); font-size: 1rem; line-height: 1.5; border-left: 3px solid var(--gold, #9c7f3a); padding: 0.45rem 0.7rem; background: var(--accent-soft, #e4ece6); margin: 0.6rem 0; }',
       '.eh-row { display: flex; gap: 0.45rem; flex-wrap: wrap; align-items: center; margin: 0.45rem 0; }',
       '.eh-input { flex: 1 1 10rem; border: 1px solid var(--line); border-radius: 4px; padding: 0.55rem 0.65rem; font: inherit; font-size: 1rem; background: #fff; color: var(--ink); }',
-      '.eh-btn { border: 1px solid var(--line); background: var(--paper, #fffdf7); color: var(--ink); border-radius: 4px; padding: 0.55rem 0.95rem; font: inherit; font-size: 0.97rem; cursor: pointer; min-height: 2.75rem; }',
+      '.eh-btn { border: 1px solid var(--line); background: var(--paper, #fffdf7); color: var(--ink); border-radius: 4px; padding: 0.55rem 0.95rem; font: inherit; font-size: 1rem; cursor: pointer; min-height: 2.75rem; }',
       '.eh-btn:hover { border-color: var(--accent); }',
-      '.eh-btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }',
-      '.eh-note { color: var(--muted); font-size: 0.88rem; line-height: 1.5; }',
+      '.eh-btn.primary { background: var(--accent); border-color: var(--accent); color: #04121A; font-weight: 600; }',
+      '.eh-note { color: var(--muted); font-size: 1rem; line-height: 1.5; }',
       '.eh-card { border: 1px solid var(--line); border-radius: 6px; padding: 0.7rem 0.85rem; margin: 0 0 0.6rem; background: var(--paper, #fffdf7); }',
       '.eh-card .eh-orig { font-size: 1.15rem; }',
       '.eh-say { border-top: 1px dashed var(--line); margin-top: 0.55rem; padding-top: 0.55rem; }',
@@ -76,7 +76,10 @@
       '.eh-respell { font-weight: 600; }',
       '.eh-close { float: right; }',
       '.eh-ws-item { display: block; width: 100%; text-align: left; }',
-      '#eh-word-panel-say { border-top: 1px dashed var(--line); margin-top: 0.8rem; padding-top: 0.6rem; }'
+      '#eh-word-panel-say { border-top: 1px dashed var(--line); margin-top: 0.8rem; padding-top: 0.6rem; }',
+      '.wp-say-slot #eh-word-panel-say { border-top: none; margin-top: 0; padding-top: 0; }',
+      '#eh-helper-btn { display: inline-flex; align-items: center; gap: 0.5rem; border-radius: 999px; padding: 0.4rem 1rem 0.4rem 0.45rem; min-height: 2.75rem; font-size: 1rem; }',
+      '#eh-helper-btn .eh-helper-pic { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; }'
     ].join('\n');
     document.head.appendChild(el('style', { id: 'eh-style' }, css));
   }
@@ -636,7 +639,8 @@
       wrap.appendChild(lab);
       wrap.appendChild(block);
     });
-    body.appendChild(wrap);
+    var slot = body.querySelector('.wp-say-slot');
+    if (slot) { slot.appendChild(wrap); } else { body.appendChild(wrap); }
   }
 
   /* ---------------- entry point ------------------------------------------- */
@@ -644,7 +648,9 @@
     if ($('#eh-helper-btn')) { return true; }
     var listen = $('#st-listen');
     if (!listen || !listen.parentNode) { return false; }
-    var btn = el('button', { 'class': 'btn secondary', id: 'eh-helper-btn', type: 'button', 'aria-label': 'Open the Ehyeh helper' }, '❓ Helper');
+    var btn = el('button', { 'class': 'btn secondary', id: 'eh-helper-btn', type: 'button', 'aria-label': 'Open the Ehyeh helper' });
+    btn.appendChild(el('img', { 'class': 'eh-helper-pic', src: 'assets/pics/helper-lantern.webp', alt: '', 'aria-hidden': 'true' }));
+    btn.appendChild(document.createTextNode('Helper'));
     btn.addEventListener('click', openSheet);
     listen.parentNode.insertBefore(btn, listen.nextSibling);
     return true;
@@ -671,4 +677,14 @@
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', boot);
   } else { boot(); }
+  /* Sermon Builder word-study card (s03) reuses this same pronunciation
+     ladder — curated house clips where they exist, the phone's own voice
+     otherwise — so a word sounds the same wherever he taps it. */
+  window.EHYEH_PRON = { byId: PRON_BY_ID, playClip: playClip, phoneVoice: phoneVoice };
+  /* The Sermon Builder (s03) asks for the Easton dictionary by this
+     name before it gathers Scriptures for a topic. Until the
+     ease-of-use audit (2026-10-29) the export was missing, so s03's
+     guard never passed in the browser and the topic engine's Easton
+     route — its strongest — never ran outside the Node battery. */
+  window.ensureEaston = ensureEaston;
 })();

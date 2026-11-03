@@ -49,10 +49,18 @@
   }
   var storage = pickStorage();
 
-  /* The v1 view router, exported by the build. Null when unavailable. */
-  var legacyShow = (typeof window.__hagahLegacyShow === 'function')
-    ? window.__hagahLegacyShow
-    : null;
+  /* The v1 view router, exported by the build. Resolved LAZILY at
+     each use (round 8): the one-time snapshot this replaces wedged
+     the sermon planner for the whole life of a tab whenever the
+     router module's boot was interrupted before it published its
+     bridge — the mount kept testing the stale null and answering
+     "could not start" while the sermons sat intact (re-test 7,
+     R1). A live lookup can only improve as boot completes. */
+  function legacyShowFn() {
+    return (typeof window.__hagahLegacyShow === 'function')
+      ? window.__hagahLegacyShow
+      : null;
+  }
 
   function ensureReader() {
     try {
@@ -91,6 +99,7 @@
       var h = ctx.h;
       var box = document.getElementById('legacy-scripture');
       var sub = document.getElementById('hagah-subnav');
+      var legacyShow = legacyShowFn();
       if (!box || !legacyShow) {
         panelEl.appendChild(h('p', { text: 'The Scripture reader could not start.' }));
         return;
@@ -128,33 +137,58 @@
       var h = ctx.h;
       var box = document.getElementById('legacy-sermon');
       var sub = document.getElementById('hagah-subnav');
-      if (!box || !legacyShow) {
+      function startPlanner(showFn) {
+        box.removeAttribute('hidden');
+        var views = [
+          { id: 'start', label: 'Start' },
+          { id: 'setup', label: 'Setup' },
+          { id: 'structure', label: 'Structure' },
+          { id: 'check', label: 'Check it against the Bible' },
+          { id: 'library', label: 'Saved sermons' },
+          { id: 'print', label: 'Print preview' }
+        ];
+        function pick(view) {
+          showFn(view);
+          var btns = sub.querySelectorAll('[data-hg-subview]');
+          for (var i = 0; i < btns.length; i++) {
+            if (btns[i].getAttribute('data-hg-subview') === view) { btns[i].setAttribute('aria-current', 'true'); }
+            else { btns[i].removeAttribute('aria-current'); }
+          }
+        }
+        views.forEach(function (v) {
+          var b = h('button', { type: 'button', 'data-hg-subview': v.id, text: v.label });
+          b.addEventListener('click', function () { pick(v.id); });
+          sub.appendChild(b);
+        });
+        pick('start');
+      }
+      var showFn = legacyShowFn();
+      if (box && showFn) { startPlanner(showFn); return; }
+      if (!box) {
         panelEl.appendChild(h('p', { text: 'The sermon planner could not start.' }));
         return;
       }
-      box.removeAttribute('hidden');
-      var views = [
-        { id: 'start', label: 'Start' },
-        { id: 'setup', label: 'Setup' },
-        { id: 'structure', label: 'Structure' },
-        { id: 'check', label: 'Faithfulness check' },
-        { id: 'library', label: 'Saved sermons' },
-        { id: 'print', label: 'Print preview' }
-      ];
-      function pick(view) {
-        legacyShow(view);
-        var btns = sub.querySelectorAll('[data-hg-subview]');
-        for (var i = 0; i < btns.length; i++) {
-          if (btns[i].getAttribute('data-hg-subview') === view) { btns[i].setAttribute('aria-current', 'true'); }
-          else { btns[i].removeAttribute('aria-current'); }
+      /* Round 8: the router publishes its bridge during its own
+         module's boot run. If that run is still finishing — a
+         reloaded tab is the known case (re-test 7, R1) — wait for
+         the bridge instead of declaring the planner dead over
+         intact sermons. Only a bridge that never arrives earns
+         the could-not-start note. */
+      var note = h('p', { text: 'The sermon planner is starting…' });
+      panelEl.appendChild(note);
+      var tries = 0;
+      var iv = setInterval(function () {
+        tries++;
+        var fn = legacyShowFn();
+        if (fn) {
+          clearInterval(iv);
+          if (note.parentNode) { note.parentNode.removeChild(note); }
+          startPlanner(fn);
+        } else if (tries > 16) {
+          clearInterval(iv);
+          note.textContent = 'The sermon planner could not start.';
         }
-      }
-      views.forEach(function (v) {
-        var b = h('button', { type: 'button', 'data-hg-subview': v.id, text: v.label });
-        b.addEventListener('click', function () { pick(v.id); });
-        sub.appendChild(b);
-      });
-      pick('start');
+      }, 250);
     }
   });
 

@@ -8,7 +8,7 @@ words, labelled context for every point, background from Easton's Bible
 Dictionary, supporting references, a news connection with a named source and
 date, and a clean large-type pulpit sheet for printing.
 
-**Live app:** https://swava.ai/hagah/Hagah.html
+**Live app:** https://swava.ai/ehyeh/Hagah.html
 
 Ehyeh costs $7, or free for anyone who doesn't have the money — the prayer
 part is always free. The $7 pays for the ministry.

@@ -95,10 +95,9 @@
           if (!lex) { return; }
           var tbl = el('table', { 'class': 'kv-table' });
           var rows = [
-            ['Strong’s number', num],
+            ['Dictionary number', num],
             ['Original word', ''],
-            ['Transliteration', lex.transliteration],
-            ['Meaning', lex.definition]
+            ['How to say it', lex.transliteration]
           ];
           rows.forEach(function (r) {
             var tr = el('tr');
@@ -107,8 +106,33 @@
             if (r[0] === 'Original word') { td.textContent = lex.word; td.className = 'orig-word'; }
             tr.appendChild(td);
             tbl.appendChild(tr);
+            if (r[0] === 'Dictionary number') {
+              var noteTr = el('tr');
+              var noteTd = el('td', { colspan: '2' });
+              noteTd.appendChild(el('div', { 'class': 'wp-note' }, 'A number that finds this word in a Bible dictionary.'));
+              noteTr.appendChild(noteTd);
+              tbl.appendChild(noteTr);
+            }
+            if (r[0] === 'Original word') {
+              var sayTr = el('tr');
+              var sayTd = el('td', { colspan: '2' });
+              sayTd.appendChild(el('div', { 'class': 'wp-say-slot' }));
+              sayTr.appendChild(sayTd);
+              tbl.appendChild(sayTr);
+            }
           });
           body.appendChild(tbl);
+          var def = String(lex.definition || '');
+          var cut = def.search(/[.;]/);
+          var head = cut > 0 ? def.slice(0, cut) : def;
+          var mWrap = el('div', { 'class': 'wp-meaning' });
+          mWrap.appendChild(el('p', { 'class': 'wp-full-label' }, 'Meaning'));
+          mWrap.appendChild(el('p', { 'class': 'wp-meaning-head' }, head));
+          if (def && def !== head) {
+            mWrap.appendChild(el('p', { 'class': 'wp-full-label' }, 'Full dictionary entry'));
+            mWrap.appendChild(el('p', { 'class': 'wp-full' }, def));
+          }
+          body.appendChild(mWrap);
         });
       } else if (res.via === 'verse-list') {
         var p = el('p', {}, 'This wording differs from the mapping below, so here are all the underlying words in ' +
@@ -119,7 +143,17 @@
           var lex = SSB.getLexicon(num);
           var li = el('li');
           li.appendChild(el('span', { 'class': 'strongs-num' }, num + ' '));
-          li.appendChild(doc.createTextNode((lex ? lex.transliteration + ' — ' + lex.definition : 'definition unavailable')));
+          if (lex) {
+            var vdef = String(lex.definition || '');
+            var vcut = vdef.search(/[.;]/);
+            var vhead = vcut > 0 ? vdef.slice(0, vcut) : vdef;
+            li.appendChild(doc.createTextNode(lex.transliteration + ' — ' + vhead));
+            if (vdef && vdef !== vhead) {
+              li.appendChild(el('span', { 'class': 'wp-full' }, ' Full dictionary entry: ' + vdef));
+            }
+          } else {
+            li.appendChild(doc.createTextNode('definition unavailable'));
+          }
           list.appendChild(li);
         });
         body.appendChild(list);

@@ -413,11 +413,11 @@
         {
           name: 'Build the outline',
           why: '<strong>What:</strong> one central idea, your movements in order, the turn (application — your words), and the landing (your closing). <strong>Why:</strong> Ehyeh suggests the <em>shape</em>; every word in it is yours. <strong>Study Connections</strong> below: add word studies as <em>Original language (Hebrew / Greek)</em> and witness notes as <em>1 Enoch</em> or <em>Dead Sea Scrolls context</em> — tick “include in pulpit sheet” and they print in their own sections.',
-          cta: 'Step 4: faithfulness check →', watch: 'structure', help: 'structure',
+          cta: 'Step 4: Check it against the Bible →', watch: 'structure', help: 'structure',
           enter: async function () { await gotoTab('sermon'); await gotoSub('structure'); }
         },
         {
-          name: 'Run the faithfulness check',
+          name: 'Check it against the Bible',
           why: '<strong>What:</strong> a short checklist you answer yourself — does the main idea arise from the passage? <strong>Why:</strong> nothing here is completed for you; the check is a mirror, not a grade.',
           cta: 'Step 5: print →', watch: 'check', help: 'check',
           enter: async function () { await gotoTab('sermon'); await gotoSub('check'); }

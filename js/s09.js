@@ -274,6 +274,17 @@
       }
     }
 
+    /* Simplicity pass (2026-10-29): a picture above every module's name in
+       the module nav — prepended in renderTabs, plain-word label kept. */
+    var MODULE_PICS = {
+      scrolls: 'dead-sea-scrolls.webp',
+      clm: 'listen-ear.webp',
+      personal: 'my-study.webp',
+      sermon: 'sermon-prep.webp',
+      scripture: 'read-scripture.webp',
+      'study-helps': 'study-helps.webp'
+    };
+
     function renderTabs() {
       var ul = $(ID_TABS);
       clearEl(ul);
@@ -281,9 +292,18 @@
         var li = h('li');
         var b = h('button', {
           type: 'button',
-          'data-hg-tab': mod.META.id,
-          text: mod.META.title
+          'data-hg-tab': mod.META.id
         });
+        var pic = MODULE_PICS[mod.META.id];
+        if (pic) {
+          b.appendChild(h('img', {
+            src: 'assets/pics/' + pic,
+            alt: '',
+            'aria-hidden': 'true',
+            'class': 'hg-mod-pic'
+          }));
+        }
+        b.appendChild(h('span', { text: mod.META.title }));
         if (mod.META.id === currentModuleId) { b.setAttribute('aria-current', 'page'); }
         b.addEventListener('click', function () { api.mountModule(mod.META.id); });
         li.appendChild(b);

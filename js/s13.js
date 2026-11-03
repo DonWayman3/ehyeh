@@ -45,25 +45,224 @@
     if (ctx) { ctx.drawImage(hg6HeroCanvas(), 0, 0); }
   }
 
-  /* ---- Verse of the Day: 31 refs, one per day of the month (day-of-month
-     index, deterministic). Texts are the Geneva Bible 1599 wording bundled
-     in this file (public domain), copied verbatim from SSB_DATA.bible as a
-     fallback; at runtime the app's own data is read first and wins. ---- */
-  var VOD = [{"book": 43, "chapter": 1, "verse": 1, "ref": "John 1:1", "text": "In the beginning was that Word, and that Word was with God, and that Word was God."}, {"book": 19, "chapter": 23, "verse": 1, "ref": "Psalms 23:1", "text": "A Psalm of David. The Lord is my shepheard, I shall not want."}, {"book": 20, "chapter": 3, "verse": 5, "ref": "Proverbs 3:5", "text": "Trust in the Lord with all thine heart, and lean not unto thine own wisdom."}, {"book": 23, "chapter": 41, "verse": 10, "ref": "Isaiah 41:10", "text": "Fear thou not, for I am with thee: be not afraid, for I am thy God: I will strengthen thee, and help thee, and will susteine thee with the right hand of my justice."}, {"book": 24, "chapter": 29, "verse": 11, "ref": "Jeremiah 29:11", "text": "For I know the thoughtes, that I have thought towards you, saith the Lord, even the thoughtes of peace, and not of trouble, to give you an end, and your hope."}, {"book": 40, "chapter": 11, "verse": 28, "ref": "Matthew 11:28", "text": "Come unto me, all ye that are wearie and laden, and I will ease you."}, {"book": 50, "chapter": 4, "verse": 13, "ref": "Philippians 4:13", "text": "I am able to do al things through the help of Christ, which strengtheneth me."}, {"book": 45, "chapter": 8, "verse": 28, "ref": "Romans 8:28", "text": "Also we know that all thinges work together for the best unto them that love God, even to them that are called of his purpose."}, {"book": 1, "chapter": 1, "verse": 1, "ref": "Genesis 1:1", "text": "In the beginning God created the heaven and the earth."}, {"book": 6, "chapter": 1, "verse": 9, "ref": "Joshua 1:9", "text": "Have not I commanded thee, saying, Be strong and of a good courage, fear not, nor be discouraged? for I the Lord thy God will be with thee, whithersoever thou goest."}, {"book": 19, "chapter": 46, "verse": 10, "ref": "Psalms 46:10", "text": "Be still and know that I am God: I will be exalted among the heathen, and I wil be exalted in the earth."}, {"book": 19, "chapter": 121, "verse": 2, "ref": "Psalms 121:2", "text": "Mine help cometh from the Lord, which hath made the heaven and the earth."}, {"book": 25, "chapter": 3, "verse": 23, "ref": "Lamentations 3:23", "text": "They are renued every morning: great is thy faithfulness."}, {"book": 33, "chapter": 6, "verse": 8, "ref": "Micah 6:8", "text": "He hath shewed thee, O man, what is good, and what the Lord requireth of thee: surely to doe justly, and to love mercie, and to humble thy self, to walk with thy God."}, {"book": 43, "chapter": 3, "verse": 16, "ref": "John 3:16", "text": "For God so loved the world, that hee hath given his onely begotten Sonne, that whosoever beleeueth in him, should not perish, but have everlasting life."}, {"book": 43, "chapter": 14, "verse": 27, "ref": "John 14:27", "text": "Peace I leave with you: my peace I give unto you: not as the world giveth, give I unto you. Let not your heart be troubled, nor fear."}, {"book": 58, "chapter": 11, "verse": 1, "ref": "Hebrews 11:1", "text": "Now faith is the grounds of things, which are hoped for, and the evidence of things which are not seen."}, {"book": 59, "chapter": 1, "verse": 5, "ref": "James 1:5", "text": "If any of you lack wisedome, let him ask of God, which giveth to all men liberally, and reprocheth no man, and it shalbe given him."}, {"book": 60, "chapter": 5, "verse": 7, "ref": "1 Peter 5:7", "text": "Cast all your care on him: for he careth for you."}, {"book": 19, "chapter": 19, "verse": 14, "ref": "Psalms 19:14", "text": "Let the wordes of my mouth, and the meditation of mine heart be acceptable in thy sight, O Lord, my strength, and my redeemer."}, {"book": 23, "chapter": 40, "verse": 31, "ref": "Isaiah 40:31", "text": "But they that wait upon the Lord, shall renue their strength: they shall lift up the wings as the eagles: they shall runne, and not be wearie, and they shall walk and not faint."}, {"book": 40, "chapter": 6, "verse": 33, "ref": "Matthew 6:33", "text": "But seek ye first the kingdom of God, and his righteousness, and all these things shall be ministred unto you."}, {"book": 45, "chapter": 12, "verse": 2, "ref": "Romans 12:2", "text": "And fashion not your selves like unto this world, but bee yee changed by the renewing of your mind, that ye may prooue what that good, and acceptable and perfect will of God is."}, {"book": 48, "chapter": 5, "verse": 22, "ref": "Galatians 5:22", "text": "But the fruit of the Spirit is love, ioye, peace, long suffering, gentlenes, goodnes, fayth,"}, {"book": 49, "chapter": 2, "verse": 8, "ref": "Ephesians 2:8", "text": "For by grace are ye saved through faith, and that not of your selves: it is the gift of God,"}, {"book": 51, "chapter": 3, "verse": 23, "ref": "Colossians 3:23", "text": "And whatsoever ye doe, doe it heartily, as to the Lord, and not to men,"}, {"book": 55, "chapter": 1, "verse": 7, "ref": "2 Timothy 1:7", "text": "For God hath not given to us the Spirit of fear, but of power, and of love, and of a sound mind."}, {"book": 19, "chapter": 90, "verse": 12, "ref": "Psalms 90:12", "text": "Teach us so to nomber our dayes, that we may apply our heartes unto wisdom."}, {"book": 5, "chapter": 31, "verse": 8, "ref": "Deuteronomy 31:8", "text": "And the Lord him self doeth go before thee: he will be with thee: he will not fail thee, neither forsake thee: fear not therefore, nor be discomforted."}, {"book": 19, "chapter": 118, "verse": 24, "ref": "Psalms 118:24", "text": "This is the day, which the Lord hath made: let us reioyce and be glad in it."}, {"book": 36, "chapter": 3, "verse": 17, "ref": "Zephaniah 3:17", "text": "The Lord thy God in the middes of thee is mightie: hee will save, hee will reioyce over thee with ioye: he will quiet himself in his love: he will reioyce over thee with joy."}];
-  function vodForToday() {
-    var now = new Date();
-    var idx = (now.getDate() - 1) % VOD.length;
-    var v = VOD[idx];
-    var text = v.text, source = 'bundled-fallback';
+  /* ---- Verse of the Day (upgraded 2026-10-22, staged; Gate 0 NOT pulled).
+     Ruling (Donnie, 2026-10-21 20:03 MDT): our own rotating verse from the
+     app's public-domain texts ONLY — no Our Daily Bread link-out, no
+     external fetch, ever.
+     What changed from the original v6 surface (31 refs, day-of-month cycle,
+     Geneva wording bundled as hand-typed text in this file):
+       - 90 curated references (45 Old + 45 New Testament), references ONLY
+         as data — no Scripture text is typed into this file any more (the
+         old bundled texts were excerpts with transcription risk: e.g.
+         Galatians 5:22 ended mid-list at "faith,").
+       - Rotation is deterministic by calendar date: days since epoch
+         (local) mod 90 — same verse all day, changes at local midnight,
+         no repeats until the 90-verse list cycles, nothing stored.
+       - The verse TEXT is resolved at runtime from the app's own shipped
+         KJV, data/translations/kjv.json — the exact file the reader and
+         Compare load (KJV is the house default for this surface). One
+         fetch of the app's own file: XMLHttpRequest on purpose, because
+         the split loader holds window.fetch for the five Compare files
+         until the Geneva flood settles; the service worker serves the
+         file cache-first, so after the first online open the verse works
+         fully offline. If the KJV cannot be loaded (offline before any
+         cache exists), the fallback is the reader's own resident Geneva
+         text, labeled as Geneva — never a hand-typed copy, and never a
+         Geneva text wearing a KJV label. ---- */
+  var VOTD_REFS = [
+    [1,1,1],
+    [1,1,27],
+    [1,15,6],
+    [1,28,15],
+    [1,50,20],
+    [2,14,14],
+    [2,15,2],
+    [2,20,2],
+    [3,19,18],
+    [5,31,6],
+    [5,31,8],
+    [6,1,8],
+    [6,1,9],
+    [9,16,7],
+    [18,19,25],
+    [18,42,2],
+    [19,1,1],
+    [19,1,3],
+    [19,19,14],
+    [19,23,1],
+    [19,27,14],
+    [19,34,8],
+    [19,37,4],
+    [19,46,1],
+    [19,55,22],
+    [19,90,12],
+    [19,103,2],
+    [19,118,24],
+    [19,119,105],
+    [19,121,2],
+    [19,139,14],
+    [20,3,5],
+    [20,3,6],
+    [20,16,3],
+    [20,18,10],
+    [21,3,1],
+    [21,12,7],
+    [23,40,31],
+    [23,41,10],
+    [23,43,1],
+    [23,53,5],
+    [24,17,7],
+    [24,29,11],
+    [24,31,3],
+    [25,3,22],
+    [40,5,9],
+    [40,5,16],
+    [40,6,34],
+    [40,7,7],
+    [40,11,28],
+    [40,11,29],
+    [41,10,27],
+    [42,2,11],
+    [42,10,27],
+    [42,19,10],
+    [43,1,1],
+    [43,3,16],
+    [43,3,17],
+    [43,8,12],
+    [43,10,10],
+    [43,11,25],
+    [43,13,34],
+    [43,14,6],
+    [43,14,27],
+    [43,15,5],
+    [43,15,13],
+    [44,1,8],
+    [44,4,12],
+    [45,1,16],
+    [45,15,13],
+    [45,8,28],
+    [45,8,38],
+    [45,12,2],
+    [46,13,13],
+    [47,5,17],
+    [48,2,20],
+    [48,5,22],
+    [49,2,8],
+    [49,3,20],
+    [50,4,6],
+    [50,4,13],
+    [51,3,23],
+    [52,5,17],
+    [55,3,16],
+    [58,11,1],
+    [58,13,8],
+    [59,1,5],
+    [60,5,7],
+    [62,4,19],
+    [66,3,20]
+  ];
+  var VOTD_TRANSLATION = 'KJV';
+  function votdDayNumber(d) {
+    return Math.floor(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / 86400000);
+  }
+  function votdRefFor(d) {
+    var n = votdDayNumber(d) % VOTD_REFS.length;
+    if (n < 0) { n += VOTD_REFS.length; }
+    return VOTD_REFS[n];
+  }
+  function votdBookNames() {
+    try { if (window.SSB && SSB.db() && SSB.db().books) { return SSB.db().books; } } catch (e) {}
+    return (window.HAGAH_PD_TEXTS && HAGAH_PD_TEXTS.books) || [];
+  }
+  function votdRefLabel(ref) {
+    var names = votdBookNames();
+    return (names[ref[0] - 1] || ('Book ' + ref[0])) + ' ' + ref[1] + ':' + ref[2];
+  }
+  var votdKjv = null, votdKjvState = 'idle'; // idle | loading | ready | failed
+  function votdResidentKjv() {
+    try {
+      var hd = window.HAGAH_DATA || {};
+      return hd['translations/kjv.json'] || hd['translations/kjv'] || null;
+    } catch (e) { return null; }
+  }
+  function votdLoadKjv(done) {
+    var r = votdResidentKjv();
+    if (r) { votdKjv = r; votdKjvState = 'ready'; done(r); return; }
+    if (votdKjvState === 'ready') { done(votdKjv); return; }
+    if (votdKjvState === 'loading') {
+      var wait = setInterval(function () {
+        if (votdKjvState !== 'loading') { clearInterval(wait); done(votdKjvState === 'ready' ? votdKjv : null); }
+      }, 150);
+      setTimeout(function () { clearInterval(wait); }, 20000);
+      return;
+    }
+    votdKjvState = 'loading';
+    try {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', 'data/translations/kjv.json', true);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState !== 4) { return; }
+        if (xhr.status >= 200 && xhr.status < 300) {
+          try { votdKjv = JSON.parse(xhr.responseText); votdKjvState = 'ready'; done(votdKjv); return; }
+          catch (e) { /* fall through */ }
+        }
+        votdKjvState = 'failed'; done(null);
+      };
+      xhr.onerror = function () { votdKjvState = 'failed'; done(null); };
+      xhr.send();
+    } catch (e) { votdKjvState = 'failed'; done(null); }
+  }
+  function votdGenevaText(ref) {
     try {
       var live = window.SSB_DATA && window.SSB_DATA.bible &&
-        window.SSB_DATA.bible[String(v.book)] &&
-        window.SSB_DATA.bible[String(v.book)][String(v.chapter)] &&
-        window.SSB_DATA.bible[String(v.book)][String(v.chapter)][String(v.verse)];
-      if (typeof live === 'string' && live.length) { text = live; source = 'app-data'; }
-    } catch (e) { /* fallback text stands */ }
-    return { book: v.book, chapter: v.chapter, verse: v.verse, ref: v.ref, text: text, source: source };
+        window.SSB_DATA.bible[String(ref[0])] &&
+        window.SSB_DATA.bible[String(ref[0])][String(ref[1])] &&
+        window.SSB_DATA.bible[String(ref[0])][String(ref[1])][String(ref[2])];
+      return (typeof live === 'string' && live.length) ? live : null;
+    } catch (e) { return null; }
   }
+  function vodForToday() {
+    var ref = votdRefFor(new Date());
+    var out = { book: ref[0], chapter: ref[1], verse: ref[2], ref: votdRefLabel(ref), text: '', source: 'kjv-loading' };
+    var kjv = votdResidentKjv() || (votdKjvState === 'ready' ? votdKjv : null);
+    if (kjv) {
+      try {
+        var t = kjv.bible[String(ref[0])][String(ref[1])][String(ref[2])];
+        if (typeof t === 'string' && t) { out.text = t; out.source = 'kjv-file'; return out; }
+      } catch (e) { /* fall through to load */ }
+    }
+    votdLoadKjv(function () { refreshVodText(); });
+    return out;
+  }
+  /* When the KJV lands after the home already rendered, fill the hero in —
+     but only if the home is still showing the same day's verse. */
+  function refreshVodText() {
+    if (!currentVod || currentVod.source === 'kjv-file') { return; }
+    var ref = [currentVod.book, currentVod.chapter, currentVod.verse];
+    var text = null, source = 'unavailable';
+    if (votdKjv) {
+      try {
+        var t = votdKjv.bible[String(ref[0])][String(ref[1])][String(ref[2])];
+        if (typeof t === 'string' && t) { text = t; source = 'kjv-file'; }
+      } catch (e) { /* fall through */ }
+    }
+    if (!text) {
+      var g = votdGenevaText(ref);
+      if (g) { text = g; source = 'geneva-fallback'; }
+    }
+    currentVod.text = text || 'Could not load today\u2019s verse here \u2014 tap Read the chapter to open it in the reader.';
+    currentVod.source = source;
+    var vt = $('#hg6-verse');
+    if (vt) {
+      vt.textContent = '\u201C' + currentVod.text + '\u201D';
+      vt.style.fontSize = currentVod.text.length > 170 ? '1.3rem' : currentVod.text.length > 125 ? '1.45rem' : '1.58rem';
+    }
+    var rf = $('#hg6-ref');
+    if (rf) { rf.textContent = currentVod.ref + (source === 'geneva-fallback' ? ' \u00B7 Geneva Bible 1599' : ' \u00B7 ' + VOTD_TRANSLATION); }
+    var hero = $('#hg6-hero');
+    if (hero) { hero.setAttribute('data-hg6-vod-source', source); }
+  }
+
   function greeting() {
     var h = new Date().getHours();
     if (h < 12) { return 'Good morning'; }
@@ -244,10 +443,13 @@
     if (dt) {
       dt.textContent = new Date().toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
     }
-    var vt = $('#hg6-verse'); if (vt) { vt.textContent = '\u201C' + currentVod.text + '\u201D'; }
-    if (vt) { vt.style.fontSize = currentVod.text.length > 170 ? '1.3rem' : currentVod.text.length > 125 ? '1.45rem' : '1.58rem'; }
+    var vt = $('#hg6-verse');
+    if (vt) {
+      vt.textContent = currentVod.text ? '\u201C' + currentVod.text + '\u201D' : 'Loading today\u2019s verse\u2026';
+      vt.style.fontSize = currentVod.text.length > 170 ? '1.3rem' : currentVod.text.length > 125 ? '1.45rem' : '1.58rem';
+    }
     var rf = $('#hg6-ref');
-    if (rf) { rf.textContent = currentVod.ref + ' · Geneva Bible 1599'; }
+    if (rf) { rf.textContent = currentVod.ref + ' \u00B7 ' + VOTD_TRANSLATION; }
     var hero = $('#hg6-hero');
     if (hero) { hero.setAttribute('data-hg6-vod-source', currentVod.source); hero.setAttribute('data-hg6-vod-ref', currentVod.ref); }
     var st = readPlanState();
@@ -294,6 +496,7 @@
           '</div>' +
           '<p class="hg6-verse" id="hg6-verse"></p>' +
           '<div class="hg6-hero-actions">' +
+            '<img class="hg6-card-pic" src="assets/pics/verse-day.webp" alt="" aria-hidden="true">' +
             '<button type="button" class="hg6-read" id="hg6-read">' +
               '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6.2C10.2 4.9 7.9 4.4 5.3 4.6v13c2.6-.2 4.9.3 6.7 1.6 1.8-1.3 4.1-1.8 6.7-1.6v-13c-2.6-.2-4.9.3-6.7 1.6z"/><path d="M12 6.2v13"/></svg>' +
               '<span>Read the chapter</span>' +
@@ -307,15 +510,16 @@
             '<span class="hg6-guided-sub" id="hg6-guided-sub"></span>' +
             '<span class="hg6-guided-cta" id="hg6-guided-cta"></span>' +
           '</span>' +
-          '<canvas class="hg6-guided-thumb" id="hg6-guided-thumb" aria-hidden="true"></canvas>' +
+          '<img class="hg6-guided-pic" src="assets/pics/guided-study.webp" alt="" aria-hidden="true">' +
         '</button>' +
-        '<button type="button" class="hg6-guided" id="hg6-prayer">' +
+        '<button type="button" class="hg6-guided hg6-guided-quiet" id="hg6-prayer">' +
           '<span class="hg6-guided-main">' +
             '<span class="hg6-guided-label">Prayer</span>' +
             '<span class="hg6-guided-name">Prayer Request</span>' +
             '<span class="hg6-guided-sub">Send a prayer request to Donnie</span>' +
             '<span class="hg6-guided-cta">Open \u2192</span>' +
           '</span>' +
+          '<img class="hg6-guided-pic" src="assets/pics/prayer.webp" alt="" aria-hidden="true">' +
         '</button>' +
       '</div>';
     document.body.appendChild(home);
@@ -327,9 +531,9 @@
     flowsWrap.setAttribute('aria-label', 'Guided flows');
     flowsWrap.hidden = true;
     var flowDefs = [
-      { id: 'study', title: 'Guided flow: Study a Passage', sub: 'Read a passage slowly, step by step \u2014 the words, the witnesses, your own notes.' },
-      { id: 'compare', title: 'Guided flow: Compare a Topic', sub: 'Start from a topic and see its passages side by side, step by step.' },
-      { id: 'sermon', title: 'Guided flow: Build a Sermon', sub: 'Set up, study, outline, check, and print \u2014 step by step.' }
+      { id: 'study', pic: 'study-passage.webp', title: 'Guided flow: Study a Passage', sub: 'Read a passage slowly, step by step \u2014 the words, the witnesses, your own notes.' },
+      { id: 'compare', pic: 'compare-topic.webp', title: 'Guided flow: Compare a Topic', sub: 'Start from a topic and see its passages side by side, step by step.' },
+      { id: 'sermon', pic: 'build-sermon.webp', title: 'Guided flow: Build a Sermon', sub: 'Set up, study, outline, check, and print \u2014 step by step.' }
     ];
     flowDefs.forEach(function (f) {
       var b = document.createElement('button');
@@ -338,7 +542,8 @@
       b.setAttribute('data-hg6-flow-entry', f.id);
       b.setAttribute('data-hg6-start-flow', f.id);
       b.hidden = true;
-      b.innerHTML = '<span class="hg6-flow-label">GUIDED FLOW</span>' +
+      b.innerHTML = '<img class="hg6-flow-pic" src="assets/pics/' + f.pic + '" alt="" aria-hidden="true">' +
+        '<span class="hg6-flow-label">GUIDED FLOW</span>' +
         '<span class="hg6-flow-title">' + esc(f.title) + '</span>' +
         '<span class="hg6-flow-sub">' + esc(f.sub) + '</span>' +
         '<span class="hg6-flow-cta">Start \u2192</span>';
