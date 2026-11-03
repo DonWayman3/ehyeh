@@ -1,0 +1,1925 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Ehyeh — meditate on Scripture. Read the Geneva Bible and King James Version with word studies, margin notes, cross-references, topics, reading plans, and prayer. Free, no account.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; media-src 'self' data: blob:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; worker-src 'self'; form-action 'none'; base-uri 'none'; connect-src https: http://localhost:11434 http://127.0.0.1:11434">
+<meta name="color-scheme" content="light">
+<title>Ehyeh &mdash; Meditate on Scripture</title>
+<style>
+  :root {
+    --ivory: #f7f3ea;
+    --paper: #fffdf7;
+    --ink: #1f2a3c;
+    --muted: #5d6675;
+    --line: #d8d0c0;
+    --line-soft: #e8e2d4;
+    --accent: #2e5c47;
+    --accent-soft: #e4ece6;
+    --gold: #9c7f3a;
+    --danger: #8a3b2e;
+    --danger-soft: #f3e4e0;
+    --serif: Georgia, "Times New Roman", Times, serif;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --radius: 3px;
+    --print-base: 20px;
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--ivory); }
+  body {
+    margin: 0;
+    color: var(--ink);
+    background: var(--ivory);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.55;
+    -webkit-text-size-adjust: 100%;
+  }
+  h1, h2, h3, h4 { font-family: var(--serif); font-weight: 400; line-height: 1.2; margin: 0 0 0.5rem; color: var(--ink); }
+  h1 { font-size: 2.4rem; letter-spacing: 0.01em; }
+  h2 { font-size: 1.75rem; }
+  h3 { font-size: 1.25rem; }
+  p { margin: 0 0 1rem; }
+  a { color: var(--accent); }
+  .skip {
+    position: absolute; left: -999px; top: 0.5rem;
+    background: var(--paper); color: var(--ink); padding: 0.5rem 0.75rem;
+    border: 1px solid var(--line); z-index: 100;
+  }
+  .skip:focus { left: 0.5rem; }
+  .app-header {
+    border-bottom: 1px solid var(--line);
+    background: var(--ivory);
+  }
+  .app-header .inner {
+    max-width: 880px; margin: 0 auto; padding: 0.9rem 1.25rem;
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem 1.5rem;
+  }
+  .brand { font-family: var(--serif); font-size: 0.95rem; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+  nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; }
+  nav button {
+    background: none; border: none; padding: 0.35rem 0; font: inherit; font-size: 0.95rem;
+    color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent;
+  }
+  nav button[aria-current="page"] { color: var(--accent); border-bottom-color: var(--accent); }
+  nav button:hover { color: var(--ink); }
+  .status-line {
+    max-width: 880px; margin: 0 auto; padding: 0.4rem 1.25rem 0;
+    font-size: 0.9rem; color: var(--muted); min-height: 1.6rem;
+  }
+  .status-line .ok { color: var(--accent); }
+  .status-line .warn { color: var(--danger); }
+  main { max-width: 880px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  section[hidden] { display: none; }
+  .lead { font-size: 1.15rem; color: var(--muted); max-width: 40rem; }
+  .card {
+    background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 1.5rem; margin: 0 0 1.5rem;
+  }
+  .choices { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin: 1.5rem 0; }
+  .choice {
+    text-align: left; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 1.25rem; font: inherit; color: var(--ink); cursor: pointer; transition: border-color 120ms;
+  }
+  .choice:hover { border-color: var(--accent); }
+  .choice .t { font-family: var(--serif); font-size: 1.2rem; display: block; margin-bottom: 0.35rem; }
+  .choice .e { color: var(--muted); font-size: 0.95rem; }
+  label, .legend { display: block; font-weight: 600; margin: 0 0 0.35rem; font-size: 0.95rem; }
+  .optional { font-weight: 400; color: var(--muted); }
+  .help { color: var(--muted); font-size: 0.92rem; margin: -0.15rem 0 0.5rem; }
+  .field { margin: 0 0 1.35rem; }
+  input[type="text"], input[type="date"], input[type="search"], textarea, select {
+    width: 100%; font: inherit; color: var(--ink); background: #fff;
+    border: 1px solid var(--line); border-radius: var(--radius); padding: 0.6rem 0.7rem;
+  }
+  textarea { min-height: 4.5rem; resize: vertical; line-height: 1.5; }
+  textarea.tall { min-height: 9rem; }
+  textarea.notes { min-height: 14rem; }
+  input:focus, textarea:focus, select:focus, button:focus-visible, .choice:focus-visible, a:focus-visible, [tabindex]:focus-visible {
+    outline: 3px solid var(--accent); outline-offset: 2px;
+  }
+  h1[tabindex="-1"]:focus, h2[tabindex="-1"]:focus { outline: none; }
+  fieldset { border: none; margin: 0 0 1.35rem; padding: 0; }
+  fieldset legend { font-weight: 600; margin-bottom: 0.35rem; font-size: 0.95rem; padding: 0; }
+  .radio-row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; }
+  .radio-row label { font-weight: 400; display: inline-flex; align-items: center; gap: 0.45rem; margin: 0; }
+  input[type="radio"], input[type="checkbox"] { width: 1.15rem; height: 1.15rem; accent-color: var(--accent); }
+  .btn {
+    font: inherit; font-size: 0.95rem; padding: 0.55rem 1.05rem; border-radius: var(--radius); cursor: pointer;
+    border: 1px solid var(--accent); background: var(--accent); color: #fff;
+  }
+  .btn.secondary { background: var(--paper); color: var(--accent); }
+  .btn.quiet { background: none; border-color: transparent; color: var(--accent); padding-left: 0.4rem; padding-right: 0.4rem; }
+  .btn.danger { background: var(--paper); color: var(--danger); border-color: var(--danger); }
+  .btn:hover { filter: brightness(0.95); }
+  .btn-row { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; margin: 1.5rem 0 0; }
+  .movement { position: relative; padding-top: 1.25rem; }
+  .movement .num {
+    font-family: var(--serif); font-size: 1.6rem; color: var(--gold); display: block; margin-bottom: 0.75rem;
+    border-bottom: 1px solid var(--line-soft); padding-bottom: 0.35rem;
+  }
+  .passage-line { font-family: var(--serif); font-size: 1.35rem; margin: 0 0 1.5rem; }
+  .passage-line .k { display: block; font-family: var(--sans); font-size: 0.85rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  .note {
+    border-left: 3px solid var(--gold); padding: 0.5rem 0.9rem; color: var(--muted); font-size: 0.92rem;
+    background: var(--paper); margin: 0 0 1.25rem;
+  }
+  .sc-card { border: 1px solid var(--line-soft); border-radius: var(--radius); padding: 1rem 1rem 0.1rem; margin: 0 0 1rem; }
+  .sc-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0.25rem 0.75rem; margin-bottom: 0.75rem; }
+  .sc-head .num { font-family: var(--serif); font-size: 1.1rem; color: var(--gold); }
+  .sc-grid { display: grid; gap: 0 1rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+  .sc-card .field { margin-bottom: 1rem; }
+  .sc-card textarea { min-height: 4rem; }
+  .sc-include { font-weight: 400; display: inline-flex; align-items: center; gap: 0.45rem; margin: 0; }
+  .sc-empty { color: var(--muted); font-style: italic; margin: 0 0 1rem; }
+  .check-list { list-style: none; margin: 0; padding: 0; }
+  .check-list li { display: flex; gap: 0.75rem; align-items: flex-start; padding: 0.75rem 0; border-bottom: 1px solid var(--line-soft); }
+  .check-list label { font-weight: 400; margin: 0; font-size: 1.05rem; }
+  .lib-tools { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: end; margin-bottom: 1.25rem; }
+  .lib-tools .field { margin: 0; flex: 1 1 220px; }
+  .lib-list { list-style: none; margin: 0; padding: 0; }
+  .lib-item { border: 1px solid var(--line); background: var(--paper); border-radius: var(--radius); padding: 1rem 1.25rem; margin-bottom: 0.9rem; }
+  .lib-item .title { font-family: var(--serif); font-size: 1.25rem; }
+  .lib-item .meta { color: var(--muted); font-size: 0.92rem; margin: 0.2rem 0 0.6rem; }
+  .lib-item .meta span + span::before { content: " · "; }
+  .lib-item .actions { display: flex; flex-wrap: wrap; gap: 0.25rem 0.5rem; align-items: center; }
+  .lib-item select { width: auto; padding: 0.3rem 0.5rem; font-size: 0.9rem; }
+  .empty { color: var(--muted); font-style: italic; }
+  .file-btn { position: relative; overflow: hidden; display: inline-block; }
+  .file-btn input { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; }
+  dialog {
+    border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper); color: var(--ink);
+    padding: 1.5rem; max-width: 32rem; width: calc(100% - 2rem); font: inherit;
+  }
+  dialog::backdrop { background: rgba(31, 42, 60, 0.35); }
+  dialog h2 { font-size: 1.4rem; }
+  dialog .msg { white-space: pre-wrap; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .print-controls { display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; align-items: end; margin-bottom: 1rem; }
+  .print-controls .field { margin: 0; }
+  .print-controls select { width: auto; }
+  .overflow-warn { display: none; border-left: 3px solid var(--danger); background: var(--danger-soft); padding: 0.6rem 0.9rem; margin: 0 0 1rem; }
+  .overflow-warn.show { display: block; }
+  .sheet-wrap { overflow-x: auto; padding: 1rem 0 1.5rem; }
+  .sheet {
+    background: #fff; color: #000; border: 1px solid var(--line); margin: 0 auto;
+    padding: 72px; overflow: hidden; font-family: var(--serif);
+    font-size: var(--print-base); line-height: 1.5;
+  }
+  .sheet.letter { width: 816px; height: 1056px; }
+  .sheet.a4 { width: 794px; height: 1123px; }
+  .sheet-content { }
+  .sheet h1 { font-size: 1.7em; margin: 0 0 0.25em; color: #000; }
+  .sheet .s-passage { font-size: 1.15em; margin: 0 0 0.2em; }
+  .sheet .s-meta { font-family: var(--sans); font-size: 0.7em; color: #333; margin: 0 0 1em; }
+  .sheet .s-label { font-family: var(--sans); font-size: 0.68em; letter-spacing: 0.08em; text-transform: uppercase; color: #333; margin: 1em 0 0.15em; }
+  .sheet .s-central { font-size: 1.1em; margin: 0 0 0.5em; }
+  .sheet ol { margin: 0; padding-left: 1.4em; }
+  .sheet ol li { margin: 0 0 0.6em; }
+  .sheet .s-refs { font-family: var(--sans); font-size: 0.78em; color: #222; }
+  .sheet .s-sub { font-size: 0.9em; }
+  .sheet .s-trans { font-style: italic; font-size: 0.9em; }
+  .sheet ul.s-conn { margin: 0; padding-left: 1.2em; }
+  .sheet .s-conn li { margin: 0 0 0.4em; }
+  .sheet .s-strip { border: 1px solid #000; height: 5.5em; margin-top: 1em; }
+  .sheet .s-foot { font-family: var(--sans); font-size: 0.62em; color: #555; text-align: center; margin-top: 1.2em; border-top: 1px solid #ccc; padding-top: 0.4em; }
+  .sheet .s-foot[hidden] { display: none; }
+  .sheet p { margin: 0 0 0.35em; white-space: pre-wrap; }
+  @media (max-width: 600px) {
+    body { font-size: 16px; }
+    h1 { font-size: 2rem; }
+    .card { padding: 1.1rem; }
+    main { padding: 1.5rem 1rem 3rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+  }
+  /* ---------- Onboarding, per-view help, watch-how (UX revamp, Hagah brand) ---------- */
+  :root {
+    --brand-midnight: #0B1325;
+    --brand-gold: #D4AF37;
+    --brand-gold-radiant: #E5C158;
+    --brand-parchment: #F3E5AB;
+    --brand-vellum: #FDFBF7;
+    --brand-border: #253556;
+  }
+  [hidden] { display: none !important; }
+  /* "?" help button shown in every view heading */
+  .help-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 1.9rem; height: 1.9rem; border-radius: 50%;
+    border: 2px solid var(--brand-gold); background: transparent;
+    color: var(--brand-gold); font-size: 1.05rem; font-weight: 700;
+    line-height: 1; cursor: pointer; vertical-align: middle; margin-left: 0.6rem;
+    font-family: var(--sans);
+  }
+  .help-btn:hover, .help-btn:focus-visible {
+    background: var(--brand-gold); color: var(--brand-midnight); outline: none;
+  }
+  /* Full-screen branded overlay: onboarding tour + help dialog */
+  .onb {
+    position: fixed; inset: 0; z-index: 10000;
+    background: rgba(11, 19, 37, 0.86);
+    display: flex; align-items: center; justify-content: center; padding: 1rem;
+  }
+  .onb-card {
+    background: var(--brand-midnight); color: var(--brand-vellum);
+    border: 1px solid var(--brand-gold); border-radius: 0.5rem;
+    max-width: 34rem; width: 100%; padding: 1.75rem 1.75rem 1.5rem;
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.55);
+    max-height: calc(100vh - 2rem); overflow-y: auto;
+  }
+  .onb-kicker {
+    margin: 0 0 0.75rem; font-size: 0.8rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--brand-gold);
+  }
+  .onb-card h2 { color: var(--brand-vellum); font-size: 1.6rem; margin-bottom: 0.6rem; }
+  .onb-card p { color: var(--brand-vellum); }
+  .onb-dots { display: flex; gap: 0.55rem; margin: 1.1rem 0 0; }
+  .onb-dot { width: 0.7rem; height: 0.7rem; border-radius: 50%; border: 1px solid var(--brand-gold); }
+  .onb-dot.on { background: var(--brand-gold); }
+  .onb .btn-row { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.25rem; }
+  .onb .btn {
+    background: var(--brand-gold); border-color: var(--brand-gold);
+    color: var(--brand-midnight); font-weight: 600;
+  }
+  .onb .btn.secondary {
+    background: transparent; color: var(--brand-vellum);
+    border: 1px solid var(--brand-border); font-weight: 400;
+  }
+  .onb .btn[disabled] { opacity: 0.35; cursor: default; }
+  /* "Watch how" video slot, one per view */
+  .watchhow {
+    margin-top: 1.5rem; border: 1px solid var(--line);
+    border-radius: var(--radius); background: var(--paper);
+  }
+  .watchhow summary {
+    cursor: pointer; padding: 0.8rem 1rem; font-weight: 600;
+    list-style: none; display: flex; align-items: center; gap: 0.6rem;
+  }
+  .watchhow summary::-webkit-details-marker { display: none; }
+  .watchhow summary::before { content: "\25B6"; color: var(--brand-gold); font-size: 0.8rem; }
+  .watchhow[open] summary::before { content: "\25BC"; }
+  .watchhow summary:focus-visible { outline: 2px solid var(--brand-gold); outline-offset: 2px; }
+  .watchhow-body { padding: 0 1rem 1rem; }
+  .watchhow video {
+    width: 100%; max-width: 560px; display: block;
+    background: var(--brand-midnight); border-radius: var(--radius);
+  }
+  .watchhow-fallback { color: var(--muted); font-size: 0.95rem; margin-top: 0.75rem; }
+  @media print {
+    html, body { background: #fff; color: #000; }
+    .no-print, .app-header, .status-line, dialog { display: none !important; }
+    main { max-width: none; padding: 0; margin: 0; }
+    #view-print { display: block !important; }
+    .sheet-wrap { padding: 0; overflow: visible; }
+    .sheet { width: auto !important; height: auto !important; border: none; padding: 0; margin: 0; overflow: visible; }
+  }
+  .study-bar { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: end; margin-bottom: 1.25rem; }
+  .study-bar .field { margin: 0; }
+  .study-bar select { width: auto; min-width: 10rem; }
+  .chapter-text { font-family: var(--serif); font-size: 1.15rem; line-height: 1.9; }
+  .verse { margin: 0 0 0.9rem; }
+  .verse-num { font-family: var(--sans); font-size: 0.75rem; color: var(--gold); vertical-align: super; margin-right: 0.35rem; font-weight: 700; }
+  .w { cursor: pointer; border-radius: 3px; padding: 0 1px; }
+  .w:hover, .w:focus-visible { background: var(--accent-soft); outline: 2px solid var(--accent); outline-offset: 1px; }
+  .w.active { background: var(--accent-soft); outline: 2px solid var(--accent); }
+  .word-panel { border: 1px solid var(--line); border-left: 3px solid var(--accent); background: var(--paper); border-radius: var(--radius); padding: 1.1rem 1.25rem; margin: 0 0 1.25rem; }
+  .word-panel h3 { margin-bottom: 0.25rem; }
+  .lang-badge { display: inline-block; font-family: var(--sans); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--paper); background: var(--accent); border-radius: 3px; padding: 0.15rem 0.5rem; margin-left: 0.5rem; vertical-align: middle; }
+  .strongs-num { font-family: var(--sans); font-size: 0.85rem; color: var(--gold); font-weight: 700; }
+  .orig-word { font-size: 1.5rem; }
+  .kv-table { width: 100%; border-collapse: collapse; font-size: 0.95rem; margin: 0.75rem 0; }
+  .kv-table th, .kv-table td { text-align: left; padding: 0.35rem 0.5rem; border-bottom: 1px solid var(--line-soft); vertical-align: top; }
+  .kv-table th { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+  .caveat { border-left: 3px solid var(--gold); background: var(--paper); padding: 0.6rem 0.9rem; font-size: 0.9rem; color: var(--muted); margin: 0.9rem 0; }
+  .margin-note { border: 1px solid var(--line-soft); border-radius: var(--radius); padding: 0.8rem 1rem; margin: 0 0 0.8rem; background: var(--paper); }
+  .margin-note .src { font-size: 0.8rem; color: var(--muted); font-style: italic; margin-bottom: 0.3rem; }
+  .xref-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.5rem 0 0; }
+  .xref-chip { font-size: 0.85rem; border: 1px solid var(--line); background: var(--paper); border-radius: 20px; padding: 0.25rem 0.75rem; cursor: pointer; color: var(--accent); font-family: inherit; }
+  .xref-chip:hover { border-color: var(--accent); }
+  .lesson-card { border: 1px solid var(--line); background: var(--paper); border-radius: var(--radius); padding: 1rem 1.25rem; margin: 0 0 0.8rem; }
+  .lesson-card h4 { margin-bottom: 0.3rem; color: var(--danger); }
+  .lesson-card p { margin: 0 0 0.5rem; font-size: 0.95rem; }
+  .lesson-card .instead { color: var(--accent); }
+  details.lesson { border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper); padding: 0.9rem 1.1rem; margin: 0 0 1.25rem; }
+  details.lesson summary { cursor: pointer; font-weight: 700; font-family: var(--serif); font-size: 1.1rem; }
+  .dict-result { border: 1px solid var(--line); background: var(--paper); border-radius: var(--radius); padding: 1rem 1.25rem; margin: 0 0 0.8rem; }
+  .dict-result h3 { margin-bottom: 0.4rem; }
+  .dict-result p { white-space: pre-wrap; }
+  .asst-box { border: 1px solid var(--line); background: var(--paper); border-radius: var(--radius); padding: 1.25rem; margin: 0 0 1.25rem; }
+  .asst-answer { border-left: 3px solid var(--accent); padding: 0.5rem 0.9rem; margin: 0.9rem 0; background: #fff; }
+  .asst-answer .tips { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); font-weight: 700; margin-bottom: 0.4rem; }
+  .asst-answer .verify { font-size: 0.85rem; color: var(--muted); font-style: italic; margin-top: 0.5rem; border-top: 1px solid var(--line-soft); padding-top: 0.4rem; }
+  .asst-answer .refusal { color: var(--ink); }
+  .asst-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.8rem 0; }
+  .key-warn { font-size: 0.88rem; color: var(--muted); }
+  .verse-jump { font-size: 0.9rem; color: var(--muted); margin-bottom: 1rem; }
+</style>
+<style>
+  /* ---- Hagah shell chrome (ws1) ---- */
+  .hagah-bar { display: flex; align-items: center; justify-content: space-between;
+    gap: 1rem 2rem; }
+  .hagah-brand { display: flex; align-items: center; gap: 0.8rem; min-width: 0; }
+  .hagah-mark { width: 44px; height: 44px; color: var(--accent); flex: none; }
+  .hagah-name { font-family: var(--serif); font-size: 2rem; line-height: 1.1; }
+  .hagah-say { font-family: var(--sans); font-size: 0.8rem; color: var(--muted);
+    font-weight: 400; letter-spacing: 0.04em; }
+  .hagah-tag { font-size: 0.85rem; color: var(--muted); margin-top: 0.15rem; }
+  .hagah-refs { white-space: nowrap; }
+  .hagah-mode { display: flex; border: 1px solid var(--line); border-radius: 999px;
+    overflow: hidden; background: var(--paper); flex: none; }
+  .hagah-mode button { border: 0; background: transparent; padding: 0.55rem 1.1rem;
+    font: inherit; font-size: 0.95rem; cursor: pointer; color: var(--muted);
+    border-bottom: none; }
+  .hagah-mode button[aria-pressed="true"] { background: var(--accent); color: #fff; }
+  .hagah-mode button:hover { color: var(--ink); }
+  .hagah-mode button[aria-pressed="true"]:hover { color: #fff; }
+  .hagah-nav { border-top: 1px solid var(--line-soft); }
+  .hagah-nav .inner { padding-top: 0.45rem; padding-bottom: 0.45rem; }
+  .hagah-nav ul { align-items: center; }
+  .hagah-nav button { border: 1px solid transparent; border-radius: 999px;
+    padding: 0.4rem 0.95rem; color: var(--ink); border-bottom: 1px solid transparent; }
+  .hagah-nav button:hover { border-color: var(--line); color: var(--ink); }
+  .hagah-nav button[aria-current="page"] { background: var(--accent-soft);
+    border-color: var(--accent); color: var(--ink); }
+  .hagah-subnav { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .hagah-subnav:empty { display: none; }
+  .hagah-subnav button { border: 1px solid var(--line); background: var(--paper);
+    border-radius: 999px; padding: 0.35rem 0.9rem; font: inherit; font-size: 0.9rem;
+    cursor: pointer; color: var(--ink); }
+  .hagah-subnav button[aria-current="true"] { background: var(--accent);
+    border-color: var(--accent); color: #fff; }
+  @media print {
+    /* The sermon container is hidden by the shell in study mode; the pulpit
+       sheet must still print exactly like v2 did. */
+    #legacy-sermon[hidden] { display: block; }
+  }
+</style>
+<style id="hg-theme">
+/* ==========================================================================
+   Hagah rebuild layer — deep theme (midnight & gold), flow UI, home.
+   Design truth: DESIGN.md "Contemplative Scripture & Study" + Stitch screen:
+   midnight #0B1325 canvas, slate cards #111E38, borders #253556, vellum
+   #FDFBF7 text, parchment #F3E5AB accents, brushed gold #D4AF37 illuminated
+   accents, radiance #E5C158 hover. This block loads AFTER the app's own
+   styles, so equal-specificity rules here win. The print sheet stays a
+   light page (vellum) on the midnight desk — and prints white.
+   ========================================================================== */
+:root {
+  --ivory: #0B1325;
+  --paper: #111E38;
+  --ink: #FDFBF7;
+  --muted: #BAC4D8;
+  --line: #253556;
+  --line-soft: rgba(37, 53, 86, 0.55);
+  --accent: #D4AF37;
+  --accent-soft: rgba(212, 175, 55, 0.14);
+  --gold: #D4AF37;
+  --danger: #E08D7D;
+  --danger-soft: rgba(224, 141, 125, 0.16);
+  --serif: "EB Garamond", Georgia, "Times New Roman", Times, serif;
+  --sans: Manrope, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --radius: 4px;
+  --hg-deep: #060E1F;
+  --hg-slate: #111E38;
+  --hg-slate2: #182849;
+  --hg-parchment: #F3E5AB;
+  --hg-vellum: #FDFBF7;
+  --hg-faint: #7988A7;
+}
+html { background: var(--hg-deep); }
+body { background: radial-gradient(120% 60% at 50% -10%, #14264a 0%, var(--ivory) 55%, var(--hg-deep) 100%); background-attachment: fixed; }
+::selection { background: rgba(212, 175, 55, 0.35); }
+
+/* ---- chrome: header, brand, mode switch, tabs ---- */
+.app-header { background: rgba(6, 14, 31, 0.72); }
+.hagah-name { color: var(--hg-vellum); }
+.hagah-tag { color: var(--hg-parchment); opacity: 0.85; }
+.hagah-mode { border-radius: 6px; }
+.hagah-mode button[aria-pressed="true"] { color: #0B1325; font-weight: 600; }
+.hagah-mode button[aria-pressed="true"]:hover { color: #0B1325; }
+.hagah-nav button { border-radius: 4px; }
+.hagah-subnav button { border-radius: 4px; }
+.hagah-subnav button[aria-current="true"] { color: #0B1325; font-weight: 600; }
+.status-line .ok { color: var(--hg-parchment); }
+
+/* ---- generic surfaces on midnight ---- */
+.card, .lib-item, .word-panel, .margin-note, .caveat, .lesson-card,
+details.lesson, .dict-result, .asst-box, .watchhow {
+  background: var(--hg-slate);
+  box-shadow: 0 1px 0 rgba(212, 175, 55, 0.05), 0 10px 30px -18px rgba(0, 0, 0, 0.8);
+}
+.sc-card { background: rgba(24, 40, 73, 0.45); }
+.note { background: var(--hg-slate); }
+.btn { color: #0B1325; font-weight: 600; }
+.btn:hover { filter: brightness(1.08); }
+.btn.secondary { color: var(--accent); font-weight: 400; }
+.btn.secondary:hover { border-color: var(--accent); }
+.btn.quiet { font-weight: 400; }
+input[type="text"], input[type="date"], input[type="search"], textarea, select {
+  background: #0D1730; color: var(--ink);
+}
+input::placeholder, textarea::placeholder { color: var(--hg-faint); }
+dialog { background: var(--hg-slate2); box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.6); }
+dialog::backdrop { background: rgba(3, 6, 14, 0.62); }
+.asst-answer { background: var(--hg-slate2); }
+.asst-answer .verify { color: var(--muted); }
+.xref-chip { border-radius: 4px; }
+.lang-badge { color: #0B1325; }
+.help { color: var(--muted); }
+.lead { color: var(--hg-parchment); opacity: 0.92; }
+.chapter-text { color: var(--hg-vellum); }
+.verse-num { color: var(--hg-parchment); }
+.word-panel { border-left-color: var(--accent); }
+.kv-table th { color: var(--hg-parchment); }
+
+/* ---- the print sheet: a vellum page on the midnight desk ---- */
+.sheet { background: var(--hg-vellum); border-color: var(--gold); box-shadow: 0 24px 60px -12px rgba(0, 0, 0, 0.75); }
+
+/* ---- shell module screens (Compare/Listen/Memory, My Study, Scrolls,
+        Study Helps) — these had NO component styles; dark definitions ---- */
+#hagah-panel h2, #hagah-panel h3, #hagah-panel h4 { color: var(--hg-vellum); }
+.clm-mode, .dss-mode, .hg-mode { color: var(--hg-faint); font-size: 0.82rem; letter-spacing: 0.07em; text-transform: uppercase; margin: 0 0 0.9rem; }
+.clm-tabs, .hg-tabs, .sh-tabs { display: flex; gap: 0.4rem; flex-wrap: wrap; margin: 0 0 1.25rem; }
+.clm-tab, .hg-tab, .sh-tab {
+  border: 1px solid var(--line); background: var(--hg-slate); color: var(--muted);
+  border-radius: 4px; padding: 0.45rem 1rem; font: inherit; font-size: 0.95rem; cursor: pointer;
+}
+.clm-tab.active, .hg-tab.active, .hg-tab[aria-selected="true"], .sh-tab.sh-active, .sh-tab.active {
+  background: var(--accent); border-color: var(--accent); color: #0B1325; font-weight: 600;
+}
+.clm-note, .dss-caveat, .dss-offline-note, .hg-notice {
+  border-left: 3px solid var(--gold); background: var(--hg-slate);
+  padding: 0.6rem 0.9rem; color: var(--muted); font-size: 0.94rem; margin: 0 0 1rem;
+}
+.clm-note.warn { border-left-color: var(--danger); }
+.clm-card, .dss-card, .hg-note-item, .sh-topic, .sh-plan, .wb-item {
+  background: var(--hg-slate); border: 1px solid var(--line); border-radius: 4px;
+  padding: 1rem 1.25rem; margin: 0 0 0.9rem;
+}
+.clm-card-ref, .dss-ref, .hg-ref { font-family: var(--serif); font-size: 1.15rem; color: var(--hg-parchment); }
+.clm-compare { width: 100%; border-collapse: collapse; margin: 0 0 1rem; }
+.clm-compare th, .clm-compare td { text-align: left; vertical-align: top; padding: 0.45rem 0.6rem; border-bottom: 1px solid var(--line-soft); }
+.clm-compare th { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--hg-parchment); }
+.clm-vnum { color: var(--gold); font-weight: 700; font-size: 0.85rem; white-space: nowrap; }
+.clm-missing { color: var(--hg-faint); font-style: italic; }
+.clm-list { list-style: none; margin: 0 0 1rem; padding: 0; }
+.clm-list li { padding: 0.4rem 0; border-bottom: 1px solid var(--line-soft); }
+.clm-btn, .sh-btn {
+  border: 1px solid var(--line); background: var(--hg-slate); color: var(--ink);
+  border-radius: 4px; padding: 0.45rem 0.95rem; font: inherit; font-size: 0.92rem; cursor: pointer;
+}
+.clm-btn:hover, .sh-btn:hover { border-color: var(--accent); color: var(--hg-parchment); }
+.clm-select, .clm-input { background: #0D1730; color: var(--ink); border: 1px solid var(--line); border-radius: 4px; padding: 0.45rem 0.6rem; font: inherit; }
+.clm-progress, .sh-progress { background: rgba(37, 53, 86, 0.6); border-radius: 2px; height: 6px; overflow: hidden; }
+.clm-progress > *, .sh-progress-fill { background: var(--accent); height: 100%; }
+.dss-badge { display: inline-block; border: 1px solid var(--gold); color: var(--hg-parchment); border-radius: 4px; padding: 0.1rem 0.55rem; font-size: 0.78rem; letter-spacing: 0.05em; text-transform: uppercase; }
+.dss-intro, .sh-topic-intro { color: var(--muted); }
+.dss-passage-box { background: var(--hg-slate2); border: 1px solid var(--line); border-left: 3px solid var(--gold); border-radius: 4px; padding: 1rem 1.25rem; }
+.hg-gloss { color: var(--hg-parchment); }
+.hg-strongs { color: var(--gold); font-weight: 700; }
+.hg-meta, .hg-count { color: var(--hg-faint); font-size: 0.88rem; }
+.hg-empty, .dss-empty, .clm-small { color: var(--muted); font-style: italic; }
+.sh-day { border: 1px solid var(--line); background: var(--hg-slate); color: var(--ink); border-radius: 4px; padding: 0.35rem 0.7rem; font: inherit; cursor: pointer; }
+.sh-day.sh-active, .sh-day.active { background: var(--accent); color: #0B1325; font-weight: 600; }
+.sh-vlist { list-style: none; margin: 0 0 1rem; padding: 0; }
+.sh-vlist li { padding: 0.45rem 0; border-bottom: 1px solid var(--line-soft); }
+
+/* ---- gold-line motif under view headings ---- */
+.hg-motif { display: flex; align-items: center; gap: 0.6rem; margin: -0.15rem 0 1.1rem; }
+.hg-motif svg { display: block; }
+#hagah-panel .hg-motif { margin-top: 0.35rem; }
+
+/* ---- onboarding artwork ---- */
+#onb-art { text-align: center; margin: 0 0 0.9rem; }
+#onb-art svg { max-width: 220px; width: 60%; height: auto; }
+
+/* ================= HOME — the job selector ================= */
+#hg-home *, #hg-flowbar *, #hg-watch *, #hg-finish * { box-sizing: border-box; }
+#hg-home {
+  position: fixed; inset: 0; z-index: 9000; overflow-y: auto;
+  background: radial-gradient(120% 55% at 50% -10%, #16294f 0%, #0B1325 58%, #060E1F 100%);
+  padding: 1.25rem 1rem 3rem;
+}
+#hg-home[hidden] { display: none; }
+.hg-home-inner { max-width: 880px; margin: 0 auto; }
+.hg-hero { text-align: center; margin: 0.5rem 0 0.25rem; }
+.hg-hero svg { max-width: 560px; width: 100%; height: auto; }
+.hg-home-kicker {
+  text-align: center; color: var(--hg-parchment); font-family: var(--serif);
+  font-size: 1.45rem; margin: 0.9rem 0 1.1rem;
+}
+.hg-jobs { display: grid; gap: 0.9rem; margin: 0 0 1.75rem; }
+.hg-job {
+  display: flex; align-items: center; gap: 1rem; text-align: left; width: 100%;
+  background: var(--hg-slate); border: 1px solid var(--line); border-radius: 6px;
+  padding: 1.05rem 1.25rem; font: inherit; color: var(--ink); cursor: pointer;
+}
+.hg-job:hover, .hg-job:focus-visible { border-color: var(--accent); box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.35), 0 12px 32px -12px rgba(0, 0, 0, 0.8); outline: none; }
+.hg-job .hg-emoji { font-size: 1.7rem; line-height: 1; flex: none; }
+.hg-job .hg-t { font-family: var(--serif); font-size: 1.35rem; display: block; color: var(--hg-vellum); }
+.hg-job .hg-e { color: var(--muted); font-size: 0.94rem; display: block; margin-top: 0.15rem; }
+.hg-job .hg-arrow { margin-left: auto; color: var(--gold); font-size: 1.3rem; flex: none; }
+.hg-sec-title {
+  font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--hg-parchment); margin: 1.5rem 0 0.7rem;
+}
+.hg-saved-item {
+  display: flex; align-items: baseline; gap: 0.75rem; width: 100%; text-align: left;
+  background: rgba(24, 40, 73, 0.4); border: 1px solid var(--line-soft); border-radius: 4px;
+  padding: 0.65rem 0.9rem; font: inherit; color: var(--ink); cursor: pointer; margin: 0 0 0.5rem;
+}
+.hg-saved-item:hover { border-color: var(--accent); }
+.hg-saved-item .hg-s-t { font-family: var(--serif); font-size: 1.08rem; }
+.hg-saved-item .hg-s-m { color: var(--hg-faint); font-size: 0.85rem; margin-left: auto; flex: none; }
+.hg-saved-empty { color: var(--muted); font-style: italic; margin: 0 0 0.5rem; }
+.hg-secondary { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.4rem; }
+.hg-secondary button {
+  border: 1px solid var(--line); background: transparent; color: var(--muted);
+  border-radius: 4px; padding: 0.5rem 0.95rem; font: inherit; font-size: 0.92rem; cursor: pointer;
+}
+.hg-secondary button:hover { border-color: var(--accent); color: var(--hg-parchment); }
+.hg-home-foot { text-align: center; color: var(--hg-faint); font-size: 0.88rem; margin-top: 2rem; }
+
+/* floating home button */
+#hg-homebtn {
+  position: fixed; right: 1rem; bottom: 1rem; z-index: 8500;
+  width: 3.1rem; height: 3.1rem; border-radius: 50%;
+  border: 1px solid var(--gold); background: var(--hg-slate2); color: var(--gold);
+  font-size: 1.35rem; cursor: pointer; box-shadow: 0 10px 28px rgba(0, 0, 0, 0.55);
+}
+#hg-homebtn:hover { background: var(--accent); color: #0B1325; }
+body.hg-flow-on #hg-homebtn { bottom: 7.5rem; }
+
+/* ================= FLOW BAR ================= */
+#hg-flowbar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 8800;
+  background: rgba(6, 14, 31, 0.96); border-top: 1px solid var(--gold);
+  padding: 0.7rem 1rem calc(0.7rem + env(safe-area-inset-bottom));
+  box-shadow: 0 -14px 34px rgba(0, 0, 0, 0.5);
+}
+#hg-flowbar[hidden] { display: none; }
+.hg-flow-inner { max-width: 880px; margin: 0 auto; }
+.hg-flow-top { display: flex; align-items: baseline; gap: 0.75rem; flex-wrap: wrap; }
+.hg-flow-name { color: var(--hg-parchment); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; }
+.hg-flow-step { color: var(--hg-vellum); font-family: var(--serif); font-size: 1.12rem; }
+.hg-flow-count { color: var(--hg-faint); font-size: 0.85rem; margin-left: auto; }
+.hg-flow-why { color: var(--muted); font-size: 0.94rem; margin: 0.3rem 0 0.65rem; }
+.hg-flow-why strong { color: var(--hg-parchment); font-weight: 600; }
+.hg-flow-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; }
+.hg-fbtn {
+  border: 1px solid var(--line); background: var(--hg-slate); color: var(--ink);
+  border-radius: 4px; padding: 0.5rem 0.95rem; font: inherit; font-size: 0.93rem; cursor: pointer;
+}
+.hg-fbtn:hover { border-color: var(--accent); }
+.hg-fbtn.primary { background: var(--accent); border-color: var(--accent); color: #0B1325; font-weight: 700; }
+.hg-fbtn.primary:hover { background: #E5C158; }
+.hg-fbtn.icon { padding: 0.5rem 0.7rem; color: var(--gold); font-weight: 700; }
+.hg-fbtn[disabled] { opacity: 0.4; cursor: default; }
+body.hg-flow-on main { padding-bottom: 11rem; }
+
+/* finish / review overlay (shares the .onb card language) */
+#hg-finish .onb-card { max-width: 36rem; }
+.hg-finish-list { list-style: none; margin: 0.5rem 0 0; padding: 0; text-align: left; }
+.hg-finish-list li { padding: 0.45rem 0; border-bottom: 1px solid var(--line-soft); color: var(--brand-vellum); }
+.hg-finish-list li::before { content: "\2713  "; color: var(--brand-gold); font-weight: 700; }
+
+@media (max-width: 600px) {
+  .hg-job .hg-t { font-size: 1.2rem; }
+  body.hg-flow-on #hg-homebtn { bottom: 10.5rem; }
+}
+@media print {
+  #hg-home, #hg-flowbar, #hg-homebtn, #hg-finish { display: none !important; }
+}
+
+/* ---- print sheet: new sections from the rebuild template ---- */
+.sheet .s-verses { border-left: 2px solid #9c7f3a; padding-left: 0.65rem; margin: 0.35rem 0 0.6rem; }
+.sheet .s-vrow { margin: 0.15rem 0; color: #2b2b2b; font-size: 0.94em; line-height: 1.45; }
+.sheet .s-vt { font-weight: 700; color: #8a6d2f; }
+.sheet .s-mnote { font-style: italic; color: #333; }
+
+</style>
+</head>
+<body>
+<a class="skip" href="#hagah-main">Skip to content</a>
+
+<header class="app-header hagah-header no-print">
+  <div class="inner hagah-bar">
+    <div class="hagah-brand">
+      <svg class="hagah-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+  <path d="M16 6 C12 3 7 3 4 5 L4 25 C7 23 12 23 16 26 C20 23 25 23 28 25 L28 5 C25 3 20 3 16 6 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M16 6 L16 26" stroke="currentColor" stroke-width="2"/>
+  <path d="M8 10.5 C10 9.5 12.5 9.5 14.5 10.5 M8 14.5 C10 13.5 12.5 13.5 14.5 14.5 M17.5 10.5 C19.5 9.5 22 9.5 24 10.5 M17.5 14.5 C19.5 13.5 22 13.5 24 14.5" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+</svg>
+      <div class="hagah-id">
+        <div class="hagah-name">Ehyeh <span class="hagah-say">eh-YEH &middot; אֶהְיֶה &middot; &ldquo;I AM&rdquo; (Exodus 3:14)</span></div>
+        <div class="hagah-tag">Meditate deeply on the Word &mdash; day and night <span class="hagah-refs">Joshua 1:8 &middot; Psalm 1:2</span></div>
+      </div>
+    </div>
+    <div class="hagah-mode" role="group" aria-label="Mode">
+      <button type="button" data-hg-mode="study" aria-pressed="true">Personal Study</button>
+      <button type="button" data-hg-mode="sermon" aria-pressed="false">Sermon Prep</button>
+    </div>
+  </div>
+  <nav class="hagah-nav" aria-label="Tools"><div class="inner"><ul id="hagah-tabs"></ul></div></nav>
+</header>
+<div class="status-line no-print" id="status" aria-live="polite"></div>
+
+<main id="hagah-main">
+  <div id="hagah-subnav" class="hagah-subnav no-print"></div>
+  <div id="hagah-panel"></div>
+  <div id="legacy-scripture" data-hg-legacy hidden>
+<section id="view-study" aria-labelledby="h-study" hidden>
+    <h2 id="h-study" tabindex="-1">Study Scripture <button type="button" class="help-btn" data-help-view="study" aria-label="Help: what is Study Scripture?"><span aria-hidden="true">?</span></button></h2>
+    <p class="lead">The Geneva Bible (1599), with study notes from its own margins. Tap any word to study it.</p>
+    <div class="card">
+      <div class="study-bar">
+        <div class="field">
+          <label for="st-book">Book</label>
+          <select id="st-book"></select>
+        </div>
+        <div class="field">
+          <label for="st-chapter">Chapter</label>
+          <select id="st-chapter"></select>
+        </div>
+        <button type="button" class="btn" id="st-go">Read</button>
+        <button type="button" class="btn secondary" id="st-prev" aria-label="Previous chapter">← Prev</button>
+        <button type="button" class="btn secondary" id="st-next" aria-label="Next chapter">Next →</button>
+        <button type="button" class="btn secondary" id="st-listen" aria-label="Listen to this passage read aloud">🔊 Listen</button>
+      </div>
+      <p class="verse-jump" id="st-ref-line"></p>
+      <div class="chapter-text" id="st-text" aria-live="polite"></div>
+    </div>
+    <div class="word-panel" id="st-word-panel" hidden>
+      <h3>Word study <span class="lang-badge" id="st-lang"></span></h3>
+      <div id="st-word-body"></div>
+    </div>
+    <div class="card" id="st-notes-card" hidden>
+      <h3>Geneva margin notes</h3>
+      <p class="help">From the 1599 Geneva Bible's own margins — 16th-century Reformer voices, not modern commentary. Read them with eyes open.</p>
+      <div id="st-notes"></div>
+    </div>
+    <div class="card" id="st-xrefs-card" hidden>
+      <h3>Cross-references</h3>
+      <p class="help">Passages the Geneva margin links from this verse. Scripture interprets Scripture.</p>
+      <div class="xref-chips" id="st-xrefs"></div>
+    </div>
+    <details class="lesson" id="st-lesson">
+      <summary>Use it rightly — how not to misuse a concordance</summary>
+      <div id="st-lesson-body"></div>
+    </details>
+    <details class="watchhow no-print" data-watch-view="study">
+      <summary>Watch how — Study Scripture</summary>
+      <div class="watchhow-body">
+        <video controls playsinline preload="none" aria-label="How-to video: Study Scripture"></video>
+        <p class="watchhow-fallback">A short how-to video for this page is coming soon.</p>
+      </div>
+    </details>
+  </section>
+<section id="view-dictionary" aria-labelledby="h-dict" hidden>
+    <h2 id="h-dict" tabindex="-1">Bible Dictionary <button type="button" class="help-btn" data-help-view="dictionary" aria-label="Help: what is the Bible Dictionary?"><span aria-hidden="true">?</span></button></h2>
+    <p class="lead">Easton's Bible Dictionary (1897) — public domain, bundled offline.</p>
+    <div class="card">
+      <div class="field">
+        <label for="dict-q">Look up a person, place, or term</label>
+        <input type="search" id="dict-q" autocomplete="off" aria-describedby="h-dict-q">
+        <p class="help" id="h-dict-q">Example: Aaron, Jerusalem, manger.</p>
+      </div>
+      <div class="btn-row" style="margin-top:0.5rem;">
+        <button type="button" class="btn" id="dict-go">Look up</button>
+      </div>
+      <div id="dict-results" aria-live="polite" style="margin-top:1rem;"></div>
+    </div>
+    <details class="watchhow no-print" data-watch-view="dictionary">
+      <summary>Watch how — Bible Dictionary</summary>
+      <div class="watchhow-body">
+        <video controls playsinline preload="none" aria-label="How-to video: Bible Dictionary"></video>
+        <p class="watchhow-fallback">A short how-to video for this page is coming soon.</p>
+      </div>
+    </details>
+  </section>
+<section id="view-assistant" aria-labelledby="h-asst" hidden>
+    <h2 id="h-asst" tabindex="-1">Study Assistant <button type="button" class="help-btn" data-help-view="assistant" aria-label="Help: what is the Study Assistant?"><span aria-hidden="true">?</span></button></h2>
+    <p class="lead">An opt-in study helper. It answers short study questions — it never writes your sermon.</p>
+    <div class="asst-box" id="asst-setup">
+      <h3>Enable the assistant</h3>
+      <p>The assistant needs a language-model key you provide. Nothing here calls any service until you enable it and type a question.</p>
+      <div class="field">
+        <label for="asst-key">Your API key</label>
+        <input type="text" id="asst-key" autocomplete="off" aria-describedby="h-asst-key">
+        <p class="help key-warn" id="h-asst-key">Kept only in this tab's session memory — never saved to disk, never sent anywhere except the endpoint below, only when you ask a question.</p>
+      </div>
+      <div class="field">
+        <label for="asst-endpoint">Endpoint <span class="optional">(OpenAI-compatible)</span></label>
+        <input type="text" id="asst-endpoint" autocomplete="off" aria-describedby="h-asst-ep" placeholder="https://openrouter.ai/api/v1/chat/completions">
+        <p class="help" id="h-asst-ep">Use a free endpoint (for example OpenRouter's free models, or a local model at http://localhost:11434/v1/chat/completions). Never a paid call without your say-so.</p>
+      </div>
+      <div class="btn-row" style="margin-top:0.5rem;">
+        <button type="button" class="btn" id="asst-enable">Enable for this session</button>
+        <button type="button" class="btn secondary" id="asst-disable">Disable</button>
+      </div>
+      <p class="key-warn" id="asst-status" aria-live="polite"></p>
+    </div>
+    <div class="asst-box" id="asst-chat" hidden>
+      <h3>Ask a study question</h3>
+      <div class="asst-actions" role="group" aria-label="Study actions">
+        <button type="button" class="btn secondary" data-asst="word">Explain this word</button>
+        <button type="button" class="btn secondary" data-asst="background">Historical background</button>
+        <button type="button" class="btn secondary" data-asst="xrefs">Cross-references</button>
+        <button type="button" class="btn secondary" data-asst="questions">Application questions</button>
+        <button type="button" class="btn secondary" data-asst="tips">Study tips</button>
+      </div>
+      <div class="field">
+        <label for="asst-q">Your question</label>
+        <input type="text" id="asst-q" autocomplete="off" aria-describedby="h-asst-q">
+        <p class="help" id="h-asst-q">Ask about the text you're studying. Requests for sermon wording, illustrations, or prayers will be declined.</p>
+      </div>
+      <div class="btn-row" style="margin-top:0.5rem;">
+        <button type="button" class="btn" id="asst-ask">Ask</button>
+      </div>
+      <div id="asst-out" aria-live="polite"></div>
+    </div>
+    <details class="watchhow no-print" data-watch-view="assistant">
+      <summary>Watch how — Study Assistant</summary>
+      <div class="watchhow-body">
+        <video controls playsinline preload="none" aria-label="How-to video: Study Assistant"></video>
+        <p class="watchhow-fallback">A short how-to video for this page is coming soon.</p>
+      </div>
+    </details>
+  </section>
+  </div>
+  <div id="legacy-sermon" data-hg-legacy hidden>
+<section id="view-start" aria-labelledby="h-start">
+    <h1 id="h-start" tabindex="-1">The Sermon Skeleton Builder <button type="button" class="help-btn" data-help-view="start" aria-label="Help: what is this page?"><span aria-hidden="true">?</span></button></h1>
+    <p class="lead" style="font-family: var(--serif); font-size: 1.35rem; color: var(--ink);">Build the bones. Keep the voice.</p>
+    <p class="lead">This tool helps you organize Scripture and structure. It does not write your sermon.</p>
+    <h2 style="margin-top: 2rem;">What are you preaching from today?</h2>
+    <div class="choices">
+      <button type="button" class="choice" data-start="passage">
+        <span class="t">Start with a Bible passage</span>
+        <span class="e">Example: John 15:1–8</span>
+      </button>
+      <button type="button" class="choice" data-start="theme">
+        <span class="t">Start with a theme or topic</span>
+        <span class="e">Example: Hope in suffering</span>
+      </button>
+      <button type="button" class="choice" data-start="blank">
+        <span class="t">Start blank</span>
+        <span class="e">Build your own structure from scratch</span>
+      </button>
+    </div>
+    <p><button type="button" class="btn secondary" data-nav="library">Open saved sermons</button> <button type="button" class="btn quiet" id="onboard-replay">Take the welcome tour again</button></p>
+    <details class="watchhow no-print" data-watch-view="start">
+      <summary>Watch how — Getting started</summary>
+      <div class="watchhow-body">
+        <video controls playsinline preload="none" aria-label="How-to video: Getting started"></video>
+        <p class="watchhow-fallback">A short how-to video for this page is coming soon.</p>
+      </div>
+    </details>
+  </section>
+<section id="view-setup" aria-labelledby="h-setup" hidden>
+    <h2 id="h-setup" tabindex="-1">Sermon setup <button type="button" class="help-btn" data-help-view="setup" aria-label="Help: what is Sermon setup?"><span aria-hidden="true">?</span></button></h2>
+    <form id="setup-form" novalidate>
+      <div class="card">
+        <div class="field">
+          <label for="f-title">Sermon title <span class="optional">(optional)</span></label>
+          <input type="text" id="f-title" data-field="title" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="f-passage" id="l-passage">Main passage or theme</label>
+          <input type="text" id="f-passage" data-field="passageOrTheme" autocomplete="off" aria-describedby="h-passage">
+          <p class="help" id="h-passage"></p>
+        </div>
+        <fieldset>
+          <legend>Preaching approach</legend>
+          <div class="radio-row">
+            <label><input type="radio" name="approach" value="passage" data-field="approach"> Walk through the passage</label>
+            <label><input type="radio" name="approach" value="thematic" data-field="approach"> Build a thematic arc</label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Structure</legend>
+          <div class="radio-row">
+            <label><input type="radio" name="movementCount" value="3" data-field="movementCount"> Three movements</label>
+            <label><input type="radio" name="movementCount" value="5" data-field="movementCount"> Five movements</label>
+          </div>
+        </fieldset>
+        <div class="field">
+          <label for="f-purpose">Pastor’s purpose for this message <span class="optional">(optional)</span></label>
+          <p class="help" id="h-purpose">What do you hope your people will see, understand, remember, or respond to? (Optional — write it in your own words.)</p>
+          <textarea id="f-purpose" data-field="purpose" aria-describedby="h-purpose"></textarea>
+        </div>
+      </div>
+      <div class="card">
+        <div class="field">
+          <label for="f-series">Series name <span class="optional">(optional)</span></label>
+          <input type="text" id="f-series" data-field="series" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="f-occasion">Service or occasion <span class="optional">(optional)</span></label>
+          <input type="text" id="f-occasion" data-field="occasion" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="f-date">Date preached <span class="optional">(optional)</span></label>
+          <input type="date" id="f-date" data-field="preachedDate">
+        </div>
+        <div class="field">
+          <label for="f-refs">Supporting Scripture references <span class="optional">(optional)</span></label>
+          <textarea id="f-refs" data-field="supportingRefs"></textarea>
+        </div>
+        <div class="field">
+          <label for="f-scripture">Scripture text pasted by pastor <span class="optional">(optional, user-supplied)</span></label>
+          <p class="help" id="h-scripture">Use Scripture text only where you have permission to do so. This tool stores only what you enter locally.</p>
+          <textarea id="f-scripture" class="tall" data-field="scriptureText" aria-describedby="h-scripture"></textarea>
+        </div>
+      </div>
+      <p class="warn-msg" id="setup-error" role="alert" style="color: var(--danger);"></p>
+      <div class="btn-row">
+        <button type="submit" class="btn">Continue to structure</button>
+        <button type="button" class="btn secondary" data-action="save">Save</button>
+      </div>
+    </form>
+    <details class="watchhow no-print" data-watch-view="setup">
+      <summary>Watch how — Sermon setup</summary>
+      <div class="watchhow-body">
+        <video controls playsinline preload="none" aria-label="How-to video: Sermon setup"></video>
+        <p class="watchhow-fallback">A short how-to video for this page is coming soon.</p>
+      </div>
+    </details>
+  </section>
+<section id="view-structure" aria-labelledby="h-structure" hidden>
+    <h2 id="h-structure" tabindex="-1">Structure <button type="button" class="help-btn" data-help-view="structure" aria-label="Help: what is Structure?"><span aria-hidden="true">?</span></button></h2>
+    <p class="passage-line"><span class="k" id="s-passage-label">Main passage or theme</span><span id="s-passage"></span></p>
+    <div class="card">
+      <div class="field">
+        <label for="f-central">Central idea / main thought</label>
+        <textarea id="f-central" data-field="centralIdea"></textarea>
+      </div>
+    </div>
+    <div id="movements"></div>
+    <div class="card">
+      <h3>The turn</h3>
+      <p class="help" id="h-turn">How does this message turn from explaining the text toward response?</p>
+      <div class="field">
+        <label for="f-turn" class="sr-only">The turn</label>
+        <textarea id="f-turn" class="tall" data-field="turn" aria-describedby="h-turn"></textarea>
+      </div>
+    </div>
+    <div class="card">
+      <h3>The landing</h3>
+      <p class="help" id="h-landing">Where should the message return and come to rest?</p>
+      <div class="field">
+        <label for="f-landing" class="sr-only">The landing</label>
+        <textarea id="f-landing" class="tall" data-field="landing" aria-describedby="h-landing"></textarea>
+      </div>
+    </div>
+    <div class="card" id="sc-panel" aria-labelledby="h-sc">
+      <h3 id="h-sc">Study Connections</h3>
+      <p class="help" id="h-sc-help">Optional research notes. These are not included in the pulpit sheet by default.</p>
+      <div id="sc-list" aria-describedby="h-sc-help"></div>
+      <p class="sc-empty" id="sc-empty">No study connections yet.</p>
+      <p style="margin: 0 0 0.9rem;"><button type="button" class="btn secondary" data-sc="add">Add study connection</button></p>
+    </div>
+    <div class="btn-row">
+      <button type="button" class="btn" data-action="save">Save</button>
+      <button type="button" class="btn secondary" data-nav="check">Faithfulness check</button>
+      <button type="button" class="btn secondary" data-nav="print">Print preview</button>
+      <button type="button" class="btn quiet" data-nav="setup">Back to setup</button>
+    </div>
+    <details class="watchhow no-print" data-watch-view="structure">
+      <summary>Watch how — Structure</summary>
+      <div class="watchhow-body">
+        <video controls playsinline preload="none" aria-label="How-to video: Structure"></video>
+        <p class="watchhow-fallback">A short how-to video for this page is coming soon.</p>
+      </div>
+    </details>
+  </section>
+<section id="view-check" aria-labelledby="h-check" hidden>
+    <h2 id="h-check" tabindex="-1">Faithfulness check <button type="button" class="help-btn" data-help-view="check" aria-label="Help: what is the Faithfulness check?"><span aria-hidden="true">?</span></button></h2>
+    <p class="lead">A voluntary checklist. Nothing here is completed for you.</p>
+    <div class="card">
+      <ul class="check-list" id="check-list"></ul>
+    </div>
+    <div class="btn-row">
+      <button type="button" class="btn" data-action="save">Save</button>
+      <button type="button" class="btn secondary" data-nav="structure">Back to structure</button>
+      <button type="button" class="btn secondary" data-nav="print">Print preview</button>
+    </div>
+    <details class="watchhow no-print" data-watch-view="check">
+      <summary>Watch how — Faithfulness check</summary>
+      <div class="watchhow-body">
+        <video controls playsinline preload="none" aria-label="How-to video: Faithfulness check"></video>
+        <p class="watchhow-fallback">A short how-to video for this page is coming soon.</p>
+      </div>
+    </details>
+  </section>
+<section id="view-library" aria-labelledby="h-library" hidden>
+    <h2 id="h-library" tabindex="-1">Saved sermons <button type="button" class="help-btn" data-help-view="library" aria-label="Help: what is Saved sermons?"><span aria-hidden="true">?</span></button></h2>
+    <p class="note">Your sermons stay in this browser. Export a backup regularly. Browser data can be lost if storage is cleared.</p>
+    <div class="lib-tools">
+      <div class="field">
+        <label for="lib-search">Search saved sermons</label>
+        <input type="search" id="lib-search" autocomplete="off">
+      </div>
+      <button type="button" class="btn secondary" data-action="export-all">Export all sermons</button>
+      <span class="file-btn btn secondary">Import JSON<input type="file" id="import-file" accept="application/json,.json" aria-label="Import sermons from a JSON file"></span>
+      <button type="button" class="btn quiet" data-nav="start">New sermon</button>
+    </div>
+    <ul class="lib-list" id="lib-list"></ul>
+    <p class="empty" id="lib-empty" hidden>No saved sermons yet.</p>
+    <details class="watchhow no-print" data-watch-view="library">
+      <summary>Watch how — Saved sermons</summary>
+      <div class="watchhow-body">
+        <video controls playsinline preload="none" aria-label="How-to video: Saved sermons"></video>
+        <p class="watchhow-fallback">A short how-to video for this page is coming soon.</p>
+      </div>
+    </details>
+  </section>
+<section id="view-print" aria-labelledby="h-print" hidden>
+    <div class="no-print">
+      <h2 id="h-print" tabindex="-1">Print preview <button type="button" class="help-btn" data-help-view="print" aria-label="Help: what is Print preview?"><span aria-hidden="true">?</span></button></h2>
+      <p class="lead">A large-type pulpit sheet designed to fit one page.</p>
+      <div class="print-controls">
+        <div class="field">
+          <label for="p-size">Paper size</label>
+          <select id="p-size"><option value="letter">Letter</option><option value="a4">A4</option></select>
+        </div>
+        <div class="field">
+          <label for="p-type">Type size</label>
+          <select id="p-type"><option value="20">Large</option><option value="22">Larger</option></select>
+        </div>
+        <div class="field">
+          <label style="font-weight:400; display:inline-flex; gap:0.45rem; align-items:center;"><input type="checkbox" id="p-footer" checked> Show footer</label>
+        </div>
+        <button type="button" class="btn" data-action="print">Print</button>
+        <button type="button" class="btn quiet" data-nav="structure">Back to structure</button>
+      </div>
+      <p class="overflow-warn" id="overflow-warn" role="status">This sheet runs past one page. Shorten a field or choose the smaller type size.</p>
+      <details class="watchhow" data-watch-view="print">
+        <summary>Watch how — Print preview</summary>
+        <div class="watchhow-body">
+          <video controls playsinline preload="none" aria-label="How-to video: Print preview"></video>
+          <p class="watchhow-fallback">A short how-to video for this page is coming soon.</p>
+        </div>
+      </details>
+    </div>
+    <div class="sheet-wrap">
+      <div class="sheet letter" id="sheet" aria-label="Pulpit sheet preview"><div class="sheet-content" id="sheet-content"></div></div>
+    </div>
+  </section>
+<dialog id="dlg" aria-labelledby="dlg-title">
+  <h2 id="dlg-title"></h2>
+  <p class="msg" id="dlg-msg"></p>
+  <div class="field" id="dlg-field" hidden>
+    <label for="dlg-input" id="dlg-label"></label>
+    <input type="text" id="dlg-input" autocomplete="off">
+  </div>
+  <div class="btn-row">
+    <button type="button" class="btn" id="dlg-ok">OK</button>
+    <button type="button" class="btn secondary" id="dlg-cancel">Cancel</button>
+  </div>
+</dialog>
+<dialog id="prayer-dlg" aria-labelledby="prayer-title">
+  <div id="prayer-form-view">
+    <h2 id="prayer-title">Prayer Request</h2>
+    <p class="msg">Your request goes to Donnie personally. It is never posted or shared.</p>
+    <div class="field">
+      <label for="prayer-name">Your name <span class="optional">(optional)</span></label>
+      <input type="text" id="prayer-name" maxlength="80" autocomplete="name">
+    </div>
+    <div class="field">
+      <label for="prayer-text">Your prayer request</label>
+      <textarea id="prayer-text" class="tall" maxlength="2000"></textarea>
+    </div>
+    <div class="field" hidden aria-hidden="true">
+      <label for="prayer-hp">Leave this field blank</label>
+      <input type="text" id="prayer-hp" tabindex="-1" autocomplete="off">
+    </div>
+    <p class="msg" id="prayer-status" role="status" aria-live="polite"></p>
+    <p class="msg" id="prayer-fallback" hidden>You can also email Donnie at <a href="mailto:donnie@swava.ai">donnie@swava.ai</a>.</p>
+    <div class="btn-row">
+      <button type="button" class="btn" id="prayer-send">Send</button>
+      <button type="button" class="btn secondary" id="prayer-close">Close</button>
+    </div>
+  </div>
+  <div id="prayer-done-view" hidden>
+    <h2>Thank you</h2>
+    <p class="msg">Received — thank you. Donnie will be praying for you.</p>
+    <div class="btn-row">
+      <button type="button" class="btn" id="prayer-close-2">Close</button>
+    </div>
+  </div>
+</dialog>
+<style id="prayer-door-style">
+  #prayer-dlg .field label { display: block; margin-bottom: 0.35rem; font-weight: 600; }
+</style>
+  </div>
+</main>
+
+<!-- Hagah v3 build 2026-10-02T06:15:02Z | modules: clm :: Compare · Listen · Memory :: study,sermon, personal :: My Study :: study,sermon, scrolls :: Dead Sea Scrolls :: study,sermon, study-helps :: Study Helps :: study,sermon -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Onboarding tour + per-view help modal (UX revamp). Static markup; behavior lives in the revamp script below. -->
+<div class="onb" id="onboard" hidden role="dialog" aria-modal="true" aria-labelledby="onb-title">
+  <div class="onb-card">
+    <p class="onb-kicker">Ehyeh &middot; eh-YEH &middot; אֶהְיֶה &middot; &ldquo;I AM&rdquo; (Exodus 3:14)</p>
+    <h2 id="onb-title"></h2>
+    <p id="onb-body"></p>
+    <details class="watchhow" id="onb-watch" data-watch-view="welcome" hidden>
+      <summary>Watch: what Ehyeh is (about a minute)</summary>
+      <div class="watchhow-body">
+        <video controls playsinline preload="none" aria-label="Welcome video: what Ehyeh is"></video>
+        <p class="watchhow-fallback">A short welcome video is coming soon.</p>
+      </div>
+    </details>
+    <div class="onb-dots" id="onb-dots" aria-hidden="true"></div>
+    <div class="btn-row">
+      <button type="button" class="btn secondary" id="onb-skip">Skip tour</button>
+      <button type="button" class="btn secondary" id="onb-back">Back</button>
+      <button type="button" class="btn" id="onb-next">Next</button>
+    </div>
+  </div>
+</div>
+<div class="onb" id="help-modal" hidden role="dialog" aria-modal="true" aria-labelledby="help-title">
+  <div class="onb-card">
+    <p class="onb-kicker">Ehyeh help</p>
+    <h2 id="help-title"></h2>
+    <p id="help-body"></p>
+    <div class="btn-row">
+      <button type="button" class="btn" id="help-close">Close</button>
+    </div>
+  </div>
+</div>
+<!-- The print view's renderSheet() writes its @page rule into this element;
+     the canonical markup never included it, so the sheet crashed on open.
+     Restored here, empty, exactly as the code expects. -->
+<style id="page-style"></style>
+<!-- ===== Hagah rebuild layer: home (job selector) ===== -->
+<section id="hg-home" hidden aria-label="Ehyeh home">
+  <div class="hg-home-inner">
+    <div class="hg-hero" aria-hidden="true">
+      <svg viewBox="0 0 720 300" fill="none" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Gold line drawing of an open book under a rising sun, between mountains, with an olive branch">
+        <ellipse cx="360" cy="126" rx="300" ry="118" fill="rgba(212,175,55,0.05)"/>
+        <g fill="#E5C158">
+          <circle cx="60" cy="40" r="1.7" opacity="0.7"/><circle cx="130" cy="90" r="1.2" opacity="0.5"/>
+          <circle cx="212" cy="36" r="1.5" opacity="0.8"/><circle cx="300" cy="56" r="1.1" opacity="0.5"/>
+          <circle cx="430" cy="34" r="1.6" opacity="0.7"/><circle cx="505" cy="74" r="1.2" opacity="0.5"/>
+          <circle cx="592" cy="42" r="1.7" opacity="0.8"/><circle cx="656" cy="96" r="1.3" opacity="0.6"/>
+          <circle cx="96" cy="150" r="1.1" opacity="0.4"/><circle cx="642" cy="160" r="1.1" opacity="0.4"/>
+          <path d="M180 60 L183 67 L190 70 L183 73 L180 80 L177 73 L170 70 L177 67 Z" opacity="0.85"/>
+          <path d="M540 110 L542.5 116.5 L549 119 L542.5 121.5 L540 128 L537.5 121.5 L531 119 L537.5 116.5 Z" opacity="0.8"/>
+        </g>
+        <g stroke="#E5C158" stroke-width="2">
+          <circle cx="360" cy="118" r="30" fill="rgba(229,193,88,0.07)"/>
+          <path d="M360 78v-14M380 83.4l7-12.2M394.6 98l12.2-7M400 118h14M394.6 138l12.2 7M380 152.6l7 12.2M360 158v14M340 152.6l-7 12.2M325.4 138l-12.2 7M320 118h-14M325.4 98l-12.2-7M340 83.4l-7-12.2"/>
+        </g>
+        <polyline points="20,230 130,160 210,208 300,148 380,204 470,142 560,200 640,156 700,214" stroke="#7988A7" stroke-width="1.6" opacity="0.55"/>
+        <polyline points="20,252 110,196 190,240 268,186 340,238 430,182 520,232 600,192 700,244" stroke="#D4AF37" stroke-width="2"/>
+        <g stroke="#D4AF37" stroke-width="2">
+          <path d="M626 264 C636 238 646 220 660 198"/>
+          <g stroke-width="1.6" fill="rgba(212,175,55,0.10)">
+            <path d="M638 240 q-14 -2 -20 -12 q12 -3 20 4 Z"/>
+            <path d="M642 232 q12 -8 22 -6 q-6 10 -18 12 Z"/>
+            <path d="M648 214 q-13 -4 -17 -14 q11 -1 17 7 Z"/>
+            <path d="M652 206 q11 -9 21 -8 q-5 11 -17 13 Z"/>
+            <path d="M660 192 q-10 -8 -11 -18 q9 3 11 12 Z"/>
+          </g>
+        </g>
+        <g stroke="#D4AF37" stroke-width="2.2" fill="rgba(11,19,37,0.35)">
+          <path d="M360 236 C332 218 296 214 266 224 L266 266 C296 256 332 260 360 276 C388 260 424 256 454 266 L454 224 C424 214 388 218 360 236 Z"/>
+        </g>
+        <path d="M360 236v40" stroke="#D4AF37" stroke-width="1.6"/>
+        <g stroke="#D4AF37" stroke-width="1.2" opacity="0.75">
+          <path d="M282 232 C300 226 322 227 344 235 M282 245 C300 239 322 240 344 248"/>
+          <path d="M376 235 C398 227 420 226 438 232 M376 248 C398 240 420 239 438 245"/>
+        </g>
+        <line x1="24" y1="282" x2="696" y2="282" stroke="#253556" stroke-width="1.5"/>
+        <path d="M360 276 L366 282 L360 288 L354 282 Z" fill="#D4AF37"/>
+      </svg>
+    </div>
+    <p class="hg-home-kicker">What are you here to do?</p>
+    <div class="hg-jobs">
+      <button type="button" class="hg-job" data-flow="study">
+        <span class="hg-emoji" aria-hidden="true">📖</span>
+        <span><span class="hg-t">Study a Passage</span>
+        <span class="hg-e">Read it slowly — the words, the witnesses, your own notes.</span></span>
+        <span class="hg-arrow" aria-hidden="true">›</span>
+      </button>
+      <button type="button" class="hg-job" data-flow="compare">
+        <span class="hg-emoji" aria-hidden="true">🔍</span>
+        <span><span class="hg-t">Compare a Topic</span>
+        <span class="hg-e">Start from a topic; see its passages side by side, translation by translation.</span></span>
+        <span class="hg-arrow" aria-hidden="true">›</span>
+      </button>
+      <button type="button" class="hg-job" data-flow="sermon">
+        <span class="hg-emoji" aria-hidden="true">📝</span>
+        <span><span class="hg-t">Build a Sermon</span>
+        <span class="hg-e">Setup → study → structure → check → a clean printed outline. Your words, every one.</span></span>
+        <span class="hg-arrow" aria-hidden="true">›</span>
+      </button>
+    </div>
+    <h2 class="hg-sec-title">My Saved Work</h2>
+    <div id="hg-saved"></div>
+    <h2 class="hg-sec-title">More tools</h2>
+    <div class="hg-secondary">
+      <button type="button" id="hg-lib">📚 Sermon library</button>
+      <button type="button" id="hg-dict">📖 Dictionary</button>
+      <button type="button" id="hg-asst">💬 Study assistant</button>
+      <button type="button" id="hg-tour">👋 Welcome tour</button>
+      <button type="button" id="hg-alltools">All tools →</button>
+    </div>
+    <p class="hg-home-foot">Ehyeh — &ldquo;I AM&rdquo; (Exodus 3:14). Everything stays on this device. Nothing here is ever written for you.</p>
+  </div>
+</section>
+<button type="button" id="hg-homebtn" aria-label="Home" title="Home">⌂</button>
+
+<!-- ===== flow bar ===== -->
+<div id="hg-flowbar" hidden role="region" aria-label="Guided flow">
+  <div class="hg-flow-inner">
+    <div class="hg-flow-top">
+      <span class="hg-flow-name" id="hg-flow-name"></span>
+      <span class="hg-flow-step" id="hg-flow-step"></span>
+      <span class="hg-flow-count" id="hg-flow-count"></span>
+    </div>
+    <p class="hg-flow-why" id="hg-flow-why"></p>
+    <div class="hg-flow-actions">
+      <button type="button" class="hg-fbtn" id="hg-flow-back">← Back</button>
+      <button type="button" class="hg-fbtn" id="hg-flow-watch">▶ Watch how</button>
+      <button type="button" class="hg-fbtn" id="hg-flow-compare" style="display:none">⇄ Compare translations</button>
+      <button type="button" class="hg-fbtn icon" id="hg-flow-help" aria-label="Help for this step">?</button>
+      <button type="button" class="hg-fbtn primary" id="hg-flow-next"></button>
+      <button type="button" class="hg-fbtn icon" id="hg-flow-exit" aria-label="Exit this flow">✕</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== watch-how overlay (same 9 videos, same local files) ===== -->
+<div class="onb" id="hg-watch" hidden role="dialog" aria-modal="true" aria-labelledby="hg-watch-title">
+  <div class="onb-card">
+    <h2 id="hg-watch-title">Watch how</h2>
+    <video id="hg-watch-video" controls playsinline style="width:100%; border-radius:6px; background:#060E1F;"></video>
+    <p id="hg-watch-fallback" hidden>The walkthrough video lives in the <strong>help-videos</strong> folder beside this file. If that folder didn&rsquo;t travel with the app, the written Help for this step covers the same ground.</p>
+    <div class="onb-actions">
+      <button type="button" class="btn secondary" id="hg-watch-close">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== finish / review overlay ===== -->
+<div class="onb" id="hg-finish" hidden role="dialog" aria-modal="true" aria-labelledby="hg-finish-title">
+  <div class="onb-card">
+    <h2 id="hg-finish-title"></h2>
+    <div class="onb-body" id="hg-finish-body"></div>
+    <div class="onb-actions" id="hg-finish-actions"></div>
+  </div>
+</div>
+<!-- ===== /Hagah rebuild layer ===== -->
+
+
+
+<style id="hg6-theme">
+
+/* ==========================================================================
+   Hagah v6 layer — CYBERPUNK palette over the YouVersion-style calm shell.
+   Appended AFTER hg-theme, so equal-specificity rules here win.
+   Palette tokens:
+     canvas   #07060E / #0A0A16   panels  #10101F / #141428
+     ink      #EDF1FF (body text — near-white, always)
+     muted    #A7B0D0             line    #26264A
+     cyan     #00E5FF (primary accent)    magenta #FF2EA6 (secondary accent)
+     purple   #8B5CFF (tertiary accent)
+   Neon is for accents, edges, labels and active states — never body text.
+   No images, no webfonts, no external requests: CSS gradients only.
+   ========================================================================== */
+:root {
+  --ivory: #07060E;
+  --paper: #10101F;
+  --ink: #EDF1FF;
+  --muted: #A7B0D0;
+  --line: #26264A;
+  --line-soft: rgba(38, 38, 74, 0.55);
+  --accent: #00E5FF;
+  --accent-soft: rgba(0, 229, 255, 0.13);
+  --gold: #00E5FF;
+  --danger: #FF7A93;
+  --danger-soft: rgba(255, 46, 166, 0.14);
+  --hg-deep: #07060E;
+  --hg-slate: #10101F;
+  --hg-slate2: #141428;
+  --hg-parchment: #A5F3FF;
+  --hg-vellum: #EDF1FF;
+  --hg-faint: #8A94BC;
+  --brand-midnight: #0A0A16;
+  --brand-gold: #00E5FF;
+  --brand-vellum: #EDF1FF;
+  --brand-border: #26264A;
+  --hg6-cyan: #00E5FF;
+  --hg6-magenta: #FF2EA6;
+  --hg6-purple: #8B5CFF;
+  --hg6-ink: #EDF1FF;
+  --hg6-muted: #A7B0D0;
+  --hg6-tabh: 62px;
+}
+html { background: #07060E; }
+body {
+  background:
+    radial-gradient(90% 42% at 8% -6%, rgba(255, 46, 166, 0.10) 0%, rgba(255, 46, 166, 0) 55%),
+    radial-gradient(90% 46% at 96% -8%, rgba(0, 229, 255, 0.12) 0%, rgba(0, 229, 255, 0) 55%),
+    linear-gradient(180deg, #0A0A16 0%, #07060E 46%, #07060E 100%);
+  background-attachment: fixed;
+  color: var(--hg6-ink);
+}
+::selection { background: rgba(255, 46, 166, 0.4); color: #FFFFFF; }
+
+/* ---- chrome ---- */
+.app-header { background: rgba(7, 6, 14, 0.88); border-bottom: 1px solid #26264A; }
+.hagah-name { color: var(--hg6-ink); }
+.hagah-tag { color: var(--hg6-muted); opacity: 1; }
+.hagah-mark { color: var(--hg6-cyan); }
+.hagah-mode button[aria-pressed="true"] { background: var(--hg6-cyan); color: #04121A; font-weight: 700; }
+.hagah-mode button[aria-pressed="true"]:hover { color: #04121A; }
+.hagah-nav button[aria-current="page"], .hagah-nav button[aria-current="true"] { color: var(--hg6-cyan); }
+.hagah-subnav button[aria-current="true"] { background: var(--hg6-cyan); color: #04121A; font-weight: 700; }
+.status-line { color: var(--hg6-muted); }
+.status-line .ok { color: #7DF3FF; }
+
+/* ---- generic surfaces ---- */
+.card, .lib-item, .word-panel, .margin-note, .caveat, .lesson-card,
+details.lesson, .dict-result, .asst-box, .watchhow, .note, .sc-card {
+  background: var(--hg-slate);
+  border-color: #26264A;
+  box-shadow: 0 10px 30px -18px rgba(0, 0, 0, 0.85);
+}
+.btn { background: var(--hg6-cyan); border-color: var(--hg6-cyan); color: #04121A; font-weight: 700; }
+.btn:hover { filter: brightness(1.1); }
+.btn.secondary { background: transparent; color: var(--hg6-cyan); border-color: rgba(0, 229, 255, 0.6); font-weight: 600; }
+.btn.secondary:hover { border-color: var(--hg6-cyan); }
+.btn.quiet { color: var(--hg6-muted); font-weight: 400; }
+input[type="text"], input[type="date"], input[type="search"], textarea, select {
+  background: #0A0A16; color: var(--hg6-ink); border-color: #26264A;
+}
+input::placeholder, textarea::placeholder { color: var(--hg-faint); }
+dialog { background: var(--hg-slate2); color: var(--hg6-ink); }
+a { color: #7DF3FF; }
+h1, h2, h3, h4 { color: var(--hg6-ink); }
+.lead, .help, .sh-note { color: var(--hg6-muted); }
+.chapter-text, .st-text { color: var(--hg6-ink); font-size: 1.12rem; line-height: 1.75; }
+.sh-tab.sh-active, .clm-tab.clm-active, .clm-tab[aria-current="true"] {
+  color: #04121A; background: var(--hg6-cyan); font-weight: 700;
+}
+.hg-tab.hg-tab-on { color: var(--hg6-cyan); }
+
+/* the old rebuild home layer never renders in v6 (its features live behind the doors) */
+#hg-home { display: none !important; }
+#hg-homebtn {
+  display: none !important;
+  border-color: var(--hg6-cyan); color: var(--hg6-cyan); background: #141428;
+  bottom: calc(var(--hg6-tabh) + 0.7rem); right: 0.6rem; z-index: 9050;
+  width: 2.25rem; height: 2.25rem; font-size: 1rem; opacity: 0.5;
+}
+#hg-homebtn:hover, #hg-homebtn:focus-visible, #hg-homebtn:active { background: var(--hg6-cyan); color: #04121A; opacity: 1; }
+body.hg-flow-on #hg-homebtn { display: none; } /* the flow bar has its own Exit, and the tab bar's Home door still works during a flow */
+
+/* flow bar docks ABOVE the tab bar — both stay visible and usable, no overlap */
+body.hg-flow-on #hg-flowbar { bottom: var(--hg6-tabh); border-top-color: var(--hg6-cyan); background: rgba(10, 10, 22, 0.97); }
+main { padding-bottom: calc(var(--hg6-tabh) + 1.5rem); }
+body.hg-flow-on main { padding-bottom: calc(var(--hg6-tabh) + 13rem); }
+
+/* ================= v6 HOME — v2 light composition (#213-A) =================
+   Light-first, modelled on the YouVersion home: small plain greeting, a
+   photographic hero filling ~half the screen with the verse set INSIDE it,
+   one white card under it. Cyberpunk survives as accent only: a faint
+   cyan->magenta edge grade on the photo, cyan on the active tab and tiny
+   caption details. No black background, no glowing panel outlines, no
+   neon body text on Home. Scoped to #hg6-home — inner doors keep their
+   v6 chrome. */
+#hg6-home {
+  position: fixed; left: 0; right: 0; top: 0; bottom: calc(var(--hg6-tabh) + env(safe-area-inset-bottom)); z-index: 9200; overflow-y: auto;
+  background:
+    radial-gradient(90% 30% at 100% 0%, rgba(0, 229, 255, 0.05) 0%, rgba(0, 229, 255, 0) 60%),
+    radial-gradient(90% 30% at 0% 100%, rgba(255, 46, 166, 0.04) 0%, rgba(255, 46, 166, 0) 60%),
+    linear-gradient(180deg, #FDFDFA 0%, #F5F5F2 100%);
+  color: #1C2530;
+  padding: 1.15rem 1rem 1.6rem;
+  box-sizing: border-box;
+}
+#hg6-home[hidden] { display: none; }
+#hg6-home *, #hg6-tabbar * { box-sizing: border-box; }
+.hg6-home-inner { max-width: 560px; margin: 0 auto; }
+.hg6-greet { font-family: var(--sans); font-size: 1.19rem; font-weight: 500; line-height: 1.25; margin: 0.15rem 0 0.2rem; color: #20242E; letter-spacing: 0; }
+.hg6-date { color: #767E89; font-size: 0.83rem; margin: 0; }
+.hg6-hero {
+  position: relative; overflow: hidden; height: 448px; margin-top: 0.9rem; border-radius: 20px;
+  border: 1px solid rgba(23, 36, 47, 0.08);
+  background: #DCE7E9;
+  box-shadow: 0 14px 34px -18px rgba(23, 36, 47, 0.35);
+  display: flex; flex-direction: column; padding: 1.05rem 1.1rem 1rem;
+}
+.hg6-hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+/* faint cyberpunk edge grade on the photo only — cyan top-left, magenta bottom-right */
+.hg6-hero::before {
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    linear-gradient(135deg, rgba(0, 229, 255, 0.20) 0%, rgba(0, 229, 255, 0) 26%),
+    linear-gradient(315deg, rgba(255, 46, 166, 0.18) 0%, rgba(255, 46, 166, 0) 26%),
+    linear-gradient(180deg, rgba(0, 229, 255, 0.10) 0%, rgba(0, 229, 255, 0) 12%),
+    linear-gradient(0deg, rgba(255, 46, 166, 0.10) 0%, rgba(255, 46, 166, 0) 12%);
+}
+.hg6-hero::after {
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; border-radius: 20px;
+  box-shadow: inset 0 0 0 1px rgba(0, 229, 255, 0.22), inset 0 0 34px rgba(0, 229, 255, 0.07);
+}
+.hg6-hero-cap { position: relative; z-index: 2; }
+.hg6-hero-label { display: flex; align-items: center; gap: 0.45rem; color: #223140; font-family: var(--sans); font-size: 0.84rem; font-weight: 600; margin: 0 0 0.15rem; }
+.hg6-hero-label::before { content: ""; width: 14px; height: 2px; background: #00E5FF; border-radius: 2px; flex: none; }
+.hg6-ref { color: #3D4F60; font-family: var(--sans); font-size: 0.84rem; font-weight: 500; margin: 0; }
+.hg6-verse {
+  position: relative; z-index: 2; margin: auto 0; padding: 1rem 0.9rem; isolation: isolate;
+  font-family: var(--serif); font-size: 1.58rem; line-height: 1.5; color: #17242F;
+}
+/* soft light scrim: a blurred fog patch behind the verse, no hard edges, no panel */
+.hg6-verse::before {
+  content: ""; position: absolute; inset: -0.4rem -0.7rem; z-index: -1; border-radius: 50%;
+  background: rgba(249, 252, 252, 0.62); filter: blur(15px);
+}
+.hg6-hero-actions { position: relative; z-index: 2; display: flex; align-items: center; }
+.hg6-read {
+  display: inline-flex; align-items: center; gap: 0.42rem; padding: 0.52rem 0.85rem; border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94); border: 1px solid rgba(23, 36, 47, 0.10);
+  color: #17242F; font-family: var(--sans); font-size: 0.88rem; font-weight: 600; cursor: pointer;
+  box-shadow: 0 4px 14px -6px rgba(23, 36, 47, 0.35);
+}
+.hg6-read svg { width: 15px; height: 15px; flex: none; }
+.hg6-read:active { background: #FFFFFF; }
+.hg6-guided {
+  display: flex; align-items: center; gap: 0.9rem; width: 100%; text-align: left; margin-top: 1rem; padding: 1.1rem 1.15rem;
+  border-radius: 18px; border: 1px solid #EDEEF0; background: #FFFFFF;
+  box-shadow: 0 10px 28px -14px rgba(23, 36, 47, 0.22);
+  color: #1C2530; cursor: pointer; font-family: var(--sans);
+}
+.hg6-guided-main { flex: 1 1 auto; min-width: 0; display: block; }
+.hg6-guided-label { display: block; color: #5F6B78; font-size: 0.74rem; font-weight: 600; letter-spacing: 0.05em; margin: 0 0 0.3rem; }
+.hg6-guided-name { display: block; font-family: var(--sans); font-size: 1.06rem; font-weight: 650; line-height: 1.3; margin: 0 0 0.2rem; color: #1C2530; }
+.hg6-guided-sub { display: block; color: #66707C; font-size: 0.9rem; line-height: 1.4; margin: 0 0 0.45rem; }
+.hg6-guided-cta { display: block; color: #0E7C8C; font-size: 0.9rem; font-weight: 600; }
+.hg6-guided-thumb { flex: none; width: 62px; height: 62px; border-radius: 14px; object-fit: cover; display: block; }
+
+
+/* ================= v6 GUIDED FLOW ENTRIES ================= */
+/* One visible entry per flow, shown only on the door it belongs to:
+   Study a Passage on Bible, Compare a Topic on Study, Build a Sermon on
+   Sermon. Hidden while a flow is running (the flow bar is the UI then),
+   on Home, on Plans, and during the first-launch tour. */
+#hg6-flows { margin: 1rem 1rem 0; }
+#hg6-flows[hidden] { display: none; }
+body.hg-flow-on #hg6-flows, body.hg6-onboard-on #hg6-flows { display: none; }
+.hg6-flow-entry {
+  display: block; width: 100%; text-align: left; cursor: pointer;
+  padding: 1rem 1.1rem; border-radius: 14px;
+  border: 1px solid rgba(0, 229, 255, 0.55); background: #10101F;
+  color: var(--hg6-ink); font-family: var(--sans);
+  box-shadow: 0 0 14px rgba(0, 229, 255, 0.14);
+}
+.hg6-flow-entry[hidden] { display: none; }
+.hg6-flow-entry:active { filter: brightness(1.15); }
+.hg6-flow-label { display: block; color: #B79CFF; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; margin: 0 0 0.4rem; }
+.hg6-flow-title { display: block; font-family: var(--serif); font-size: 1.22rem; line-height: 1.3; color: var(--hg6-ink); margin: 0 0 0.3rem; }
+.hg6-flow-sub { display: block; color: var(--hg6-muted); font-size: 0.95rem; line-height: 1.45; margin: 0 0 0.6rem; }
+.hg6-flow-cta { display: block; color: var(--hg6-cyan); font-size: 0.98rem; font-weight: 700; }
+.hg6-flow-entry:focus-visible { outline: 2px solid var(--hg6-cyan); outline-offset: 2px; }
+
+/* ================= v6 TAB BAR ================= */
+#hg6-tabbar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 9100;
+  height: calc(var(--hg6-tabh) + env(safe-area-inset-bottom));
+  padding-bottom: env(safe-area-inset-bottom);
+  display: flex; background: #FFFFFF; border-top: 1px solid #E7E9EC;
+}
+.hg6-door {
+  flex: 1 1 0; position: relative; background: none; border: 0; cursor: pointer;
+  color: #8B929E; font-family: var(--sans); font-size: 0.74rem; font-weight: 600;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.18rem;
+  min-height: 52px; padding: 0.35rem 0 0.3rem;
+}
+.hg6-door-icon { display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; line-height: 1; }
+.hg6-door-icon svg { width: 24px; height: 24px; display: block; }
+.hg6-door.hg6-on { color: #00B7D4; }
+.hg6-door.hg6-on::before {
+  content: ""; position: absolute; top: -1px; left: 22%; right: 22%; height: 2px;
+  background: #00E5FF;
+}
+.hg6-door:focus-visible, .hg6-read:focus-visible, .hg6-guided:focus-visible {
+  outline: 2px solid var(--hg6-cyan); outline-offset: 2px;
+}
+#hg6-home .hg6-read:focus-visible, #hg6-home .hg6-guided:focus-visible { outline: 2px solid #00B7D4; outline-offset: 2px; }
+/* the first-launch tour stays on top and alone, exactly as before */
+body.hg6-onboard-on #hg6-tabbar, body.hg6-onboard-on #hg-homebtn { display: none; }
+
+@media print {
+  #hg6-tabbar, #hg6-home, #hg-homebtn, #hg-flowbar { display: none !important; }
+  body { background: #FFFFFF !important; }
+  main { padding-bottom: 0; }
+}
+
+
+/* ---- phone fit: nothing may widen the layout past the screen ---- */
+html, body { overflow-x: hidden; }
+main, #hagah-panel { max-width: 100vw; }
+.clm-compare { width: 100%; max-width: 100%; table-layout: fixed; }
+.clm-compare td, .clm-compare th { overflow-wrap: anywhere; word-break: break-word; }
+.sheet-wrap { overflow-x: auto; max-width: 100vw; }
+</style>
+
+
+
+
+
+
+
+<script async src="js/analytics-v1.js"></script>
+<script>
+/* ==========================================================================
+   Hagah split loader — the ONLY new runtime code in the delivery rebuild.
+   The app's feature code (js/s02…s13, s16) is byte-verbatim from the live
+   single-file build; this loader exists to feed it data in pieces instead
+   of one 41 MB document:
+
+   - defines the data globals as skeletons with all metadata inline, then
+     fills them per book / per file as fetches land (feature code reads the
+     live objects synchronously, exactly as it did when everything was
+     inline — SSB.init() only stores the reference);
+   - awaits the boot bundle (Geneva John — the default passage — and the
+     Word Studies sidecar) before injecting the code files in order;
+   - gates user actions at the DOM level (capture phase) when the data they
+     target is not resident yet: hold the event, fetch, re-dispatch the
+     original event so the original handler runs against resident data.
+     Resident targets are never touched — the fast path is synchronous;
+   - holds the Compare module's five translation-file fetches until the
+     Geneva flood settles (45 s failsafe), because the module validates
+     the whole Geneva bible in the same pass as its registry load and an
+     early validation failure would poison Compare for the session;
+   - registers the service worker and warms Geneva in the background —
+     idle-started and gently paced, boosted instantly on real intent.
+   ========================================================================== */
+(function () {
+  'use strict';
+
+  var SKEL = {"ssb":{"meta":{"edition":"Geneva Bible 1599 (spelling modernized from the bolls.life transcription)","sources":{"text":"bolls.life GNV.json (public domain 1599 text + 16th-c. margin notes)","strongs_mapping":"KJV with inline Strong's tags via hexapla project (KJV text public domain)","strongs_lexicon":"Open Scriptures Strong's dictionaries, CC BY-SA","easton":"Easton's Bible Dictionary 1897 (public domain)"},"caveat":"Strong's numbers are keyed to the King James Version's word choices. There is no Strong's numbering for the Geneva Bible, so underlying original-language words are matched by verse through the KJV mapping. Where Geneva's wording differs, the verse's full word list is shown instead.","apocrypha":"excluded"},"books":["Genesis","Exodus","Leviticus","Numbers","Deuteronomy","Joshua","Judges","Ruth","1 Samuel","2 Samuel","1 Kings","2 Kings","1 Chronicles","2 Chronicles","Ezra","Nehemiah","Esther","Job","Psalms","Proverbs","Ecclesiastes","Song of Solomon","Isaiah","Jeremiah","Lamentations","Ezekiel","Daniel","Hosea","Joel","Amos","Obadiah","Jonah","Micah","Nahum","Habakkuk","Zephaniah","Haggai","Zechariah","Malachi","Matthew","Mark","Luke","John","Acts","Romans","1 Corinthians","2 Corinthians","Galatians","Ephesians","Philippians","Colossians","1 Thessalonians","2 Thessalonians","1 Timothy","2 Timothy","Titus","Philemon","Hebrews","James","1 Peter","2 Peter","1 John","2 John","3 John","Jude","Revelation"],"chapter_counts":{"1":50,"2":40,"3":27,"4":36,"5":34,"6":24,"7":21,"8":4,"9":31,"10":24,"11":22,"12":25,"13":29,"14":36,"15":10,"16":13,"17":10,"18":42,"19":150,"20":31,"21":12,"22":8,"23":66,"24":52,"25":5,"26":48,"27":12,"28":14,"29":3,"30":9,"31":1,"32":4,"33":7,"34":3,"35":3,"36":3,"37":2,"38":14,"39":4,"40":28,"41":16,"42":24,"43":21,"44":28,"45":16,"46":16,"47":13,"48":6,"49":6,"50":4,"51":4,"52":5,"53":3,"54":6,"55":4,"56":3,"57":1,"58":13,"59":5,"60":5,"61":3,"62":5,"63":1,"64":1,"65":1,"66":22}},"hagah":{"dss-variants":{"note":"Every entry is multiply attested and cited. When in doubt, left out. All readings are described in our own words; no modern DSS English translations are bundled.","title":"Dead Sea Scrolls — verse-level variant notes","variants":[{"note":"The Masoretic Text reads 'according to the number of the sons of Israel'. The Qumran scroll 4QDeut-j reads 'sons of God' (bene elohim) — and the ancient Greek Septuagint agrees. Many scholars judge the older reading to be 'sons of God', changed later in the Masoretic tradition; modern translations split (ESV, NIV follow the Qumran reading; KJV follows the Masoretic).","ref":"Deuteronomy 32:8","source":"4QDeut-j (Dead Sea Scrolls) + Septuagint; Masoretic Text reads 'sons of Israel'. Summarized at http://bibleandscience.com/archaeology/dss.htm"},{"note":"The Masoretic Text gives Goliath's height as 'six cubits and a span' (about 9 ft 9 in). 4QSam-a — our oldest Hebrew copy of this passage, c. 50 BC — reads 'four cubits and a span' (about 6 ft 9 in), agreeing with the Septuagint and Josephus. Read this as evidence, not certainty: the fragment here is partly reconstructed.","ref":"1 Samuel 17:4","source":"4QSam-a (Dead Sea Scrolls, c. 50 BC) + Septuagint + Josephus, Antiquities 6.171; witness table at https://en.wikipedia.org/wiki/1_Samuel_17"},{"note":"The Masoretic Text opens the chapter abruptly: Nahash besieges Jabesh Gilead. 4QSam-a preserves a longer opening — Nahash had been oppressing the Gadites and Reubenites, gouging out every man's right eye, until 7,000 escaped to Jabesh; 'about a month later' he besieged the city. The NRSV prints this longer text; Josephus also reflects it.","ref":"1 Samuel 11:1","source":"4QSam-a (Dead Sea Scrolls) + Josephus; adopted in the NRSV text. Footnoted at https://www.biblegateway.com/passage/?search=1%20Samuel%2011&version=NKJV;NET;KJV;NIV;ESV"},{"note":"The Masoretic Text reads 'like a lion, my hands and my feet' — a line with no verb, famously difficult. A Judean Desert fragment (5/6HevPs, from Nahal Hever) writes the key word with a different final letter, suggesting 'they dug/pierced' — matching the ancient Greek translation ('they pierced'). The reading is debated; it turns on one letter. A minority of medieval Hebrew manuscripts agree with 'pierced'.","ref":"Psalm 22:16","source":"5/6HevPs fragment (Nahal Hever) + Septuagint + a minority of medieval Hebrew manuscripts. Discussed at https://en.wikipedia.org/wiki/They_have_pierced_my_hands_and_my_feet"},{"note":"Psalm 145 is an acrostic — one verse per Hebrew alphabet letter — but the Masoretic Text skips the letter nun (n). The Qumran Psalms Scroll (11QPsa) includes the missing line: 'Faithful is God in all his words, and gracious in all his deeds' — as do the ancient Greek and Syriac versions.","ref":"Psalm 145:13","source":"11QPsa (Dead Sea Scrolls Psalms Scroll) + Septuagint + Syriac; noted in Psalm 145 study notes, https://www.communityoncolumbia.org/pdf/Readings_Notes/Psalm145_Notes.pdf"},{"note":"The Masoretic Text reads 'he shall see' — with no object, leaving the verse obscure. The Great Isaiah Scroll (1QIsa-a) reads 'he shall see light' — and so does the second Isaiah scroll (1QIsa-b) and the Septuagint. Several modern translations (NRSV, CSB, NIV) adopt the scrolls' reading.","ref":"Isaiah 53:11","source":"1QIsa-a + 1QIsa-b (Dead Sea Scrolls) + Septuagint. Noted at https://www.christianitytoday.com/1958/03/dead-sea-scroll-of-isaiah/"}]},"dss":{"cards":[{"body":"Roughly 900 ancient manuscripts discovered in caves near Qumran, on the northwest shore of the Dead Sea: biblical books, commentaries, prayers, hymns, and community writings. Most are in Hebrew, with some Aramaic and a little Greek. Every book of the Old Testament is represented except Esther.","heading":"What the Scrolls are","id":"what","source":{"title":"Leon Levy Dead Sea Scrolls Digital Library (Israel Antiquities Authority)","url":"https://www.deadseascrolls.org.il/"}},{"body":"The first scrolls were found in 1947 by Bedouin shepherds in a cave near Qumran. Excavations from 1949 to 1956 uncovered ten more caves — eleven in all — holding thousands of fragments. The manuscripts date from roughly the 3rd century BC to the 1st century AD.","heading":"The discovery","id":"discovery","source":{"title":"Leon Levy Dead Sea Scrolls Digital Library (Israel Antiquities Authority)","url":"https://www.deadseascrolls.org.il/"}},{"body":"Before 1947, the oldest complete Hebrew Bibles were the medieval Masoretic codices — the Aleppo Codex (c. AD 935) and the Leningrad Codex (c. AD 1008). The Scrolls pushed the oldest Hebrew copies of Scripture back roughly a thousand years — and they agreed with the later text remarkably well, a powerful witness to how carefully the Scriptures were copied.","heading":"Why they matter: a thousand years older","id":"why-matter","source":{"title":"Leon Levy Dead Sea Scrolls Digital Library (Israel Antiquities Authority)","url":"https://www.deadseascrolls.org.il/"}},{"body":"The one complete biblical book among the Scrolls: 1QIsa-a, a 24-foot scroll containing all 66 chapters of Isaiah, copied around 125 BC — more than a thousand years before the oldest medieval Hebrew Isaiah. Its text is remarkably close to the Isaiah we read today.","heading":"The Great Isaiah Scroll","id":"isaiah-scroll","source":{"title":"Leon Levy Dead Sea Scrolls Digital Library (Israel Antiquities Authority)","url":"https://www.deadseascrolls.org.il/"}},{"body":"The originals are kept in the Shrine of the Book at the Israel Museum in Jerusalem. High-resolution images of the major scrolls are freely browsable online at the Leon Levy Dead Sea Scrolls Digital Library, a project of the Israel Antiquities Authority. The 'See the scroll' links below open that library outside the app.","heading":"Seeing the Scrolls today","id":"see-them","source":{"title":"Leon Levy Dead Sea Scrolls Digital Library (Israel Antiquities Authority)","url":"https://www.deadseascrolls.org.il/"}}],"links":[{"label":"Browse the Leon Levy Dead Sea Scrolls Digital Library","url":"https://www.deadseascrolls.org.il/"}],"note":"Curated public-domain facts only. No modern DSS English translations and no Leon Levy / IAA images are bundled — facts and our own summaries only.","title":"Dead Sea Scrolls"},"reading-plans":{"plans":[{"id":"john-30","title":"30 Days in John","subtitle":"The whole Gospel of John in a month, with reflection days built in.","days":30,"kind":"explicit","mapping_note":"21 reading days cover John 1-21 (John 1 is read twice, on days 1 and 28); 8 reflection/review days fall after each section and at the end.","days_list":[{"day":1,"kind":"read","ref":"John 1","note":"The Word became flesh. Read slowly — notice what is said about Jesus before he does anything."},{"day":2,"kind":"read","ref":"John 2","note":"Watch what Jesus does and how people respond to him."},{"day":3,"kind":"read","ref":"John 3","note":"Nicodemus comes at night. What does Jesus say a person must do to see the kingdom?"},{"day":4,"kind":"reflect","ref":null,"scope":"John 1-3","note":"Look back over the first three chapters. What did you observe? Write your own notes."},{"day":5,"kind":"read","ref":"John 4","note":"The woman at the well. Notice how Jesus answers her questions."},{"day":6,"kind":"read","ref":"John 5","note":"Healing at the pool. What claim does Jesus make about himself here?"},{"day":7,"kind":"read","ref":"John 6","note":"The feeding of the five thousand. What do the people want from Jesus, and what does he offer instead?"},{"day":8,"kind":"read","ref":"John 7","note":"Opinions about Jesus divide. Who believes, who doubts, and why?"},{"day":9,"kind":"read","ref":"John 8","note":"The woman caught in adultery. Watch how Jesus handles both sin and the accusers."},{"day":10,"kind":"reflect","ref":null,"scope":"John 4-8","note":"Look back over chapters 4-8. Which scene stands out most to you, and why? Write your own notes."},{"day":11,"kind":"read","ref":"John 9","note":"The man born blind. Who is really blind in this chapter?"},{"day":12,"kind":"read","ref":"John 10","note":"The Good Shepherd. What does a shepherd do for his sheep?"},{"day":13,"kind":"read","ref":"John 11","note":"The raising of Lazarus. What does Jesus say about himself before he acts?"},{"day":14,"kind":"read","ref":"John 12","note":"The anointing at Bethany and the entry into Jerusalem. What kind of king is this?"},{"day":15,"kind":"read","ref":"John 13","note":"The foot washing. What example does Jesus set, and for whom?"},{"day":16,"kind":"reflect","ref":null,"scope":"John 9-13","note":"Look back over chapters 9-13. What have you learned about who Jesus is? Write your own notes."},{"day":17,"kind":"read","ref":"John 14","note":"Troubled hearts. What does Jesus promise his disciples?"},{"day":18,"kind":"read","ref":"John 15","note":"The vine and the branches. What does it mean to abide?"},{"day":19,"kind":"read","ref":"John 16","note":"The work of the Holy Spirit. What will he do when he comes?"},{"day":20,"kind":"read","ref":"John 17","note":"Jesus prays for his disciples — and for you. Read it as his prayer."},{"day":21,"kind":"read","ref":"John 18","note":"The arrest and trial before the high priest. How does Jesus answer?"},{"day":22,"kind":"reflect","ref":null,"scope":"John 14-18","note":"Look back over chapters 14-18. What did Jesus promise, and what did he endure? Write your own notes."},{"day":23,"kind":"read","ref":"John 19","note":"The crucifixion. Read slowly; notice the details John chose to record."},{"day":24,"kind":"read","ref":"John 20","note":"The resurrection. Who sees Jesus first, and how do they recognize him?"},{"day":25,"kind":"read","ref":"John 21","note":"Breakfast on the shore. What does Jesus ask Peter, and what does he tell him to do?"},{"day":26,"kind":"reflect","ref":null,"scope":"John 19-21","note":"Look back over the final three chapters. What did the cross and the empty tomb change? Write your own notes."},{"day":27,"kind":"reflect","ref":null,"scope":"John 1-21","note":"Whole-Gospel review. In one sentence of your own, who is Jesus according to John?"},{"day":28,"kind":"read","ref":"John 1","note":"Re-read the prologue with everything you now know. What lands differently this time?"},{"day":29,"kind":"reflect","ref":null,"scope":"John 1-21","note":"What is the one thing from this Gospel you will carry into this week? Write your own notes."},{"day":30,"kind":"reflect","ref":null,"scope":"John 1-21","note":"Finished. Look back at your notes from the month — what did you learn, in your own words?"}]},{"id":"nt-year","title":"New Testament in a Year","subtitle":"All 260 New Testament chapters, five chapters a week, with two grace days every week.","days":365,"kind":"weekly","read_weekdays":[1,2,3,4,5],"grace_weekdays":[6,7],"mapping_note":"Day d of 365: weekday = ((d-1) mod 7)+1 with day 1 = Monday. Weekdays 1-5 read the next chapter in canonical order (Matthew 1 through Revelation 22); weekdays 6-7 are grace days for catch-up or rest. Day 365 is an extra grace day, so exactly 260 chapters are read.","chapters":["Matthew 1","Matthew 2","Matthew 3","Matthew 4","Matthew 5","Matthew 6","Matthew 7","Matthew 8","Matthew 9","Matthew 10","Matthew 11","Matthew 12","Matthew 13","Matthew 14","Matthew 15","Matthew 16","Matthew 17","Matthew 18","Matthew 19","Matthew 20","Matthew 21","Matthew 22","Matthew 23","Matthew 24","Matthew 25","Matthew 26","Matthew 27","Matthew 28","Mark 1","Mark 2","Mark 3","Mark 4","Mark 5","Mark 6","Mark 7","Mark 8","Mark 9","Mark 10","Mark 11","Mark 12","Mark 13","Mark 14","Mark 15","Mark 16","Luke 1","Luke 2","Luke 3","Luke 4","Luke 5","Luke 6","Luke 7","Luke 8","Luke 9","Luke 10","Luke 11","Luke 12","Luke 13","Luke 14","Luke 15","Luke 16","Luke 17","Luke 18","Luke 19","Luke 20","Luke 21","Luke 22","Luke 23","Luke 24","John 1","John 2","John 3","John 4","John 5","John 6","John 7","John 8","John 9","John 10","John 11","John 12","John 13","John 14","John 15","John 16","John 17","John 18","John 19","John 20","John 21","Acts 1","Acts 2","Acts 3","Acts 4","Acts 5","Acts 6","Acts 7","Acts 8","Acts 9","Acts 10","Acts 11","Acts 12","Acts 13","Acts 14","Acts 15","Acts 16","Acts 17","Acts 18","Acts 19","Acts 20","Acts 21","Acts 22","Acts 23","Acts 24","Acts 25","Acts 26","Acts 27","Acts 28","Romans 1","Romans 2","Romans 3","Romans 4","Romans 5","Romans 6","Romans 7","Romans 8","Romans 9","Romans 10","Romans 11","Romans 12","Romans 13","Romans 14","Romans 15","Romans 16","1 Corinthians 1","1 Corinthians 2","1 Corinthians 3","1 Corinthians 4","1 Corinthians 5","1 Corinthians 6","1 Corinthians 7","1 Corinthians 8","1 Corinthians 9","1 Corinthians 10","1 Corinthians 11","1 Corinthians 12","1 Corinthians 13","1 Corinthians 14","1 Corinthians 15","1 Corinthians 16","2 Corinthians 1","2 Corinthians 2","2 Corinthians 3","2 Corinthians 4","2 Corinthians 5","2 Corinthians 6","2 Corinthians 7","2 Corinthians 8","2 Corinthians 9","2 Corinthians 10","2 Corinthians 11","2 Corinthians 12","2 Corinthians 13","Galatians 1","Galatians 2","Galatians 3","Galatians 4","Galatians 5","Galatians 6","Ephesians 1","Ephesians 2","Ephesians 3","Ephesians 4","Ephesians 5","Ephesians 6","Philippians 1","Philippians 2","Philippians 3","Philippians 4","Colossians 1","Colossians 2","Colossians 3","Colossians 4","1 Thessalonians 1","1 Thessalonians 2","1 Thessalonians 3","1 Thessalonians 4","1 Thessalonians 5","2 Thessalonians 1","2 Thessalonians 2","2 Thessalonians 3","1 Timothy 1","1 Timothy 2","1 Timothy 3","1 Timothy 4","1 Timothy 5","1 Timothy 6","2 Timothy 1","2 Timothy 2","2 Timothy 3","2 Timothy 4","Titus 1","Titus 2","Titus 3","Philemon 1","Hebrews 1","Hebrews 2","Hebrews 3","Hebrews 4","Hebrews 5","Hebrews 6","Hebrews 7","Hebrews 8","Hebrews 9","Hebrews 10","Hebrews 11","Hebrews 12","Hebrews 13","James 1","James 2","James 3","James 4","James 5","1 Peter 1","1 Peter 2","1 Peter 3","1 Peter 4","1 Peter 5","2 Peter 1","2 Peter 2","2 Peter 3","1 John 1","1 John 2","1 John 3","1 John 4","1 John 5","2 John 1","3 John 1","Jude 1","Revelation 1","Revelation 2","Revelation 3","Revelation 4","Revelation 5","Revelation 6","Revelation 7","Revelation 8","Revelation 9","Revelation 10","Revelation 11","Revelation 12","Revelation 13","Revelation 14","Revelation 15","Revelation 16","Revelation 17","Revelation 18","Revelation 19","Revelation 20","Revelation 21","Revelation 22"]}]},"topics":{"topics":[{"id":"anxiety","intro":"These passages show what Scripture actually says when God's people faced anxiety and trouble — read each one in its own context and note what it promises.","title":"Anxiety and Worry","verses":["Philippians 4:6-7","1 Peter 5:7","Matthew 6:34","Psalm 55:22","Isaiah 41:10","John 14:27"]},{"id":"forgiveness","intro":"These passages show what Scripture actually says about being forgiven and forgiving others — read each one in its own context and note who forgives whom.","title":"Forgiveness","verses":["1 John 1:9","Ephesians 4:32","Colossians 3:13","Matthew 6:14-15","Psalm 103:12","Micah 7:18-19"]},{"id":"prayer","intro":"These passages show what Scripture actually says about prayer — read each one in its own context and note what kind of praying is described.","title":"Prayer","verses":["Matthew 6:9-13","1 Thessalonians 5:17","James 5:16","Jeremiah 33:3","Luke 11:9-10","Philippians 4:6"]},{"id":"faith","intro":"These passages show what Scripture actually says about faith — read each one in its own context and note what faith looks like in action.","title":"Faith","verses":["Hebrews 11:1","Hebrews 11:6","Romans 10:17","Mark 11:24","James 2:17","2 Corinthians 5:7"]},{"id":"growing-in-virtue","intro":"These passages show what Scripture actually says about growing in virtue — character built step by step, by practice — read each one in its own context and note what each step adds.","title":"Growing in Virtue","verses":["2 Peter 1:5-7","Hebrews 5:14","Romans 7:15-23","Colossians 3:5-10","Matthew 6:16-18","Romans 5:3-4","Galatians 5:22-25","1 John 1:8-9"]},{"id":"love","intro":"These passages show what Scripture actually says about love — read each one in its own context and note how love is defined by what it does.","title":"Love","verses":["1 Corinthians 13:4-7","John 3:16","1 John 4:8","1 John 4:19","Romans 5:8","Mark 12:30-31"]},{"id":"fear","intro":"These passages show what Scripture actually says to people who were afraid — read each one in its own context and note who is speaking and to whom.","title":"Fear","verses":["Isaiah 41:10","2 Timothy 1:7","Psalm 23:4","Joshua 1:9","1 John 4:18","Deuteronomy 31:6"]},{"id":"guidance","intro":"These passages show what Scripture actually says about finding direction — read each one in its own context and note what the person seeking guidance is told to do.","title":"Guidance and Decisions","verses":["Proverbs 3:5-6","Psalm 32:8","James 1:5","Isaiah 30:21","Psalm 119:105","Jeremiah 29:11"]},{"id":"gratitude","intro":"These passages show what Scripture actually says about thankfulness — read each one in its own context and note what the thanks are for.","title":"Gratitude and Thanksgiving","verses":["1 Thessalonians 5:18","Psalm 100:4","Colossians 3:17","Psalm 107:1","Ephesians 5:20","Philippians 4:6"]},{"id":"suffering","intro":"These passages show what Scripture actually says to people going through suffering — read each one in its own context and note what it does and does not promise.","title":"Suffering and Trials","verses":["Romans 5:3-5","2 Corinthians 4:17","James 1:2-4","1 Peter 4:12-13","Psalm 34:18","Romans 8:18"]},{"id":"hope","intro":"These passages show what Scripture actually says about hope — read each one in its own context and note what the hope is placed in.","title":"Hope","verses":["Romans 15:13","Jeremiah 29:11","Hebrews 6:19","Psalm 42:11","Romans 8:25","Lamentations 3:22-23"]},{"id":"peace","intro":"These passages show what Scripture actually says about peace — read each one in its own context and note where the peace comes from.","title":"Peace","verses":["John 14:27","Philippians 4:7","Isaiah 26:3","Colossians 3:15","Romans 5:1","Psalm 29:11"]},{"id":"wisdom","intro":"These passages show what Scripture actually says about wisdom — read each one in its own context and note how wisdom is gained.","title":"Wisdom","verses":["James 1:5","Proverbs 2:6","Proverbs 3:13","1 Kings 3:9","Colossians 1:9","Proverbs 9:10"]}]}},"pd":{"meta":{"WEB":{"label":"World English Bible","year":"2000–2024","basis":"Dedicated to the public domain by its translators (Rainbow Missions / ebible.org)."},"ASV":{"label":"American Standard Version","year":"1901","basis":"Public domain (published 1901)."},"YLT":{"label":"Young's Literal Translation","year":"1898","basis":"Public domain (first edition 1862; revised 1898)."},"DBY":{"label":"Darby Bible","year":"1890","basis":"Public domain (J. N. Darby translation, completed 1890)."}},"books":["Genesis","Exodus","Leviticus","Numbers","Deuteronomy","Joshua","Judges","Ruth","1 Samuel","2 Samuel","1 Kings","2 Kings","1 Chronicles","2 Chronicles","Ezra","Nehemiah","Esther","Job","Psalms","Proverbs","Ecclesiastes","Song of Solomon","Isaiah","Jeremiah","Lamentations","Ezekiel","Daniel","Hosea","Joel","Amos","Obadiah","Jonah","Micah","Nahum","Habakkuk","Zephaniah","Haggai","Zechariah","Malachi","Matthew","Mark","Luke","John","Acts","Romans","1 Corinthians","2 Corinthians","Galatians","Ephesians","Philippians","Colossians","1 Thessalonians","2 Thessalonians","1 Timothy","2 Timothy","Titus","Philemon","Hebrews","James","1 Peter","2 Peter","1 John","2 John","3 John","Jude","Revelation"],"chapter_counts":[50,40,27,36,34,24,21,4,31,24,22,25,29,36,10,13,10,42,150,31,12,8,66,52,5,48,12,14,3,9,1,4,7,3,3,3,2,14,4,28,16,24,21,28,16,16,13,6,6,4,4,5,3,6,4,3,1,13,5,5,3,5,1,1,1,22]}};
+
+  /* ---------------- data skeletons (metadata inline, texts empty) ------- */
+  var SSB_DATA = {
+    meta: SKEL.ssb.meta,
+    books: SKEL.ssb.books,
+    chapter_counts: SKEL.ssb.chapter_counts,
+    bible: {},
+    notes: {},
+    xrefs: {},
+    strongs_index: {},
+    lexicon: {},
+    easton: {}
+  };
+  window.SSB_DATA = SSB_DATA;
+
+  window.HAGAH_DATA = SKEL.hagah; // small parts only; translation files arrive by fetch
+
+  var PD_TEXTS = { WEB: [], ASV: [], YLT: [], DBY: [] };
+  window.HAGAH_PD_TEXTS = {
+    meta: SKEL.pd.meta,
+    books: SKEL.pd.books,
+    chapter_counts: SKEL.pd.chapter_counts,
+    texts: PD_TEXTS
+  };
+  window.HAGAH_WS_SIDECAR = { entries: [] }; // replaced by the boot fetch
+
+  /* ---------------- fetch plumbing -------------------------------------- */
+  var rawFetch = window.fetch ? window.fetch.bind(window) : null;
+  function fetchJson(url) {
+    return rawFetch(url).then(function (r) {
+      if (!r.ok) { throw new Error('HTTP ' + r.status + ' for ' + url); }
+      return r.json();
+    });
+  }
+  function pad2(n) { return (n < 10 ? '0' : '') + n; }
+
+  var pending = {}; // key -> Promise (dedupe; failures clear so a tap can retry)
+  function once(key, job) {
+    if (!pending[key]) {
+      pending[key] = job().catch(function (e) {
+        delete pending[key];
+        throw e;
+      });
+    }
+    return pending[key];
+  }
+
+  function genevaResident(book) { return !!SSB_DATA.bible[String(book)]; }
+  function ensureGeneva(book) {
+    book = parseInt(book, 10);
+    if (!book || book < 1 || book > 66 || genevaResident(book)) { return Promise.resolve(); }
+    return once('geneva:' + book, function () {
+      return fetchJson('data/geneva/b' + pad2(book) + '.json').then(function (f) {
+        SSB_DATA.bible[String(book)] = f.bible || {};
+        var k;
+        if (f.notes) { for (k in f.notes) { SSB_DATA.notes[k] = f.notes[k]; } }
+        if (f.xrefs) { for (k in f.xrefs) { SSB_DATA.xrefs[k] = f.xrefs[k]; } }
+        if (f.strongs) { for (k in f.strongs) { SSB_DATA.strongs_index[k] = f.strongs[k]; } }
+      });
+    });
+  }
+
+  function pdResident(code, book) { return !!(PD_TEXTS[code] && PD_TEXTS[code][book - 1]); }
+  function ensurePD(code, book) {
+    book = parseInt(book, 10);
+    if (!PD_TEXTS[code] || !book || book < 1 || book > 66 || pdResident(code, book)) {
+      return Promise.resolve();
+    }
+    return once('pd:' + code + ':' + book, function () {
+      return fetchJson('data/pd/' + code + '/b' + pad2(book) + '.json').then(function (arr) {
+        PD_TEXTS[code][book - 1] = arr;
+      });
+    });
+  }
+
+  var lexiconLoaded = false, eastonLoaded = false;
+  function ensureLexicon() {
+    if (lexiconLoaded) { return Promise.resolve(); }
+    return once('lexicon', function () {
+      return fetchJson('data/lexicon.json').then(function (d) {
+        SSB_DATA.lexicon = d; lexiconLoaded = true;
+      });
+    });
+  }
+  function ensureEaston() {
+    if (eastonLoaded) { return Promise.resolve(); }
+    return once('easton', function () {
+      return fetchJson('data/easton.json').then(function (d) {
+        SSB_DATA.easton = d; eastonLoaded = true;
+      });
+    });
+  }
+
+  var kjvWebLoaded = false;
+  function ensureKjvWeb() {
+    if (kjvWebLoaded) { return Promise.resolve(); }
+    return once('kjvweb', function () {
+      return Promise.all([
+        fetchJson('data/translations/kjv.json'),
+        fetchJson('data/translations/web.json')
+      ]).then(function (res) {
+        window.HAGAH_DATA['translations/kjv.json'] = res[0];
+        window.HAGAH_DATA['translations/web.json'] = res[1];
+        kjvWebLoaded = true;
+      });
+    });
+  }
+
+  /* Books referenced by the stored sermon (print + library verse rows). */
+  function sermonRefBooks() {
+    var books = [];
+    try {
+      var raw = window.localStorage.getItem('c4c.sermonSkeletonBuilder.v1');
+      if (!raw || !window.SSB || !window.SSB.parseReference) { return books; }
+      var refs = [];
+      (function walk(o) {
+        if (!o || typeof o !== 'object') { return; }
+        Object.keys(o).forEach(function (k) {
+          if ((k === 'primaryRef' || k === 'supportingRefs' || k === 'passageOrTheme') &&
+              typeof o[k] === 'string') { refs.push(o[k]); }
+          else { walk(o[k]); }
+        });
+      })(JSON.parse(raw));
+      var seen = {};
+      refs.forEach(function (r) {
+        String(r).split(/[;·]/).forEach(function (piece) {
+          var p = null;
+          try { p = window.SSB.parseReference(piece.trim()); } catch (e) { p = null; }
+          if (p && p.book && !seen[p.book]) { seen[p.book] = 1; books.push(p.book); }
+        });
+      });
+    } catch (e) { /* unreadable store: no book list */ }
+    return books;
+  }
+  function ensureSermonBooks() {
+    var jobs = [ensureKjvWeb()];
+    sermonRefBooks().forEach(function (b) { jobs.push(ensureGeneva(b)); });
+    return Promise.all(jobs);
+  }
+  function sermonResident() {
+    if (!kjvWebLoaded) { return false; }
+    return sermonRefBooks().every(function (b) { return genevaResident(b); });
+  }
+
+  /* ---------------- Compare-module fetch hold ----------------------------
+     The Compare module mounts at boot and immediately loads its translation
+     registry — then validates the WHOLE Geneva bible (66 books, ~31k verses)
+     in the same pass. In the split shape Geneva arrives per book, so an
+     early validation would fail — and the module's error state never
+     retries within a session. The loader therefore holds the module's five
+     translation-file fetches (registry included, which is what puts a real
+     async gap in front of the validation) until the Geneva flood below has
+     settled — every book resident or honestly failed — with a 45 s failsafe.
+     While held, the module simply shows its own "Loading translations…"
+     state. The loader's own fetches use the captured original fetch and are
+     never held; the prayer POST and all other URLs pass straight through. */
+  var clmReleased = false;
+  var clmWaiters = [];
+  var CLM_FILES = ['data/translations/kjv.json', 'data/translations/web.json', 'data/translations/enoch.json',
+                   'data/translations/registry.json', 'data/translations/versification.json'];
+  function releaseCLM() {
+    if (clmReleased) { return; }
+    clmReleased = true;
+    var w = clmWaiters; clmWaiters = [];
+    w.forEach(function (fn) { fn(); });
+  }
+  if (rawFetch) {
+    window.fetch = function (input, init) {
+      var url = (typeof input === 'string') ? input : ((input && input.url) || '');
+      var gated = false;
+      if (url) {
+        // Hold ONLY same-origin GETs of the five files (review finding F3):
+        // a cross-origin endpoint or a non-GET that happens to share a path
+        // suffix must never stall on the flood.
+        var method = 'GET';
+        if (init && init.method) { method = String(init.method).toUpperCase(); }
+        else if (typeof input !== 'string' && input && input.method) { method = String(input.method).toUpperCase(); }
+        var sameOrigin = true;
+        var path = url;
+        try {
+          var u = new URL(url, window.location.href);
+          path = u.pathname;
+          sameOrigin = (u.origin === window.location.origin);
+        } catch (e) { /* keep raw */ }
+        gated = (method === 'GET') && sameOrigin &&
+          CLM_FILES.some(function (f) { return path.slice(-f.length) === f; });
+      }
+      if (gated && !clmReleased) {
+        // Real Compare intent: speed the flood up so the hold ends as soon
+        // as the set settles, instead of riding the paced background rate.
+        if (typeof window.__hgBoostFlood === 'function') { window.__hgBoostFlood(); }
+        return new Promise(function (resolve) { clmWaiters.push(resolve); })
+          .then(function () { return rawFetch(input, init); });
+      }
+      return rawFetch(input, init);
+    };
+  }
+
+  /* ---------------- status line ------------------------------------------ */
+  function setStatus(msg) {
+    var s = document.getElementById('status');
+    if (s) { s.textContent = msg || ''; }
+  }
+  function bookName(n) { return SSB_DATA.books[n - 1] || ('Book ' + n); }
+
+  /* ---------------- DOM gates (capture phase) ----------------------------- */
+  function hold(e, job, label) {
+    e.stopPropagation();
+    e.preventDefault();
+    setStatus('Loading ' + label + '…');
+    job.then(function () {
+      setStatus('');
+      var ev;
+      if (e.type === 'click') {
+        ev = new MouseEvent('click', { bubbles: true, cancelable: true });
+      } else if (e.type === 'change') {
+        ev = new Event('change', { bubbles: true });
+      } else {
+        ev = new KeyboardEvent('keydown', { key: e.key, bubbles: true, cancelable: true });
+      }
+      ev.__hgPassed = true;
+      e.target.dispatchEvent(ev);
+    }).catch(function () {
+      setStatus('Could not load ' + label + ' — check your connection and tap again.');
+    });
+  }
+  function stepTarget(d) {
+    var st = (window._ssbui && window._ssbui._study) || { book: 43, chapter: 1 };
+    var counts = SSB_DATA.chapter_counts;
+    var max = counts[String(st.book)] || 1;
+    var nc = st.chapter + d, nb = st.book;
+    if (nc < 1) {
+      if (nb > 1) { nb--; } else { return null; }
+    } else if (nc > max) {
+      if (nb < 66) { nb++; } else { return null; }
+    }
+    return nb;
+  }
+  function pdSelects() {
+    var block = document.getElementById('hg2c-block');
+    if (!block) { return null; }
+    return {
+      tr: block.querySelector('select[aria-label="Translation"]'),
+      bk: block.querySelector('select[aria-label="Book"]'),
+      ch: block.querySelector('select[aria-label="Chapter"]')
+    };
+  }
+  function pdTargetFromButton(btn) {
+    var s = pdSelects();
+    if (!s || !s.tr || !s.bk || !s.ch) { return null; }
+    var counts = window.HAGAH_PD_TEXTS.chapter_counts;
+    var book = parseInt(s.bk.value, 10), ch = parseInt(s.ch.value, 10);
+    var isPrev = (btn.textContent || '').indexOf('Prev chapter') !== -1;
+    var tb = book;
+    if (isPrev) { if (ch <= 1 && book > 1) { tb = book - 1; } }
+    else if (ch >= (counts[book - 1] || 1) && book < 66) { tb = book + 1; }
+    return { code: s.tr.value, book: tb };
+  }
+  /* Returns {job, label, resident} or null when the event needs no data. */
+  function requirementFor(e) {
+    var t = e.target;
+    if (!t || !t.closest) { return null; }
+    var hit, b;
+    if (e.type === 'click') {
+      if ((hit = t.closest('#st-prev'))) { b = stepTarget(-1); return b ? { job: ensureGeneva(b), label: bookName(b), resident: genevaResident(b) } : null; }
+      if ((hit = t.closest('#st-next'))) { b = stepTarget(1); return b ? { job: ensureGeneva(b), label: bookName(b), resident: genevaResident(b) } : null; }
+      if ((hit = t.closest('#st-go'))) {
+        var bs = document.getElementById('st-book');
+        b = bs ? parseInt(bs.value, 10) : 0;
+        return b ? { job: ensureGeneva(b), label: bookName(b), resident: genevaResident(b) } : null;
+      }
+      if ((hit = t.closest('#st-xrefs .xref-chip'))) {
+        b = parseInt(String(hit.getAttribute('data-xref') || '').split(':')[0], 10);
+        return b ? { job: ensureGeneva(b), label: bookName(b), resident: genevaResident(b) } : null;
+      }
+      if ((hit = t.closest('#st-text .w'))) { return { job: ensureLexicon(), label: 'the word study', resident: lexiconLoaded }; }
+      if ((hit = t.closest('#dict-go'))) { return { job: ensureEaston(), label: 'the dictionary', resident: eastonLoaded }; }
+      if ((hit = t.closest('[data-hg-subview="print"], [data-hg-subview="library"]'))) {
+        return { job: ensureSermonBooks(), label: 'the sermon texts', resident: sermonResident() };
+      }
+      if ((hit = t.closest('#hg2c-block button'))) {
+        var tx = (hit.textContent || '');
+        if (tx.indexOf('Prev chapter') !== -1 || tx.indexOf('Next chapter') !== -1) {
+          var pd = pdTargetFromButton(hit);
+          return pd ? { job: ensurePD(pd.code, pd.book), label: bookName(pd.book) + ' (' + pd.code + ')', resident: pdResident(pd.code, pd.book) } : null;
+        }
+      }
+    }
+    if (e.type === 'change') {
+      if ((hit = t.closest('#st-book'))) {
+        b = parseInt(hit.value, 10);
+        return b ? { job: ensureGeneva(b), label: bookName(b), resident: genevaResident(b) } : null;
+      }
+      if ((hit = t.closest('#st-chapter'))) {
+        var bs2 = document.getElementById('st-book');
+        b = bs2 ? parseInt(bs2.value, 10) : 0;
+        return b ? { job: ensureGeneva(b), label: bookName(b), resident: genevaResident(b) } : null;
+      }
+      if ((hit = t.closest('#hg2c-block select'))) {
+        var s = pdSelects();
+        if (s && s.tr && s.bk) {
+          b = parseInt(s.bk.value, 10);
+          return { job: ensurePD(s.tr.value, b), label: bookName(b), resident: pdResident(s.tr.value, b) };
+        }
+      }
+    }
+    if (e.type === 'keydown') {
+      if ((hit = t.closest('#dict-q')) && e.key === 'Enter') { return { job: ensureEaston(), label: 'the dictionary', resident: eastonLoaded }; }
+      if ((hit = t.closest('#st-text .w')) && (e.key === 'Enter' || e.key === ' ')) {
+        return { job: ensureLexicon(), label: 'the word study', resident: lexiconLoaded };
+      }
+    }
+    return null;
+  }
+  function gate(e) {
+    if (e.__hgPassed) { return; }
+    var req = null;
+    try { req = requirementFor(e); } catch (err) { req = null; }
+    if (!req || req.resident) { return; }
+    hold(e, req.job, req.label);
+  }
+  document.addEventListener('click', gate, true);
+  document.addEventListener('change', gate, true);
+  document.addEventListener('keydown', gate, true);
+
+  /* ---------------- boot --------------------------------------------------- */
+  function bootFail() {
+    var p = document.createElement('p');
+    p.setAttribute('role', 'alert');
+    p.textContent = 'Ehyeh could not start: the Bible data failed to load. Check your connection, then ';
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.textContent = 'Try again';
+    b.addEventListener('click', function () { window.location.reload(); });
+    p.appendChild(b);
+    document.body.appendChild(p);
+  }
+
+  function loadCode() {
+    var order = ['s02', 's03', 's04', 's05', 's06', 's07', 's08', 's09', 's10', 's11', 's12', 's13', 's16', 's17-helper'];
+    order.forEach(function (name, i) {
+      var s = document.createElement('script');
+      s.src = 'js/' + name + '.js';
+      s.async = false;
+      if (i === order.length - 1) { s.onload = afterBoot; }
+      document.body.appendChild(s);
+    });
+  }
+
+  function afterBoot() {
+    if ('serviceWorker' in navigator) {
+      try { navigator.serviceWorker.register('sw.js'); } catch (e) { /* non-fatal */ }
+    }
+    // Geneva flood: fetch every remaining book so the set settles. Two jobs:
+    // warm the reader for offline and for jumps, and settle the set so the
+    // Compare module's held registry fetch can release into a validation
+    // that sees the whole bible. Warmth policy (re-audit finding,
+    // 2026-10-19): the flood does NOT run at boot. Fifteen MB of JSON parses
+    // measurably starved the foreground on throttled phones (Lighthouse
+    // mobile main-thread "other" 5.7 s) — exactly the minutes when a person
+    // is tapping around. The flood starts when the browser is idle
+    // (requestIdleCallback, 6 s timeout, plain-timer fallback), runs two
+    // workers with a yield between books, and BOOSTS to six unpaced workers
+    // the moment real intent shows up (a held Compare fetch, via
+    // __hgBoostFlood). Cold reader jumps never needed the flood — the DOM
+    // gates load single books on intent. First paint needs no network at
+    // all: the home is built from the boot bundle.
+    var queue = [];
+    for (var n = 44; n <= 66; n++) { queue.push(n); }
+    for (var m = 1; m <= 42; m++) { queue.push(m); }
+    var settled = 1; // John (43) arrived with the boot bundle
+    var floodStarted = false;
+    var floodBoosted = false;
+    var floodWorkers = 0;
+    function bookSettled() {
+      settled++;
+      if (settled >= 66) { releaseCLM(); }
+    }
+    function worker() {
+      if (!queue.length) { return; }
+      if (document.hidden) { setTimeout(worker, 2000); return; }
+      var book = queue.shift();
+      ensureGeneva(book).then(
+        function () { bookSettled(); if (floodBoosted) { worker(); } else { setTimeout(worker, 0); } },
+        function () { bookSettled(); if (floodBoosted) { worker(); } else { setTimeout(worker, 0); } });
+    }
+    function startFlood() {
+      if (floodStarted) { return; }
+      floodStarted = true;
+      var target = floodBoosted ? 6 : 2;
+      while (floodWorkers < target) { floodWorkers++; worker(); }
+    }
+    window.__hgBoostFlood = function () {
+      floodBoosted = true;
+      startFlood();
+      while (floodWorkers < 6) { floodWorkers++; worker(); }
+    };
+    // The flood starts at the first idle moment at least 5 s after boot:
+    // the first seconds belong to the person and the first paint alone
+    // (re-audit: the hero's render delay was ~2 s of mostly background
+    // contention). Real intent (boost) ignores the delay entirely.
+    var bootT0 = Date.now();
+    function startFloodWhenIdle() {
+      var wait = 5000 - (Date.now() - bootT0);
+      if (wait > 0) { setTimeout(startFlood, wait); } else { startFlood(); }
+    }
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(function () { startFloodWhenIdle(); }, { timeout: 8000 });
+    }
+    setTimeout(startFloodWhenIdle, 8000); // fallback if idle never reports
+    setTimeout(releaseCLM, 45000); // failsafe: never hold the module forever
+    // Passage changes: release the compare hold + self-heal the reader.
+    var tries = 0;
+    (function subscribe() {
+      tries++;
+      var app = window.__hagahApp;
+      if (app && app.ctx && app.ctx.onPassageChange) {
+        app.ctx.onPassageChange(function (p) {
+          if (p && p.book) {
+            ensureGeneva(p.book).then(function () {
+              try {
+                var ui = window._ssbui;
+                if (ui && ui._study && ui._study.book === p.book) {
+                  var box = document.getElementById('st-text');
+                  if (box && !box.querySelector('p.verse')) { ui.renderChapter(); }
+                }
+              } catch (e) { /* best-effort */ }
+            }).catch(function () { /* the gate already spoke for user actions */ });
+          }
+        });
+      } else if (tries < 20) { setTimeout(subscribe, 300); }
+    })();
+  }
+
+  Promise.all([
+    ensureGeneva(43),
+    ensurePD('WEB', 1), // the translation shelf's default view: WEB Genesis 1
+    fetchJson('data/ws-sidecar.json').then(function (d) { window.HAGAH_WS_SIDECAR = d; })
+  ]).then(loadCode, bootFail);
+})();
+
+</script>
+</body>
+</html>
