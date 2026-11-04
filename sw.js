@@ -12,7 +12,7 @@
       fallback. Data files are stale-while-revalidate (fast offline
       opens, self-refreshing). Media and everything else pass
       through untouched. */
-var CACHE = 'hagah-split-v9-r8';
+var CACHE = 'hagah-split-v9-r9';
 var PRECACHE = [
   'Hagah.html',
   'js/s02.js', 'js/s03.js', 'js/s04.js', 'js/s05.js', 'js/s06.js', 'js/s07.js',

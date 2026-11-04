@@ -123,7 +123,8 @@
           });
           body.appendChild(tbl);
           var def = String(lex.definition || '');
-          var cut = def.search(/[.;]/);
+          var defMasked = def.replace(/\bi\.e\./gi, 'i\u0001e\u0001').replace(/\bi\.e\b/gi, 'i\u0001e').replace(/\be\.g\./gi, 'e\u0001g\u0001').replace(/\be\.g\b/gi, 'e\u0001g');
+          var cut = defMasked.search(/[.;]/);
           var head = cut > 0 ? def.slice(0, cut) : def;
           var mWrap = el('div', { 'class': 'wp-meaning' });
           mWrap.appendChild(el('p', { 'class': 'wp-full-label' }, 'Meaning'));
@@ -145,7 +146,8 @@
           li.appendChild(el('span', { 'class': 'strongs-num' }, num + ' '));
           if (lex) {
             var vdef = String(lex.definition || '');
-            var vcut = vdef.search(/[.;]/);
+            var vdefMasked = vdef.replace(/\bi\.e\./gi, 'i\u0001e\u0001').replace(/\bi\.e\b/gi, 'i\u0001e').replace(/\be\.g\./gi, 'e\u0001g\u0001').replace(/\be\.g\b/gi, 'e\u0001g');
+            var vcut = vdefMasked.search(/[.;]/);
             var vhead = vcut > 0 ? vdef.slice(0, vcut) : vdef;
             li.appendChild(doc.createTextNode(lex.transliteration + ' — ' + vhead));
             if (vdef && vdef !== vhead) {
@@ -252,8 +254,9 @@
       try { return (typeof sessionStorage !== 'undefined') ? sessionStorage : null; }
       catch (e) { return null; }
     }
-    function asstEnabled() { return !!(asst.key && asst.endpoint); }
+    function asstEnabled() { return !asst.off; } /* Muse Spark house default needs no user key; Disable turns it off for this tab */
     function enableAssistant() {
+      asst.off = false;
       asst.key = $('asst-key').value.trim();
       asst.endpoint = $('asst-endpoint').value.trim();
       var st = sessionStore();
@@ -261,7 +264,7 @@
       updateAsstStatus();
     }
     function disableAssistant() {
-      asst.key = ''; asst.endpoint = '';
+      asst.key = ''; asst.endpoint = ''; asst.off = true;
       $('asst-key').value = ''; $('asst-endpoint').value = '';
       var st = sessionStore();
       if (st) { try { st.removeItem('ssb.asst.key'); st.removeItem('ssb.asst.endpoint'); } catch (e) {} }
@@ -269,8 +272,9 @@
     }
     function updateAsstStatus() {
       $('asst-status').textContent = asstEnabled()
-        ? 'Assistant enabled for this tab only. It answers study questions — never sermon wording.'
-        : 'Assistant is off. Nothing here contacts any service.';
+        ? ((asst.key && asst.endpoint) ? 'Assistant enabled with your own endpoint, for this tab only. It answers study questions — never sermon wording.'
+           : 'Assistant ready — powered by Meta Muse Spark. It answers study questions — never sermon wording.')
+        : 'Assistant is off for this tab. Nothing here contacts any service.';
       $('asst-chat').hidden = !asstEnabled();
     }
     function restoreAssistant() {

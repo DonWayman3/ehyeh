@@ -2297,7 +2297,12 @@
   }
   function meaningHead(def) {
     var d = String(def || '');
-    var cut = d.search(/[.;]/);
+    // Mask abbreviation periods (i.e. / e.g.) before the head cut, so the cut
+    // does not land inside them ("to exist, i" bug, found 2026-11-04). The mask
+    // is length-preserving, so the index found on the masked string slices the
+    // original string correctly.
+    var masked = d.replace(/\bi\.e\./gi, 'i\u0001e\u0001').replace(/\bi\.e\b/gi, 'i\u0001e').replace(/\be\.g\./gi, 'e\u0001g\u0001').replace(/\be\.g\b/gi, 'e\u0001g');
+    var cut = masked.search(/[.;]/);
     return cut > 0 ? d.slice(0, cut) : d;
   }
   function phoneVoiceFallback(text) {
@@ -3030,6 +3035,15 @@
     }
     save(false);
     show('structure');
+    /* Usability fix (2026-11-04): show() scrolls to the top, which left
+       the finished outline below the fold at 720p and the build looked
+       like it did nothing. Bring the Structure heading into view and
+       focus it so the preacher (and screen readers) land on the outline. */
+    var hs = $('h-structure');
+    if (hs) {
+      if (hs.scrollIntoView) { hs.scrollIntoView({ block: 'start' }); }
+      try { hs.focus({ preventScroll: true }); } catch (err) { hs.focus(); }
+    }
   });
   function handleImportFile(input) {
     var file = input.files && input.files[0];

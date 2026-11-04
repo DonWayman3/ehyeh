@@ -278,14 +278,18 @@
   }
   /* Stubbed provider call. Never invents a key or endpoint; without both it
      declines locally and makes zero network calls. fetchImpl is injectable for tests. */
+  var MUSE_PROXY = '/api/muse';
+  var MUSE_MODEL = 'muse-spark-1.3';
   function callAssistant(opts, fetchImpl) {
     opts = opts || {};
     var key = opts.key, endpoint = opts.endpoint, question = opts.question;
     var fetchFn = fetchImpl || (typeof fetch !== 'undefined' ? fetch : null);
-    if (!key || !endpoint) {
-      return Promise.resolve({ ok: false, declined: true,
-        message: 'The study assistant is not enabled. Add your key and endpoint to enable it for this session.' });
-    }
+    /* Default (2026-11-04): with no user key/endpoint, ask Meta Muse
+       Spark through Ehyeh's own same-origin proxy. The server holds
+       META_MODEL_API_KEY; no key ever ships to the browser. A user's
+       own OpenAI-compatible endpoint + key still overrides this. */
+    var useHouse = !key || !endpoint;
+    if (useHouse) { endpoint = MUSE_PROXY; }
     var intent = classifyIntent(question);
     if (intent === 'REDIRECT') {
       return Promise.resolve({ ok: true, refused: true, redirected: true,
@@ -296,7 +300,7 @@
     }
     var sys = buildSystemPrompt();
     var body = JSON.stringify({
-      model: opts.model || 'openai/gpt-oss-20b:free',
+      model: useHouse ? MUSE_MODEL : (opts.model || 'openai/gpt-oss-20b:free'),
       messages: [
         { role: 'system', content: sys },
         { role: 'user', content: 'Passage under study: ' + (opts.passage || 'none given') + '\nQuestion: ' + intentPrompt(intent, question) }
@@ -306,7 +310,8 @@
     });
     return fetchFn(endpoint, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + key },
+      headers: useHouse ? { 'Content-Type': 'application/json' }
+        : { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + key },
       body: body
     }).then(function (resp) {
       if (!resp.ok) { throw new Error('HTTP ' + resp.status); }
@@ -316,7 +321,7 @@
       var capped = capWords(raw, WORD_CAP);
       return { ok: true, refused: false, answer: frameAnswer(capped.text, { capped: capped.capped }) };
     }).catch(function (err) {
-      return { ok: false, declined: true, message: 'The assistant could not answer (' + err.message + '). Check your endpoint and key. Nothing was charged.' };
+      return { ok: false, declined: true, message: 'The assistant could not answer (' + err.message + '). ' + (useHouse ? 'The house assistant may be away; everything else in Ehyeh works.' : 'Check your endpoint and key. Nothing was charged.') };
     });
   }
 

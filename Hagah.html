@@ -741,20 +741,20 @@ body.hg-flow-on main { padding-bottom: 11rem; }
     <h2 id="h-asst" tabindex="-1">Study Assistant <button type="button" class="help-btn" data-help-view="assistant" aria-label="Help: what is the Study Assistant?"><span aria-hidden="true">?</span></button></h2>
     <p class="lead">An opt-in study helper. It answers short study questions. It never writes your sermon.</p>
     <div class="asst-box" id="asst-setup">
-      <h3>Enable the assistant</h3>
-      <p>The assistant needs a language-model key you provide. Nothing here calls any service until you enable it and type a question.</p>
+      <h3>Study Assistant — powered by Meta Muse Spark</h3>
+      <p>Ready to use: no key needed. Your question goes to Ehyeh's own server, which asks Meta's Muse Spark model. Nothing is sent until you type a question. Advanced: to use your own model instead, fill in both fields below.</p>
       <div class="field">
-        <label for="asst-key">Your API key</label>
+        <label for="asst-key">Your own API key <span class="optional">(optional)</span></label>
         <input type="text" id="asst-key" autocomplete="off" aria-describedby="h-asst-key">
         <p class="help key-warn" id="h-asst-key">Kept only in this tab's session memory, never saved to disk, never sent anywhere except the endpoint below, only when you ask a question.</p>
       </div>
       <div class="field">
-        <label for="asst-endpoint">Endpoint <span class="optional">(OpenAI-compatible)</span></label>
+        <label for="asst-endpoint">Your own endpoint <span class="optional">(optional, OpenAI-compatible)</span></label>
         <input type="text" id="asst-endpoint" autocomplete="off" aria-describedby="h-asst-ep" placeholder="https://openrouter.ai/api/v1/chat/completions">
-        <p class="help" id="h-asst-ep">Use a free endpoint (for example OpenRouter's free models, or a local model at http://localhost:11434/v1/chat/completions). Never a paid call without your say-so.</p>
+        <p class="help" id="h-asst-ep">Leave blank to use Muse Spark. Or use your own endpoint, for example OpenRouter's free models, or a local model at http://localhost:11434/v1/chat/completions.</p>
       </div>
       <div class="btn-row" style="margin-top:0.5rem;">
-        <button type="button" class="btn" id="asst-enable">Enable for this session</button>
+        <button type="button" class="btn" id="asst-enable">Use these settings</button>
         <button type="button" class="btn secondary" id="asst-disable">Disable</button>
       </div>
       <p class="key-warn" id="asst-status" aria-live="polite"></p>
