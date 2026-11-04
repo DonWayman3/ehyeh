@@ -123,7 +123,8 @@
           });
           body.appendChild(tbl);
           var def = String(lex.definition || '');
-          var cut = def.search(/[.;]/);
+          var defMasked = def.replace(/\bi\.e\./gi, 'i\u0001e\u0001').replace(/\bi\.e\b/gi, 'i\u0001e').replace(/\be\.g\./gi, 'e\u0001g\u0001').replace(/\be\.g\b/gi, 'e\u0001g');
+          var cut = defMasked.search(/[.;]/);
           var head = cut > 0 ? def.slice(0, cut) : def;
           var mWrap = el('div', { 'class': 'wp-meaning' });
           mWrap.appendChild(el('p', { 'class': 'wp-full-label' }, 'Meaning'));
@@ -145,7 +146,8 @@
           li.appendChild(el('span', { 'class': 'strongs-num' }, num + ' '));
           if (lex) {
             var vdef = String(lex.definition || '');
-            var vcut = vdef.search(/[.;]/);
+            var vdefMasked = vdef.replace(/\bi\.e\./gi, 'i\u0001e\u0001').replace(/\bi\.e\b/gi, 'i\u0001e').replace(/\be\.g\./gi, 'e\u0001g\u0001').replace(/\be\.g\b/gi, 'e\u0001g');
+            var vcut = vdefMasked.search(/[.;]/);
             var vhead = vcut > 0 ? vdef.slice(0, vcut) : vdef;
             li.appendChild(doc.createTextNode(lex.transliteration + ' — ' + vhead));
             if (vdef && vdef !== vhead) {

@@ -2297,7 +2297,12 @@
   }
   function meaningHead(def) {
     var d = String(def || '');
-    var cut = d.search(/[.;]/);
+    // Mask abbreviation periods (i.e. / e.g.) before the head cut, so the cut
+    // does not land inside them ("to exist, i" bug, found 2026-11-04). The mask
+    // is length-preserving, so the index found on the masked string slices the
+    // original string correctly.
+    var masked = d.replace(/\bi\.e\./gi, 'i\u0001e\u0001').replace(/\bi\.e\b/gi, 'i\u0001e').replace(/\be\.g\./gi, 'e\u0001g\u0001').replace(/\be\.g\b/gi, 'e\u0001g');
+    var cut = masked.search(/[.;]/);
     return cut > 0 ? d.slice(0, cut) : d;
   }
   function phoneVoiceFallback(text) {
