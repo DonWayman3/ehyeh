@@ -305,7 +305,7 @@
         { role: 'system', content: sys },
         { role: 'user', content: 'Passage under study: ' + (opts.passage || 'none given') + '\nQuestion: ' + intentPrompt(intent, question) }
       ],
-      max_tokens: 400,
+      max_tokens: 2000,
       temperature: 0.3
     });
     return fetchFn(endpoint, {
