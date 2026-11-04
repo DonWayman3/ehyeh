@@ -379,6 +379,7 @@
     var h = $('#hg6-home');
     if (h) { h.hidden = false; }
     document.body.classList.add('hg6-home-on');
+    setBehindHomeInert(true);
     setActive('home');
     window.scrollTo(0, 0);
   }
@@ -386,6 +387,20 @@
     var h = $('#hg6-home');
     if (h) { h.hidden = true; }
     document.body.classList.remove('hg6-home-on');
+    setBehindHomeInert(false);
+  }
+  /* Usability fix (2026-11-04): Home is a fixed full-screen layer, but
+     the header and main underneath stayed focusable and "clickable" to
+     keyboard, screen-reader and automation users, whose clicks then
+     landed on the Home layer and did nothing. Make them inert while
+     Home is up; the bottom tab bar (outside both) stays live. */
+  function setBehindHomeInert(on) {
+    ['.app-header', '#hagah-main'].forEach(function (sel) {
+      var el = document.querySelector(sel);
+      if (!el) { return; }
+      if (on) { el.setAttribute('inert', ''); el.setAttribute('aria-hidden', 'true'); }
+      else { el.removeAttribute('inert'); el.removeAttribute('aria-hidden'); }
+    });
   }
   async function goHome() { await exitFlowIfActive(); showHome6(); }
   async function goBible() {

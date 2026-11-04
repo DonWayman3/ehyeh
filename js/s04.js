@@ -252,8 +252,9 @@
       try { return (typeof sessionStorage !== 'undefined') ? sessionStorage : null; }
       catch (e) { return null; }
     }
-    function asstEnabled() { return !!(asst.key && asst.endpoint); }
+    function asstEnabled() { return !asst.off; } /* Muse Spark house default needs no user key; Disable turns it off for this tab */
     function enableAssistant() {
+      asst.off = false;
       asst.key = $('asst-key').value.trim();
       asst.endpoint = $('asst-endpoint').value.trim();
       var st = sessionStore();
@@ -261,7 +262,7 @@
       updateAsstStatus();
     }
     function disableAssistant() {
-      asst.key = ''; asst.endpoint = '';
+      asst.key = ''; asst.endpoint = ''; asst.off = true;
       $('asst-key').value = ''; $('asst-endpoint').value = '';
       var st = sessionStore();
       if (st) { try { st.removeItem('ssb.asst.key'); st.removeItem('ssb.asst.endpoint'); } catch (e) {} }
@@ -269,8 +270,9 @@
     }
     function updateAsstStatus() {
       $('asst-status').textContent = asstEnabled()
-        ? 'Assistant enabled for this tab only. It answers study questions — never sermon wording.'
-        : 'Assistant is off. Nothing here contacts any service.';
+        ? ((asst.key && asst.endpoint) ? 'Assistant enabled with your own endpoint, for this tab only. It answers study questions — never sermon wording.'
+           : 'Assistant ready — powered by Meta Muse Spark. It answers study questions — never sermon wording.')
+        : 'Assistant is off for this tab. Nothing here contacts any service.';
       $('asst-chat').hidden = !asstEnabled();
     }
     function restoreAssistant() {

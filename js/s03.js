@@ -3030,6 +3030,15 @@
     }
     save(false);
     show('structure');
+    /* Usability fix (2026-11-04): show() scrolls to the top, which left
+       the finished outline below the fold at 720p and the build looked
+       like it did nothing. Bring the Structure heading into view and
+       focus it so the preacher (and screen readers) land on the outline. */
+    var hs = $('h-structure');
+    if (hs) {
+      if (hs.scrollIntoView) { hs.scrollIntoView({ block: 'start' }); }
+      try { hs.focus({ preventScroll: true }); } catch (err) { hs.focus(); }
+    }
   });
   function handleImportFile(input) {
     var file = input.files && input.files[0];
